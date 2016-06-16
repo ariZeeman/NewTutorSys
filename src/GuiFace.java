@@ -1,5 +1,9 @@
 
 import java.awt.CardLayout;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -233,6 +237,11 @@ public class GuiFace extends javax.swing.JFrame {
         });
 
         tutorSignupButton.setText("Sign Up");
+        tutorSignupButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tutorSignupButtonMouseClicked(evt);
+            }
+        });
 
         tutorFirstNameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -650,6 +659,16 @@ public class GuiFace extends javax.swing.JFrame {
     private void teacherFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherFirstNameFieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_teacherFirstNameFieldActionPerformed
+
+    private void tutorSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tutorSignupButtonMouseClicked
+        // TODO add your handling code here:
+        Tutor one = new Tutor();
+        one.setFirstName(tutorFirstNameField.getText());
+        one.setLastName(tutorLastNameField.getText());
+        one.setEmail(tutorEmailField.getText());
+        one.setPhoneNumber(tutorPhoneNumberField.getText());
+        one.setSubject((String) tutorSubjectDropList.getSelectedItem());
+    }//GEN-LAST:event_tutorSignupButtonMouseClicked
 
     /**
      * @param args the command line arguments

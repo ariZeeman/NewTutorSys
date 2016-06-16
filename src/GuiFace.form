@@ -322,6 +322,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sign Up"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tutorSignupButtonMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tutorFirstNameField">
               <Events>
