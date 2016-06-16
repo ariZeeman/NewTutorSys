@@ -20,9 +20,9 @@ public class Assignments {
         
     }
     
-    public Assignments(Tutor newTutor, Peer newPeer){
-        this.setTutor(newTutor);
-        this.setPeer(newPeer);
+    public Assignments(Peer newPeer, Tutor newTutor){
+        this.peer = newPeer;
+        this.tutor = newTutor;
     }
 
     /**
@@ -51,6 +51,10 @@ public class Assignments {
      */
     public void setPeer(Peer peer) {
         this.peer = peer;
+    }
+    
+    public String toString(){
+        return this.peer.toString() + "," + this.tutor.toString();
     }
     
 }
