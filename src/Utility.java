@@ -118,20 +118,20 @@ public class Utility {
         Assignments assignment = new Assignments(peer, tutor); //creates new assignment
         addObjectToFile(assignment, pw); //prints the assignment to the file
     }
-    
+
     /**
      *
      * @param peer peer in an assignment
      * @param s scanners of assignments
      * @return
      */
-    public Tutor returnMatch(Peer peer, Scanner s){
-        while (s.hasNext()){
+    public Tutor returnMatch(Peer peer, Scanner s) {
+        while (s.hasNext()) {
             String[] array = s.nextLine().split(",");
             Peer tempPeer = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
             Tutor tempTutor = new Tutor(array[6], array[7], array[8], array[9], array[10], Integer.parseInt(array[11]), array[12]);
             Assignments assignment = new Assignments(tempPeer, tempTutor);
-            if (assignment.getPeer() == peer){
+            if (assignment.getPeer() == peer) {
                 return assignment.getTutor();
             }
         }
@@ -188,7 +188,7 @@ public class Utility {
     public Tutor[] generateTutors() {
         try {
             //open the tutor file and put a scanner on it
-            File f = new File("tutors.txt");
+            File f = new File("Tutors.txt");
             Scanner s = new Scanner(f);
             ArrayList<Tutor> list = new ArrayList();
             Tutor[] me;
@@ -218,7 +218,7 @@ public class Utility {
     public Teacher[] generateTeachers() {
         try {
             //teacher file
-            File f = new File("teachers.txt");
+            File f = new File("Teachers.txt");
             Scanner s = new Scanner(f);
             ArrayList<Teacher> list = new ArrayList();
             int counter = 0;
@@ -245,7 +245,7 @@ public class Utility {
      */
     public Peer[] generatePeer() {
         try {
-            File f = new File("peers.txt");
+            File f = new File("Peers.txt");
             Scanner s = new Scanner(f);
             ArrayList<Peer> list = new ArrayList();
             int counter = 0;
@@ -263,5 +263,58 @@ public class Utility {
         }
         return null;
     }
-    
+
+    /**
+     *
+     * @param t the tutor being committed to a file
+     */
+    public void printTutorToFile(Tutor t) {
+        PrintWriter pw = null;
+        try {
+            File f = new File("Tutors.txt");
+            pw = new PrintWriter(new FileWriter(f));
+            addObjectToFile(t, pw);
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } finally {
+            pw.close();
+        }
+    }
+
+    /**
+     *
+     * @param t the teacher being committed to a file
+     */
+    public void printTeacherToFile(Teacher t) {
+        PrintWriter pw = null;
+        try {
+            File f = new File("Teachers.txt");
+            pw = new PrintWriter(new FileWriter(f));
+            addObjectToFile(t, pw);
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } finally {
+            pw.close();
+        }
+    }
+
+    /**
+     *
+     * @param p the peer being committed to a file
+     */
+    public void printPeerToFile(Peer p) {
+        PrintWriter pw = null;
+        try {
+            File f = new File("Peers.txt");
+            pw = new PrintWriter(new FileWriter(f));
+            addObjectToFile(p, pw);
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } finally {
+            pw.close();
+        }
+    }
 }
