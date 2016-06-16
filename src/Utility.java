@@ -57,19 +57,19 @@ public class Utility {
     public Tutor createTutorFromFile(Scanner s) {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
-        Tutor temp = new Tutor(array[0], array[1], array[2], array[3], Integer.parseInt(array[4]), array[5]);
+        Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
         return temp;
     }
 
     /**
      *
-     * @param s
+     * @param s scanner using file of peers
      * @return
      */
     public Peer createPeerFromFile(Scanner s) {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
-        Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4]);
+        Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
         return temp;
     }
 
@@ -97,8 +97,8 @@ public class Utility {
 
     /**
      *
-     * @param peer
-     * @param s
+     * @param peer peer to be matched
+     * @param s scanner of tutors
      * @throws IOException
      */
     public void createAssignment(Peer peer, Scanner s) throws IOException {
@@ -115,8 +115,27 @@ public class Utility {
         Tutor[] tutorArray = (Tutor[]) ar.toArray();
         Tutor tutor = fewestPeers(tutorArray); //creates the tutor who has the fewest # of peers
 
-        Assignments assignment = new Assignments(tutor, peer); //creates new assignment
+        Assignments assignment = new Assignments(peer, tutor); //creates new assignment
         addObjectToFile(assignment, pw); //prints the assignment to the file
+    }
+    
+    /**
+     *
+     * @param peer peer in an assignment
+     * @param s scanners of assignments
+     * @return
+     */
+    public Tutor returnMatch(Peer peer, Scanner s){
+        while (s.hasNext()){
+            String[] array = s.nextLine().split(",");
+            Peer tempPeer = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
+            Tutor tempTutor = new Tutor(array[6], array[7], array[8], array[9], array[10], Integer.parseInt(array[11]), array[12]);
+            Assignments assignment = new Assignments(tempPeer, tempTutor);
+            if (assignment.getPeer() == peer){
+                return assignment.getTutor();
+            }
+        }
+        return null;
     }
 
     /**

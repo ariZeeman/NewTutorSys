@@ -23,12 +23,13 @@ public class Peer {
     public Peer(){
     }
     
-    public Peer(String subject, String firstName, String lastName, String phoneNumber, String password){
+    public Peer(String subject, String firstName, String lastName, String phoneNumber, String password, String email){
         this.subject = subject;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.email = email;
     }
     
     
@@ -130,12 +131,12 @@ public class Peer {
     
     @Override
     public String toString(){
-        String toReturn = this.subject + "," + this.firstName + "," + this.lastName + "," + this.phoneNumber + "," + this.email;
-        for (int x = 0; x < 5; x++){
-            for (int y = 0; y < 6; y++){
-                toReturn += availability[x][y] + ",";
-            }
-        }
+        String toReturn = this.subject + "," + this.firstName + "," + this.lastName + "," + this.phoneNumber + "," + this.password + "," + this.email + ",";
+//        for (int x = 0; x < 5; x++){
+//            for (int y = 0; y < 6; y++){
+//                toReturn += availability[x][y] + ",";
+//            }
+//        }
         return toReturn;
     }
 

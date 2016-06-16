@@ -34,11 +34,12 @@ public class Tutor implements Comparable {
      * @param firstName tutors first name
      * @param lastName tutors last name
      */
-    public Tutor(String subject, String firstName, String lastName, String phoneNumber, int numPeers, String password) {
+    public Tutor(String subject, String firstName, String lastName, String phoneNumber, String email, int numPeers, String password) {
         this.subject = subject;
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
+        this.email = email;
         this.numPeers = numPeers;
         this.password = password;
     }
@@ -52,10 +53,12 @@ public class Tutor implements Comparable {
     @Override
     public String toString() {
         String string;
-        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + getNumPeers() + "," + getPassword() + ",";
-        for (int j = 0; j < 6; j++) {
-            string = string + availability[j] + ",";
-        }
+        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password + ",";
+//        for (int i = 0; i < 5; i++) {
+//            for (int j = 0; j < 6; j++) {
+//                string = string + availability[i][j] + ",";
+//            }
+//        }
         string = string + visibility + ",";
         return string;
     }
