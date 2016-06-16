@@ -55,43 +55,29 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="tutorRegistryButton" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
-                                      <Component id="peerRegistryButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="passwordLine" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="tutorRegistryButton" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="218" max="-2" attributes="0"/>
+                              <Component id="peerRegistryButton" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                               <Component id="teacherRegistryButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="198" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
                                       <Component id="loginText1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="loginButton" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="usernameLine" min="-2" pref="170" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="userameLabel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="passwordLine" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="loginButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="usernameLine" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="userameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="clientTypeList" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
+                                  <Component id="clientTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="0" pref="206" max="32767" attributes="0"/>
                           </Group>
@@ -105,7 +91,11 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="loginText1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
+                      <Component id="clientTypeLabel" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="clientTypeList" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="userameLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="usernameLine" min="-2" max="-2" attributes="0"/>
@@ -115,7 +105,7 @@
                       <Component id="passwordLine" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="loginButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="280" max="32767" attributes="0"/>
+                      <EmptySpace pref="196" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="teacherRegistryButton" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="peerRegistryButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -177,6 +167,26 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="peerRegistryButtonMouseClicked"/>
               </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="clientTypeLabel">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Please select your login type:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="clientTypeList">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Item 1"/>
+                    <StringItem index="1" value="Item 2"/>
+                    <StringItem index="2" value="Item 3"/>
+                    <StringItem index="3" value="Item 4"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>
@@ -644,14 +654,12 @@
                                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="teacherSubjectDropList" pref="240" max="32767" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="teacherFirstNameField" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="teacherLastNameField" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="teacherEmailField" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="teacherPhoneNumberField" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="teacherPassConfirmField" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="teacherPasswordField" pref="240" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="teacherFirstNameField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="teacherLastNameField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="teacherEmailField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="teacherPhoneNumberField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="teacherPassConfirmField" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="teacherPasswordField" pref="240" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>

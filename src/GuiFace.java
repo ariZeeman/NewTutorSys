@@ -1,3 +1,4 @@
+
 import java.awt.CardLayout;
 
 /*
@@ -30,6 +31,10 @@ public class GuiFace extends javax.swing.JFrame {
         peerSubjectDropList.removeAllItems();
         peerPeriodDropList.removeAllItems();
         teacherSubjectDropList.removeAllItems();
+        clientTypeList.removeAllItems();
+        clientTypeList.addItem("Teacher");
+        clientTypeList.addItem("Tutor");
+        clientTypeList.addItem("Peer");
         for (int i = 0; i < subjectArray.length; i++) {
             tutorSubjectDropList.addItem(subjectArray[i]);
             peerSubjectDropList.addItem(subjectArray[i]);
@@ -61,6 +66,8 @@ public class GuiFace extends javax.swing.JFrame {
         teacherRegistryButton = new javax.swing.JButton();
         tutorRegistryButton = new javax.swing.JButton();
         peerRegistryButton = new javax.swing.JButton();
+        clientTypeLabel = new javax.swing.JLabel();
+        clientTypeList = new javax.swing.JComboBox<>();
         tutorRegistryPanel = new javax.swing.JPanel();
         tutorTitle = new javax.swing.JLabel();
         tutorBackButton = new javax.swing.JButton();
@@ -154,39 +161,35 @@ public class GuiFace extends javax.swing.JFrame {
             }
         });
 
+        clientTypeLabel.setText("Please select your login type:");
+
+        clientTypeList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
         loginPanelLayout.setHorizontalGroup(
             loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(loginPanelLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(loginPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addComponent(tutorRegistryButton)
-                                .addGap(218, 218, 218)
-                                .addComponent(peerRegistryButton))
-                            .addComponent(passwordLine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tutorRegistryButton)
+                        .addGap(218, 218, 218)
+                        .addComponent(peerRegistryButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(teacherRegistryButton))
                     .addGroup(loginPanelLayout.createSequentialGroup()
                         .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addGap(198, 198, 198)
+                                .addGap(188, 188, 188)
                                 .addComponent(loginText1))
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(loginButton))
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(usernameLine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(userameLabel))
-                            .addGroup(loginPanelLayout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(passwordLabel)))
+                            .addComponent(passwordLine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(loginButton)
+                            .addComponent(usernameLine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordLabel)
+                            .addComponent(userameLabel)
+                            .addComponent(clientTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(clientTypeLabel))
                         .addGap(0, 206, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -195,7 +198,11 @@ public class GuiFace extends javax.swing.JFrame {
             .addGroup(loginPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(loginText1)
-                .addGap(68, 68, 68)
+                .addGap(82, 82, 82)
+                .addComponent(clientTypeLabel)
+                .addGap(18, 18, 18)
+                .addComponent(clientTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(userameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(usernameLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -205,7 +212,7 @@ public class GuiFace extends javax.swing.JFrame {
                 .addComponent(passwordLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(loginButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 280, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
                 .addGroup(loginPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teacherRegistryButton)
                     .addComponent(peerRegistryButton)
@@ -524,13 +531,12 @@ public class GuiFace extends javax.swing.JFrame {
                                 .addGap(27, 27, 27)
                                 .addGroup(teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(teacherSubjectDropList, 0, 240, Short.MAX_VALUE)
-                                    .addGroup(teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(teacherFirstNameField)
-                                        .addComponent(teacherLastNameField)
-                                        .addComponent(teacherEmailField)
-                                        .addComponent(teacherPhoneNumberField)
-                                        .addComponent(teacherPassConfirmField)
-                                        .addComponent(teacherPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))))
+                                    .addComponent(teacherFirstNameField)
+                                    .addComponent(teacherLastNameField)
+                                    .addComponent(teacherEmailField)
+                                    .addComponent(teacherPhoneNumberField)
+                                    .addComponent(teacherPassConfirmField)
+                                    .addComponent(teacherPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))))
                         .addContainerGap(492, Short.MAX_VALUE))))
         );
         teacherRegistryPanelLayout.setVerticalGroup(
@@ -687,6 +693,8 @@ public class GuiFace extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel basePanel;
+    private javax.swing.JLabel clientTypeLabel;
+    private javax.swing.JComboBox<String> clientTypeList;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginText1;
