@@ -26,14 +26,11 @@ public class GuiFace extends javax.swing.JFrame {
         "Grade 12 Calculus & Vectors", "Grade 9 Science", "Grade 10 Science",
         "Grade 11 Biology", "Grade 11 Physics", "Grade 11 Chemistry", "Grade 12 Biology",
         "Grade 12 Physics", "Grade 12 Chemistry"};
-    private final String[] periodArray = {"period 1", "period 2", "period 3", "period 4", "period 5", "after school"};
 
     public GuiFace() {
         initComponents();
         tutorSubjectDropList.removeAllItems();
-        tutorPeriodDropList.removeAllItems();
         peerSubjectDropList.removeAllItems();
-        peerPeriodDropList.removeAllItems();
         teacherSubjectDropList.removeAllItems();
         clientTypeList.removeAllItems();
         clientTypeList.addItem("Teacher");
@@ -43,10 +40,6 @@ public class GuiFace extends javax.swing.JFrame {
             tutorSubjectDropList.addItem(subjectArray[i]);
             peerSubjectDropList.addItem(subjectArray[i]);
             teacherSubjectDropList.addItem(subjectArray[i]);
-        }
-        for (int i = 0; i < periodArray.length; i++) {
-            tutorPeriodDropList.addItem(periodArray[i]);
-            peerPeriodDropList.addItem(periodArray[i]);
         }
     }
 
@@ -736,7 +729,6 @@ public class GuiFace extends javax.swing.JFrame {
         one.setAvailability(3,tutorPeriod4CheckBox.isSelected());
         one.setAvailability(4,tutorPeriod5CheckBox.isSelected());
         one.setAvailability(5,tutorAfterSchoolCheckBox.isSelected());
-        Utility.printTutorToFile(one);
     }//GEN-LAST:event_tutorSignupButtonMouseClicked
 
     /**
