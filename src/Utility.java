@@ -23,6 +23,12 @@ import java.util.logging.Logger;
 public class Utility {
 
     /**
+     * Construct a Utility object (in case you need one)
+     */
+    public Utility() {
+    }
+
+    /**
      * Bubble/Sinking sort that is for the StockInfo objects.
      *
      * @param array the array to be sorted
@@ -94,7 +100,6 @@ public class Utility {
     public void addObjectToFile(Object o, PrintWriter pw) {
         pw.append(o.toString());
     }
-    
 
     /**
      *
