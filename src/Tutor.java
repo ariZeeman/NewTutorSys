@@ -16,7 +16,7 @@ public class Tutor implements Comparable {
     private int numPeers;
     private String password;
     private Teacher teacher = new Teacher();
-    private boolean[][] availability = new boolean[5][6];
+    private boolean[] availability = new boolean[6];
     private boolean visibility = false;
 
     /**
@@ -53,51 +53,11 @@ public class Tutor implements Comparable {
     public String toString() {
         String string;
         string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + getNumPeers() + "," + getPassword() + ",";
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 6; j++) {
-                string = string + availability[i][j] + ",";
-            }
+        for (int j = 0; j < 6; j++) {
+            string = string + availability[j] + ",";
         }
         string = string + visibility + ",";
         return string;
-    }
-
-    /**
-     * The setter method for the availability which allows the user to set the
-     * value of a single boolean within the array.
-     *
-     * @param i the index for the days [0=Monday, 1=Tuesday...4=Friday]
-     * @param j the index for the periods [0=period 1, etc., 5=after school]
-     * @param trueFalse whether the selected day is available
-     */
-    public void setAvailability(int i, int j, boolean trueFalse) {
-        if (i < 0 || i > 4) {
-            System.out.println("array index for days out of bounds action not preformed");
-            return;
-        } else if (j < 0 || j > 5) {
-            System.out.println("array index for periods out of bounds action not performed");
-            return;
-        }
-        availability[i][j] = trueFalse;
-    }
-
-    /**
-     * This getter gets a single boolean from the boolean array based on day and
-     * period.
-     *
-     * @param i
-     * @param j
-     * @return
-     */
-    public boolean getAvailability(int i, int j) {
-        if (i < 0 || i > 4) {
-            System.out.println("array index for days out of bounds action not preformed");
-            throw new ArrayIndexOutOfBoundsException();
-        } else if (j < 0 || j > 5) {
-            System.out.println("array index for periods out of bounds action not performed");
-            throw new ArrayIndexOutOfBoundsException();
-        }
-        return getAvailability()[i][j];
     }
 
     /**
@@ -129,12 +89,26 @@ public class Tutor implements Comparable {
     }
 
     /**
-     * This methods allows you to retrieve the entire 2d array of availability.
+     * This methods allows you to retrieve the entire array of availability.
      *
      * @return the availability
      */
-    public boolean[][] getAvailability() {
+    public boolean[] getAvailability() {
         return availability;
+    }
+
+    /**
+     * This getter method returns the value of a single index in the
+     * availability array.
+     *
+     * @param i the index value of the boolean array
+     * @return availability[i]
+     */
+    public boolean getAvailability(int i) {
+        if (i >= availability.length || i < 0) {
+            throw new ArrayIndexOutOfBoundsException("Array bounds exceeded");
+        }
+        return availability[i];
     }
 
     /**
@@ -143,7 +117,7 @@ public class Tutor implements Comparable {
      *
      * @param availability the entire boolean value being written
      */
-    public void setAvailability(boolean[][] availability) {
+    public void setAvailability(boolean[] availability) {
         this.availability = availability;
     }
 

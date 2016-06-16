@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author 349173815
+ * @author Ari Zeeman, Haydn Brown, Len Wu
  */
 public class Utility {
 
