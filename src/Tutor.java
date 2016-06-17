@@ -58,7 +58,7 @@ public class Tutor implements Comparable {
         for (int j = 0; j < 6; j++) {
             string += "," + availability[j];
         }
-        string = string + visibility;
+        string += "," + visibility;
         return string;
     }
 
