@@ -102,16 +102,29 @@ public class Utility {
      * @param pass
      * @return
      */
-    public Teacher createTeacherFromFile(Scanner s,String firstName,String pass) {
+    public Teacher createTeacherFromFile(Scanner s, String firstName, String pass) {
         String[] array = null; //array of info for peer
-        while (s.hasNextLine()){
-        array = s.nextLine().split(",");
-        Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
-        if((temp.getFirstName().equals(firstName))&&(temp.getPassword().equals(pass))){
-         return temp;   
-        }
+        while (s.hasNextLine()) {
+            array = s.nextLine().split(",");
+            Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
+            if ((temp.getFirstName().equals(firstName)) && (temp.getPassword().equals(pass))) {
+                return temp;
+            }
         }
         return null;
+    }
+
+    /**
+     *
+     * @param s
+     * @return
+     */
+    public Teacher createTeacherFromFile(Scanner s) {
+        String[] array = null; //array of info for teacher
+        array = s.nextLine().split(",");
+        Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
+        return temp;
+
     }
 
     /**
@@ -407,7 +420,7 @@ public class Utility {
      */
     public Tutor[] tutorLoginCheck(String firstName, String password) {
         ArrayList<Tutor> temp = new ArrayList();
-        Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
+        Tutor[] tutors = findAllTutors(); //all the tutors in the tutor file
         int counter = 0;
         for (Tutor tutor : tutors) {
             if (tutor.getFirstName().equals(firstName) && tutor.getPassword().equals(password)) {
@@ -418,6 +431,10 @@ public class Utility {
         }
         Tutor[] checked = new Tutor[counter];
         checked = temp.toArray(checked);
+        if (checked == null) {
+            System.out.println("No login info retrieved");
+            return null;
+        }
         return checked; //all the occurances of the person
     }
 
