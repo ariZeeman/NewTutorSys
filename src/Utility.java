@@ -354,14 +354,15 @@ public class Utility {
      * if they have multiple objects for various subjects
      */
     public Tutor[] tutorLoginCheck(String firstName, String password) {
-        ArrayList temp = new ArrayList();
+        ArrayList<Tutor> temp = new ArrayList();
         Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
         for (int i = 0; i < tutors.length; i++) {
             if (tutors[i].getFirstName().equals(firstName) && tutors[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(tutors[i]);
             }
         }
-        Tutor[] checked = (Tutor[]) temp.toArray();
+        Tutor[] checked = null;
+        checked = temp.toArray(checked);
         return checked; //all the occurances of the person
     }
 
@@ -383,7 +384,7 @@ public class Utility {
         Teacher[] checked = (Teacher[]) temp.toArray();
         return checked; //all the occurances of the person
     }
-    
+
 //     * This method sets the visibility of a Tutor to true so they can be seen by
 //     * the matches.
 //     *
