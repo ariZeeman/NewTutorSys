@@ -579,7 +579,22 @@ public class Utility {
     }
 
     public Peer generatePeerFromLogin(Scanner s, String firstname, String password) {
-        
+        while (s.hasNext()) {
+            String temo = s.nextLine();
+            System.out.println(temo);
+            String[] array = temo.split(",");
+            Peer temp = new Peer();
+            temp.setFirst(array[1]);
+            temp.setPassword(array[4]);
+            if ((temp.getFirst().equals(firstname)) && (temp.getPassword().equals(password))) {
+                //they are the same, initialize the rest of the Peer
+                temp.setSubject(array[0]);
+                temp.setLast(array[2]);
+                temp.setPhoneNumber(array[3]);
+                
+                return temp;
+            }
+        }
         return null;
     }
 }
