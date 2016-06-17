@@ -327,6 +327,10 @@ public class Utility {
         }
     }
     
+    public Peer peerLoginCheck(String firstName, String password){
+        
+        return null;
+    }
 
     
 }
