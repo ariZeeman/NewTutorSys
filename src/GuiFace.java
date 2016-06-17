@@ -930,17 +930,17 @@ public class GuiFace extends javax.swing.JFrame {
         // TODO add your handling code here:
         Utility benri = new Utility();
         CardLayout card = (CardLayout) basePanel.getLayout();
-        if (clientTypeList.getSelectedItem().equals("Teacher")) {
+        if (((String)clientTypeList.getSelectedItem()).equals("Teacher")) {
             if (benri.teacherLoginCheck(teacherFirstNameField.getText(), teacherPasswordField.getText()) != null) {
                 card.show(basePanel, "teacherHome");//shows login screen panel
             }
 
-        } else if (clientTypeList.getSelectedItem().equals("Tutor")) {
+        } else if (((String)clientTypeList.getSelectedItem()).equals("Tutor")) {
             if (benri.tutorLoginCheck(tutorFirstNameField.getText(), tutorPasswordField.getText()) != null) {
                 card.show(basePanel, "tutorHome");//shows login screen panel
             }
 
-        } else if (clientTypeList.getSelectedItem().equals("peer")) {
+        } else if (((String)clientTypeList.getSelectedItem()).equals("peer")) {
             if (benri.peerLoginCheck(peerFirstNameField.getText(), peerPasswordField.getText()) != null) {
                 card.show(basePanel, "peerHome");//shows login screen panel
             }

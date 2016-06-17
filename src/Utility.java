@@ -383,14 +383,13 @@ public class Utility {
         Teacher[] checked = (Teacher[]) temp.toArray();
         return checked; //all the occurances of the person
     }
-
-    /**
-     * This method sets the visibility of a Tutor to true so they can be seen by
-     * the matches.
-     *
-     * @param tutor being verified
-     */
-    public void verify(Tutor tutor) {
-        tutor.setVisibility(true);
-    }
+    
+//     * This method sets the visibility of a Tutor to true so they can be seen by
+//     * the matches.
+//     *
+//     * @param tutor being verified
+//     */
+//    public void verify(Tutor tutor) {
+//        tutor.setVisibility(true);
+//    }
 }
