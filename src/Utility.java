@@ -29,7 +29,7 @@ public class Utility {
     public Utility() {
     }
 
-    /**
+    /** Ari
      * Bubble/Sinking sort that is for the StockInfo objects.
      *
      * @param array the array to be sorted
@@ -55,7 +55,7 @@ public class Utility {
         return array;
     }
 
-    /**
+    /** Made by Haydn, edited by Haydn/Ari
      * The method which creates a tutor from a file.
      *
      * @param s the scanner that is reading from the file
@@ -78,7 +78,7 @@ public class Utility {
 
     }
 
-    /**
+    /** Made by Haydn, edited by Haydn/Ari
      *
      * @param s scanner using file of peers
      * @return
@@ -95,7 +95,7 @@ public class Utility {
         return temp;
     }
 
-    /**
+    /** Made by Haydn/Len edited by Ari
      *
      * @param s
      * @param firstName
@@ -116,7 +116,7 @@ public class Utility {
         return null;
     }
 
-    /**
+    /** Made by Haydn
      *
      * @param s
      * @return
@@ -129,7 +129,7 @@ public class Utility {
 
     }
 
-    /**
+    /** Made by Haydn
      * Method which prints out an object to a file
      *
      * @param o the object that is being created
@@ -139,7 +139,7 @@ public class Utility {
         pw.println(o.toString());
     }
 
-    /**
+    /** Made by Haydn
      *
      * @param peer peer to be matched
      * @param s scanner of tutors
@@ -185,23 +185,24 @@ public class Utility {
         addObjectToFile(assignment, pw); //prints the assignment to the file
     }
 
-    /**
+    /** Made by Haydn
      *
      * @param peer peer in an assignment
      * @param s scanners of assignments
      * @return
      */
-    public Assignments returnPeerMatch(Peer peer, Scanner s) {
+    public Assignments returnPeerMatch(Peer peer, Scanner s) throws FileNotFoundException {
         ArrayList list = new ArrayList();
         Assignments assignment;
+        File f = new File("Peer.txt");
+        Scanner scan = new Scanner(f);
         while (s.hasNext()) {
             String[] array = s.nextLine().split(",");
-            //this returns peers: subject, fname, lname, phone#, password, email,
-            Peer tempPeer = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
+            Peer tempPeer = null;
             for (int i = 6; i < 12; i++) {
                 tempPeer.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
             }
-            //gets ????????
+            
             Tutor tempTutor = new Tutor(array[12], array[13], array[14], array[15], array[16], Integer.parseInt(array[17]), array[18]); //skips past the availability portion of peer
             for (int i = 19; i < 25; i++) {
                 tempTutor.setAvailability(i - 19, Boolean.parseBoolean(array[i]));
@@ -216,10 +217,11 @@ public class Utility {
                 list.add(assignment);
             }
         }
+        //array of peers to return
         return null;
     }
 
-    /**
+    /** Made by Haydn
      * Method which returns the tutor with the lowest amount of people
      * registered with them.
      *
@@ -238,7 +240,7 @@ public class Utility {
         return temp;
     }
 
-    /**
+    /** Made by Ari
      * This is the method which creates an array of tutors that require
      * verification.
      *
@@ -262,7 +264,7 @@ public class Utility {
         return null;
     }
 
-    /**
+    /**  Made by Ari
      * This is the method which generates an array of tutors to be used by the
      * application, which uses the individual createTutorFromFile method.
      *
@@ -292,8 +294,8 @@ public class Utility {
         }
         return null;
     }
-
-    /**
+ 
+    /**  Made by Ari
      * Method which returns an array of teachers, will probably be called to
      * fill out info in the drop menu.
      *
@@ -322,7 +324,7 @@ public class Utility {
         return null;
     }
 
-    /**
+    /**  Made by Ari
      * Method which returns an array of Peer objects, same as the other
      * generateObject() methods.
      *
@@ -350,7 +352,7 @@ public class Utility {
         return null;
     }
 
-    /**
+    /**  Made by Ari
      *
      * @param t the tutor being committed to a file
      */
@@ -368,7 +370,7 @@ public class Utility {
         }
     }
 
-    /**
+    /**  Made by Ari
      *
      * @param t the teacher being committed to a file
      */
@@ -385,7 +387,7 @@ public class Utility {
         }
     }
 
-    /**
+    /**  Made by Ari
      *
      * @param p the peer being committed to a file
      */
@@ -403,7 +405,7 @@ public class Utility {
         }
     }
 
-    /**
+    /** Made by Haydn
      *
      * @param firstName first name used to log in
      * @param password password used to log in
@@ -422,7 +424,7 @@ public class Utility {
         return checked; //all the occurances of the person
     }
 
-    /**
+    /** Made by Haydn
      *
      * @param firstName first name used to log in
      * @param password password used to log in
@@ -449,7 +451,7 @@ public class Utility {
         return checked; //all the occurances of the person
     }
 
-    /**
+    /** Made by Haydn
      *
      * @param firstName first name used to log in
      * @param password password used to log in
@@ -472,7 +474,7 @@ public class Utility {
         return checked; //all the occurances of the person
     }
 
-    /**
+    /** Made by Ari
      * Method which finds every last tutor with the purpose of updating a tutor
      * to verify it.
      *
@@ -501,7 +503,7 @@ public class Utility {
         return null;
     }
 
-    /**
+    /** Made by Ari
      * This method sets the visibility of a Tutor to true so they can be seen by
      * the matches. It generates an array of *every* tutor which it then
      * searches through to verify the tutor before re-writing the entire list.
@@ -532,7 +534,7 @@ public class Utility {
         }
     }
 
-    /**
+    /** Made by Ari
      * Re-hashed version of create from file which just gets all tutors
      *
      * @param s
@@ -549,11 +551,12 @@ public class Utility {
         return temp;
     }
 
-    /**
+    /** Made by Ari
      * Matches tutors to peers if any of their availability is the same and they
      * have the same subject. Returns an array of tutors who match.
      *
      * @param p
+     * @return 
      */
     public Tutor[] matchTutors(Peer p) {
         Tutor[] firstArray = generateTutors();
@@ -578,20 +581,23 @@ public class Utility {
         return finalArray;
     }
 
+    /** Made by Ari
+     * Use this to compare/find matches for peers when they log in
+     * @param s scanner of peers
+     * @param firstname
+     * @param password
+     * @return
+     */
     public Peer generatePeerFromLogin(Scanner s, String firstname, String password) {
         while (s.hasNext()) {
             String temo = s.nextLine();
-            System.out.println(temo);
+            System.out.println(temo); //debugging
             String[] array = temo.split(",");
-            Peer temp = new Peer();
+            Peer temp = null;
             temp.setFirst(array[1]);
             temp.setPassword(array[4]);
             if ((temp.getFirst().equals(firstname)) && (temp.getPassword().equals(password))) {
-                //they are the same, initialize the rest of the Peer
-                temp.setSubject(array[0]);
-                temp.setLast(array[2]);
-                temp.setPhoneNumber(array[3]);
-                
+                temp = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
                 return temp;
             }
         }
