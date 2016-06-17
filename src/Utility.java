@@ -446,14 +446,18 @@ public class Utility {
      * if they have multiple objects for various subjects
      */
     public Teacher[] teacherLoginCheck(String firstName, String password) {
-        ArrayList temp = new ArrayList();
+        ArrayList<Teacher> temp = new ArrayList();
+        int counter = 0;
         Teacher[] teachers = generateTeachers(); //all the teachers in the teachers file
         for (int i = 0; i < teachers.length; i++) {
             if (teachers[i].getFirstName().equals(firstName) && teachers[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(teachers[i]);
+                counter++;
             }
         }
-        Teacher[] checked = (Teacher[]) temp.toArray();
+        Teacher[] checked = new Teacher[counter];
+        temp.toArray(checked);
+        //
         return checked; //all the occurances of the person
     }
 

@@ -221,7 +221,7 @@
                                       <Component id="tutorFirstNameLabel" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="tutorPassConfirmLabel" pref="100" max="32767" attributes="0"/>
+                                      <Component id="tutorPassConfirmLabel" pref="0" max="32767" attributes="0"/>
                                       <Component id="tutorPeriodsLabel" max="32767" attributes="0"/>
                                       <Component id="tutorSubjectLabel" max="32767" attributes="0"/>
                                   </Group>

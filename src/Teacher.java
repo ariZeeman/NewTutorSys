@@ -138,6 +138,10 @@ public class Teacher {
         return firstName + "," + lastName + "," + email + "," + password + "," + subject;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     /**
      * @return the password
      */

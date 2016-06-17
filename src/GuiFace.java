@@ -913,16 +913,17 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void teacherSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teacherSignupButtonMouseClicked
         // TODO add your handling code here:
-        if (teacherFirstNameField.getText().equals("") || teacherLastNameField.getText().equals("") || teacherEmailField.getText().equals("") || tutorPasswordField.getText().equals("")) {
+        if (teacherFirstNameField.getText().equals("") || teacherLastNameField.getText().equals("") || teacherEmailField.getText().equals("") || teacherPasswordField.getText().equals("")) {
             return;
         } else if (!teacherPasswordField.getText().equals(teacherPassConfirmField.getText())) {
             return;
         }
         Teacher one = new Teacher();
-        one.setFirstName(peerFirstNameField.getText());
-        one.setLastName(peerLastNameField.getText());
-        one.setEmail(peerEmailField.getText());
-        one.setSubject((String) peerSubjectDropList.getSelectedItem());
+        one.setFirstName(teacherFirstNameField.getText());
+        one.setLastName(teacherLastNameField.getText());
+        one.setEmail(teacherEmailField.getText());
+        one.setPassword(teacherPasswordField.getText());
+        one.setSubject((String) teacherSubjectDropList.getSelectedItem());
         Utility benri = new Utility();
         benri.printTeacherToFile(one);
         CardLayout card = (CardLayout) basePanel.getLayout();
@@ -949,24 +950,24 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
-        Scanner one = new Scanner("Teachers.txt");
+        Scanner one = new Scanner("Teacher.txt");
         Utility benri = new Utility();
         CardLayout card = (CardLayout) basePanel.getLayout();
-        if (((String)clientTypeList.getSelectedItem()).equals("Teacher")) {
-            if (benri.teacherLoginCheck(firstNameField.getText(), passwordField.getText()).length>=1) {
+        if (((String) clientTypeList.getSelectedItem()).equals("Teacher")) {
+            if (benri.teacherLoginCheck(firstNameField.getText(), passwordField.getText()).length > 0) {
                 card.show(basePanel, "teacherHome");//shows login screen panel
-                for (int i = 0;i < benri.needVerification(benri.createTeacherFromFile(one,firstNameField.getText(),passwordField.getText())).length;i++ ){
-                tutorVerifyList.addItem(benri.needVerification(benri.createTeacherFromFile(one,firstNameField.getText(),passwordField.getText()))[i].getFirstName());
+                for (int i = 0; i < benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText())).length; i++) {
+                    tutorVerifyList.addItem(benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText()))[i].getFirstName());
                 }
             }
 
-        } else if (((String)clientTypeList.getSelectedItem()).equals("Tutor")) {
-            if (benri.tutorLoginCheck(firstNameField.getText(), passwordField.getText()).length >=1) {
+        } else if (((String) clientTypeList.getSelectedItem()).equals("Tutor")) {
+            if (benri.tutorLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
                 card.show(basePanel, "tutorHome");//shows login screen panel
             }
 
-        } else if (((String)clientTypeList.getSelectedItem()).equals("Peer")) {
-            if (benri.peerLoginCheck(firstNameField.getText(), passwordField.getText()).length >=1) {
+        } else if (((String) clientTypeList.getSelectedItem()).equals("Peer")) {
+            if (benri.peerLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
                 card.show(basePanel, "peerHome");//shows login screen panel
             }
         }
