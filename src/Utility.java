@@ -73,7 +73,7 @@ public class Utility {
         if (Boolean.parseBoolean(array[13]) == true) {
             return temp;
         } else {
-            return null; //if the tutor hasnt been approved, do not return them.
+            return temp; //if the tutor hasnt been approved, do not return them.
         }
 
     }
