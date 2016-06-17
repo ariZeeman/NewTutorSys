@@ -928,13 +928,24 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
-        if (clientTypeList.getSelectedItem().equals("Teacher")) {
+        Utility benri = new Utility();
+        CardLayout card = (CardLayout) basePanel.getLayout();
+        if (((String)clientTypeList.getSelectedItem()).equals("Teacher")) {
+            if (!benri.teacherLoginCheck(teacherFirstNameField.getText(), teacherPasswordField.getText()).equals(null)) {
+                card.show(basePanel, "teacherHome");//shows login screen panel
+            }
 
-        } else if (clientTypeList.getSelectedItem().equals("Tutor")) {
+        } else if (((String)clientTypeList.getSelectedItem()).equals("Tutor")) {
+            if (!benri.tutorLoginCheck(tutorFirstNameField.getText(), tutorPasswordField.getText()).equals(null)) {
+                card.show(basePanel, "tutorHome");//shows login screen panel
+            }
 
-        } else {
-
+        } else if (((String)clientTypeList.getSelectedItem()).equals("peer")) {
+            if (!benri.peerLoginCheck(peerFirstNameField.getText(), peerPasswordField.getText()).equals(null)) {
+                card.show(basePanel, "peerHome");//shows login screen panel
+            }
         }
+
     }//GEN-LAST:event_loginButtonMouseClicked
 
     /**
