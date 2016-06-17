@@ -326,22 +326,23 @@ public class Utility {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     /**
      *
      * @param firstName first name used to log in
      * @param password password used to log in
-     * @return array of the object of the person signing in, multiple returned if they have multiple objects for various subjects
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
      */
-    public Peer[] peerLoginCheck(String firstName, String password){
+    public Peer[] peerLoginCheck(String firstName, String password) {
         ArrayList temp = new ArrayList();
         Peer[] peers = generatePeer(); //all the peers in the peer file
-        for (int i = 0; i < peers.length; i++){
-            if (peers[i].getFirst().equals(firstName) && peers[i].getPassword().equals(password)){ //if the firstname and password match (if its that person, regardless of subject)
+        for (int i = 0; i < peers.length; i++) {
+            if (peers[i].getFirst().equals(firstName) && peers[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(peers[i]);
             }
         }
-        Peer[] checked = (Peer[])temp.toArray();
+        Peer[] checked = (Peer[]) temp.toArray();
         return checked; //all the occurances of the person
     }
 
@@ -381,4 +382,12 @@ public class Utility {
         return checked; //all the occurances of the person
     }
     
+     * This method sets the visibility of a Tutor to true so they can be seen by
+     * the matches.
+     *
+     * @param tutor being verified
+     */
+    public void verify(Tutor tutor) {
+        tutor.setVisibility(true);
+    }
 }
