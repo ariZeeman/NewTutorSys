@@ -1,5 +1,7 @@
 import java.awt.CardLayout;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.PrintWriter;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -65,7 +67,7 @@ public class GuiFace extends javax.swing.JFrame {
         tutorRegistryButton = new javax.swing.JButton();
         peerRegistryButton = new javax.swing.JButton();
         clientTypeLabel = new javax.swing.JLabel();
-        clientTypeList = new javax.swing.JComboBox<>();
+        clientTypeList = new javax.swing.JComboBox<String>();
         tutorRegistryPanel = new javax.swing.JPanel();
         tutorTitle = new javax.swing.JLabel();
         tutorBackButton = new javax.swing.JButton();
@@ -136,6 +138,8 @@ public class GuiFace extends javax.swing.JFrame {
         tutorHomeLabel = new javax.swing.JLabel();
         tutorLogOut = new javax.swing.JButton();
         myPeersLabel = new javax.swing.JLabel();
+        match_btn = new javax.swing.JButton();
+        matchList_cbox = new javax.swing.JComboBox();
         peerHome = new javax.swing.JPanel();
         peerLogOut = new javax.swing.JButton();
         peerHomeLabel = new javax.swing.JLabel();
@@ -144,7 +148,7 @@ public class GuiFace extends javax.swing.JFrame {
         teacherLogOut = new javax.swing.JButton();
         teacherHomeLabel = new javax.swing.JLabel();
         verifyTutorsLabel = new javax.swing.JLabel();
-        tutorVerifyList = new javax.swing.JComboBox<>();
+        tutorVerifyList = new javax.swing.JComboBox<String>();
         verifyConfirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -188,7 +192,7 @@ public class GuiFace extends javax.swing.JFrame {
 
         clientTypeLabel.setText("Please select your login type:");
 
-        clientTypeList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        clientTypeList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -314,7 +318,7 @@ public class GuiFace extends javax.swing.JFrame {
                                 .addComponent(tutorLastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tutorFirstNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(tutorPassConfirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                .addComponent(tutorPassConfirmLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                                 .addComponent(tutorPeriodsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tutorSubjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(38, 38, 38)
@@ -596,7 +600,7 @@ public class GuiFace extends javax.swing.JFrame {
                                     .addComponent(teacherSubjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(teacherEmailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(teacherPasswordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(teacherPassConfirmLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                    .addComponent(teacherPassConfirmLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, Short.MAX_VALUE)
                                     .addComponent(teacherLastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(teacherFirstNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(27, 27, 27)
@@ -662,6 +666,15 @@ public class GuiFace extends javax.swing.JFrame {
         myPeersLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         myPeersLabel.setText("My Peers:");
 
+        match_btn.setText("Match me!");
+        match_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                match_btnActionPerformed(evt);
+            }
+        });
+
+        matchList_cbox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout tutorHomeLayout = new javax.swing.GroupLayout(tutorHome);
         tutorHome.setLayout(tutorHomeLayout);
         tutorHomeLayout.setHorizontalGroup(
@@ -671,12 +684,17 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGroup(tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(tutorHomeLayout.createSequentialGroup()
                         .addComponent(tutorHomeLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 555, Short.MAX_VALUE)
                         .addComponent(tutorLogOut)
                         .addGap(18, 18, 18))
                     .addGroup(tutorHomeLayout.createSequentialGroup()
                         .addComponent(myPeersLabel)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(tutorHomeLayout.createSequentialGroup()
+                        .addComponent(match_btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(matchList_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         tutorHomeLayout.setVerticalGroup(
             tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -687,7 +705,11 @@ public class GuiFace extends javax.swing.JFrame {
                     .addComponent(tutorHomeLabel))
                 .addGap(18, 18, 18)
                 .addComponent(myPeersLabel)
-                .addContainerGap(525, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 495, Short.MAX_VALUE)
+                .addGroup(tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(match_btn)
+                    .addComponent(matchList_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         basePanel.add(tutorHome, "tutorHome");
@@ -748,7 +770,7 @@ public class GuiFace extends javax.swing.JFrame {
         verifyTutorsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         verifyTutorsLabel.setText("Tutors to Verify:");
 
-        tutorVerifyList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tutorVerifyList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         verifyConfirmButton.setText("Confirm");
         verifyConfirmButton.addActionListener(new java.awt.event.ActionListener() {
@@ -926,6 +948,7 @@ public class GuiFace extends javax.swing.JFrame {
         Utility benri = new Utility();
         benri.printTeacherToFile(one);
         CardLayout card = (CardLayout) basePanel.getLayout();
+        tutorVerifyList.removeAllItems();
         card.show(basePanel, "teacherHome");//shows login screen panel
     }//GEN-LAST:event_teacherSignupButtonMouseClicked
 
@@ -948,27 +971,37 @@ public class GuiFace extends javax.swing.JFrame {
     }//GEN-LAST:event_tutorLogOutMouseClicked
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
-        // TODO add your handling code here:
-        Scanner one = new Scanner("Teacher.txt");
-        Utility benri = new Utility();
-        CardLayout card = (CardLayout) basePanel.getLayout();
-        if (((String) clientTypeList.getSelectedItem()).equals("Teacher")) {
-            if (benri.teacherLoginCheck(firstNameField.getText(), passwordField.getText()).length > 0) {
-                card.show(basePanel, "teacherHome");//shows login screen panel
-                for (int i = 0; i < benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText())).length; i++) {
-                    tutorVerifyList.addItem(benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText()))[i].getFirstName());
-                }
-            }
+        try {
+            // TODO add your handling code here:
+            Scanner one = new Scanner(new File("Teacher.txt"));
+            Utility benri = new Utility();
+            CardLayout card = (CardLayout) basePanel.getLayout();
+            switch ((String) clientTypeList.getSelectedItem()) {
+                case "Teacher":
+                    if (benri.teacherLoginCheck(firstNameField.getText(), passwordField.getText()).length > 0) {
+                        card.show(basePanel, "teacherHome");//shows login screen panel
+                        tutorVerifyList.removeAllItems();
+                        Tutor[] verify = new Tutor[0];
+                        verify = benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText()));
+                        for (int i = 0; i < verify.length; i++) {
+                            tutorVerifyList.addItem(verify[i].getFirstName());
+                        }
+                    }
+                    break;
+                case "Tutor":
+                    if (benri.tutorLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
+                        card.show(basePanel, "tutorHome");//shows login screen panel
 
-        } else if (((String) clientTypeList.getSelectedItem()).equals("Tutor")) {
-            if (benri.tutorLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
-                card.show(basePanel, "tutorHome");//shows login screen panel
+                    }
+                    break;
+                case "Peer":
+                    if (benri.peerLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
+                        card.show(basePanel, "peerHome");//shows login screen panel
+                    }
+                    break;
             }
-
-        } else if (((String) clientTypeList.getSelectedItem()).equals("Peer")) {
-            if (benri.peerLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
-                card.show(basePanel, "peerHome");//shows login screen panel
-            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GuiFace.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }//GEN-LAST:event_loginButtonMouseClicked
@@ -977,6 +1010,24 @@ public class GuiFace extends javax.swing.JFrame {
         // TODO add your handling code here:
         tutorVerifyList.removeItem(tutorVerifyList.getSelectedItem());
     }//GEN-LAST:event_verifyConfirmButtonActionPerformed
+    /**
+     * @param evt
+     */
+    private void match_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match_btnActionPerformed
+        try {
+            // match a list of peers with tutors
+            Utility u = new Utility();
+            Scanner s = new Scanner(new File("Peer.txt"));
+            matchList_cbox.removeAllItems();
+            Tutor[] matchlist = u.matchTutors(u.generatePeerFromLogin(s,firstNameField.getText(),passwordField.getText()));
+            for (int i = 0; i < matchlist.length; i++) {
+                matchList_cbox.addItem(matchlist[i].getFirstName());
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GuiFace.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Oh yes");
+        }
+    }//GEN-LAST:event_match_btnActionPerformed
 
     /**
      *
@@ -1035,6 +1086,8 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginText1;
+    private javax.swing.JComboBox matchList_cbox;
+    private javax.swing.JButton match_btn;
     private javax.swing.JLabel myPeersLabel;
     private javax.swing.JLabel myTutorsLabel;
     private javax.swing.JTextField passwordField;

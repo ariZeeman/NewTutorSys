@@ -87,10 +87,10 @@ public class Utility {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
         Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
-
         for (int i = 6; i < 13; i++) { //prints in the availabilities from the file line
             temp.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
         }
+        temp.setTaken();
 
         return temp;
     }
@@ -103,9 +103,11 @@ public class Utility {
      * @return
      */
     public Teacher createTeacherFromFile(Scanner s, String firstName, String pass) {
-        String[] array = null; //array of info for peer
-        while (s.hasNextLine()) {
-            array = s.nextLine().split(",");
+        //array of info for peer
+        while (s.hasNext()) {
+            String temo = s.nextLine();
+            System.out.println(temo);
+            String[] array = temo.split(",");
             Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
             if ((temp.getFirstName().equals(firstName)) && (temp.getPassword().equals(pass))) {
                 return temp;
@@ -245,7 +247,7 @@ public class Utility {
      */
     public Tutor[] needVerification(Teacher teacher) { //param = teacher who tutors have asked for verification from
         //create a new array of tutors that contains every tutor
-        Tutor[] tutors = generateTutors();
+        Tutor[] tutors = findAllTutors();
         //new arraylist since we aren't sure how many tutors we are going to need
         ArrayList<Tutor> list = new ArrayList();
         for (Tutor tutor : tutors) {
@@ -356,7 +358,7 @@ public class Utility {
         try {
             PrintWriter pw;
             File f = new File("Tutor.txt");
-            pw = new PrintWriter(new FileWriter(f, false));
+            pw = new PrintWriter(new FileWriter(f, true));
             addObjectToFile(t, pw);
             pw.close();
         } catch (IOException ex) {
@@ -374,7 +376,7 @@ public class Utility {
         try {
             PrintWriter pw;
             File f = new File("Teacher.txt");
-            pw = new PrintWriter(new FileWriter(f));
+            pw = new PrintWriter(new FileWriter(f, true));
             addObjectToFile(t, pw);
             pw.close();
         } catch (IOException ex) {
@@ -392,7 +394,7 @@ public class Utility {
         try {
             PrintWriter pw;
             File f = new File("Peer.txt");
-            pw = new PrintWriter(new FileWriter(f));
+            pw = new PrintWriter(new FileWriter(f, true));
             addObjectToFile(p, pw);
             pw.close();
         } catch (IOException ex) {
@@ -543,7 +545,56 @@ public class Utility {
         for (int i = 7; i < 13; i++) { //prints in the availabilities from the file line
             temp.setAvailability(i - 7, Boolean.parseBoolean(array[i]));
         }
+        temp.setVisibility(Boolean.parseBoolean(array[13]));
         return temp;
     }
 
+    /**
+     * Matches tutors to peers if any of their availability is the same and they
+     * have the same subject. Returns an array of tutors who match.
+     *
+     * @param p
+     */
+    public Tutor[] matchTutors(Peer p) {
+        Tutor[] firstArray = generateTutors();
+        //arraylist of tutors with the same availablity as the peer and same
+        ArrayList<Tutor> list = new ArrayList();
+        ArrayList<Tutor> finalList = new ArrayList();
+        for (int i = 0; i < firstArray.length; i++) {
+            if (firstArray[i].getSubject().equals(p.getSubject())) {
+                boolean sMatch = false;
+                for (int j = 0; j < p.getAvailability().length; j++) {
+                    if (firstArray[i].getAvailability(j) == true && p.getAvailability(j) == true) {
+                        sMatch = true;
+                    }
+                }
+                if (sMatch) {
+                    finalList.add(firstArray[i]);
+                }
+            }
+        }
+        Tutor[] finalArray = new Tutor[0];
+        finalList.toArray(finalArray);
+        return finalArray;
+    }
+
+    public Peer generatePeerFromLogin(Scanner s, String firstname, String password) {
+        while (s.hasNext()) {
+            String temo = s.nextLine();
+            System.out.println(temo);
+            String[] array = temo.split(",");
+            Peer temp = new Peer();
+            temp.setFirst(array[1]);
+            temp.setPassword(array[4]);
+            if ((temp.getFirst().equals(firstname)) && (temp.getPassword().equals(password))) {
+                //they are the same, initialize the rest of the Peer
+                temp.setSubject(array[0]);
+                temp.setLast(array[2]);
+                temp.setPhoneNumber(array[3]);
+                
+                return temp;
+            }
+        }
+        return null;
+    }
 }
