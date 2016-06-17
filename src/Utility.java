@@ -327,6 +327,10 @@ public class Utility {
         }
     }
     
+    /**
+     *
+     * @param text text to be displayed
+     */
 //    public void errorMessage(String text){ 
 //        JOptionPane.showMessageDialog(GuiFace,text,"Inane error",JOptionPane.ERROR_MESSAGE);
 //    }
