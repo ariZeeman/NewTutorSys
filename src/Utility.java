@@ -87,10 +87,10 @@ public class Utility {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
         Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
-
         for (int i = 6; i < 13; i++) { //prints in the availabilities from the file line
             temp.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
         }
+        temp.setTaken();
 
         return temp;
     }
@@ -569,7 +569,7 @@ public class Utility {
         return finalArray;
     }
 
-    public Peer generatePeerFromLogin(String firstname, String password) {
+    public Peer generatePeerFromLogin(Scanner s, String firstname, String password) {
         return null;
     }
 }

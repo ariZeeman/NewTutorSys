@@ -1011,13 +1011,22 @@ public class GuiFace extends javax.swing.JFrame {
         // TODO add your handling code here:
         tutorVerifyList.removeItem(tutorVerifyList.getSelectedItem());
     }//GEN-LAST:event_verifyConfirmButtonActionPerformed
-
+    /**
+     * @param evt
+     */
     private void match_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match_btnActionPerformed
-        // match a list of peers with tutors
-        Utility u = new Utility();
-        matchList_cbox.removeAllItems();
-        Tutor[] matchlist = u.matchTutors(u.generatePeerFromLogin());
-        for (int i = 0; i < matchlist.length; i++) {
+        try {
+            // match a list of peers with tutors
+            Utility u = new Utility();
+            Scanner s = new Scanner(new File("Peer.txt"));
+            matchList_cbox.removeAllItems();
+            Tutor[] matchlist = u.matchTutors(u.generatePeerFromLogin(s,firstNameField.getText(),passwordField.getText()));
+            for (int i = 0; i < matchlist.length; i++) {
+                matchList_cbox.addItem(matchlist[i].getFirstName());
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(GuiFace.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Oh yes");
         }
     }//GEN-LAST:event_match_btnActionPerformed
 
