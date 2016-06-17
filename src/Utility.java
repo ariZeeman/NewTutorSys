@@ -555,7 +555,7 @@ public class Utility {
             if (firstArray[i].getSubject().equals(p.getSubject())) {
                 boolean sMatch = false;
                 for (int j = 0; j < p.getAvailability().length; j++) {
-                    if (firstArray[i].getAvailability(j) == p.getAvailability(j)) {
+                    if (firstArray[i].getAvailability(j) == true && p.getAvailability(j) == true) {
                         sMatch = true;
                     }
                 }
@@ -570,6 +570,7 @@ public class Utility {
     }
 
     public Peer generatePeerFromLogin(Scanner s, String firstname, String password) {
+        
         return null;
     }
 }
