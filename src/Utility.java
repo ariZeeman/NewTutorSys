@@ -160,6 +160,8 @@ public class Utility {
                             temporary.setMatched(true);
                         }
                         temporary.setAvailability(i, true); //shows when they're both free
+                    }else{
+                        temporary.setAvailability(i, false); //shows they're not both free
                     }
                 }
                 if (temporary.isMatched() == true) {
@@ -170,9 +172,14 @@ public class Utility {
 
         }
         Tutor[] tutorArray = (Tutor[]) ar.toArray();
-        Tutor tutor = fewestPeers(tutorArray); //creates the tutor who has the fewest # of peers GET INDEX # INSTEAD
+        Boolean[][] availables = (Boolean[][])bools.toArray();
+        int index = fewestPeers(tutorArray);
+        //Tutor tutor = fewestPeers(tutorArray); //can get rid o, probably
 
-        assignment = new Assignments(peer, tutor); //creates new assignment
+        assignment = new Assignments(peer, tutorArray[index]); //creates new assignment
+        for (int i = 0; i < availables[index].length; i++){
+            assignment.setAvailability(i, availables[index][i]); //sets new assignment availabilities to be the same as the second dimension 
+        }
         addObjectToFile(assignment, pw); //prints the assignment to the file
     }
 
@@ -217,14 +224,16 @@ public class Utility {
      * @param tutors
      * @return
      */
-    public Tutor fewestPeers(Tutor[] tutors) {
+    public int fewestPeers(Tutor[] tutors) {
         Tutor lowest = tutors[0];
+        int temp = 0; //stores index where lowest tutor is found
         for (int i = 1; i < tutors.length; i++) {
             if (tutors[i].getNumPeers() < lowest.getNumPeers()) {
                 lowest = tutors[i];
+                temp = i; //saves index of lowest numPeers
             }
         }
-        return lowest;
+        return temp;
     }
 
     /**
