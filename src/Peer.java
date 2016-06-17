@@ -145,12 +145,10 @@ public class Peer {
 
     @Override
     public String toString() {
-        String toReturn = this.subject + "," + this.firstName + "," + this.lastName + "," + this.phoneNumber + "," + this.password + "," + this.email + ",";
-//        for (int x = 0; x < 5; x++){
-//            for (int y = 0; y < 6; y++){
-//                toReturn += availability[x][y] + ",";
-//            }
-//        }
+        String toReturn = this.subject + "," + this.firstName + "," + this.lastName + "," + this.phoneNumber + "," + this.password + "," + this.email;
+        for (int y = 0; y < availability.length; y++) {
+            toReturn += "," + availability[y];
+        }
         return toReturn;
     }
 

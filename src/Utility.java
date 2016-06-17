@@ -65,7 +65,13 @@ public class Utility {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
         Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
-        return temp;
+        if (Boolean.parseBoolean(array[13]) == true) {
+            return temp;
+        }
+        else {
+            return null; //if the tutor hasnt been approved, do not return them.
+        }
+
     }
 
     /**
@@ -387,7 +393,7 @@ public class Utility {
         return checked; //all the occurances of the person
     }
 
-     /*
+    /**
      * This method sets the visibility of a Tutor to true so they can be seen by
      * the matches.
      *
@@ -395,5 +401,6 @@ public class Utility {
      */
     public void verify(Tutor tutor) {
         tutor.setVisibility(true);
-   }
+    }
+
 }
