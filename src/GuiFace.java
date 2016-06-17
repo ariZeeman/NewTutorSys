@@ -799,26 +799,26 @@ public class GuiFace extends javax.swing.JFrame {
             return;
         } else if (!tutorPasswordField.getText().equals(tutorPassConfirmField.getText())) {
             return;
-        } else if (tutorPeriod1CheckBox.isSelected() == true || tutorPeriod2CheckBox.isSelected() == true || tutorPeriod3CheckBox.isSelected() == true || tutorPeriod4CheckBox.isSelected() == true || tutorPeriod5CheckBox.isSelected() == true || tutorAfterSchoolCheckBox.isSelected() == true) {
-            Tutor one = new Tutor();
-            one.setFirstName(tutorFirstNameField.getText());
-            one.setLastName(tutorLastNameField.getText());
-            one.setEmail(tutorEmailField.getText());
-            one.setPhoneNumber(tutorPhoneNumberField.getText());
-            one.setSubject((String) tutorSubjectDropList.getSelectedItem());
-            one.setAvailability(0, tutorPeriod1CheckBox.isSelected());
-            one.setAvailability(1, tutorPeriod2CheckBox.isSelected());
-            one.setAvailability(2, tutorPeriod3CheckBox.isSelected());
-            one.setAvailability(3, tutorPeriod4CheckBox.isSelected());
-            one.setAvailability(4, tutorPeriod5CheckBox.isSelected());
-            one.setAvailability(5, tutorAfterSchoolCheckBox.isSelected());
-            Utility benri = new Utility();
-            benri.printTutorToFile(one);
-            CardLayout card = (CardLayout) basePanel.getLayout();
-            card.show(basePanel, "tutorHome");//shows login screen panel
-        } else {
+        } else if (tutorPeriod1CheckBox.isSelected() == false && tutorPeriod2CheckBox.isSelected() == false && tutorPeriod3CheckBox.isSelected() == false && tutorPeriod4CheckBox.isSelected() == false && tutorPeriod5CheckBox.isSelected() == false && tutorAfterSchoolCheckBox.isSelected() == false) {
             return;
         }
+        Tutor one = new Tutor();
+        one.setFirstName(tutorFirstNameField.getText());
+        one.setLastName(tutorLastNameField.getText());
+        one.setEmail(tutorEmailField.getText());
+        one.setPhoneNumber(tutorPhoneNumberField.getText());
+        one.setSubject((String) tutorSubjectDropList.getSelectedItem());
+        one.setAvailability(0, tutorPeriod1CheckBox.isSelected());
+        one.setAvailability(1, tutorPeriod2CheckBox.isSelected());
+        one.setAvailability(2, tutorPeriod3CheckBox.isSelected());
+        one.setAvailability(3, tutorPeriod4CheckBox.isSelected());
+        one.setAvailability(4, tutorPeriod5CheckBox.isSelected());
+        one.setAvailability(5, tutorAfterSchoolCheckBox.isSelected());
+        Utility benri = new Utility();
+        benri.printTutorToFile(one);
+        CardLayout card = (CardLayout) basePanel.getLayout();
+        card.show(basePanel, "tutorHome");//shows login screen panel
+
     }//GEN-LAST:event_tutorSignupButtonMouseClicked
 
     private void peerSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peerSignupButtonMouseClicked
@@ -827,26 +827,26 @@ public class GuiFace extends javax.swing.JFrame {
             return;
         } else if (!peerPasswordField.getText().equals(peerPassConfirmField.getText())) {
             return;
-        } else if (peerPeriod1CheckBox.isSelected() == true || peerPeriod2CheckBox.isSelected() == true || peerPeriod3CheckBox.isSelected() == true || peerPeriod4CheckBox.isSelected() == true || peerPeriod5CheckBox.isSelected() == true || peerAfterSchoolCheckBox.isSelected() == true) {
-            Peer one = new Peer();
-            one.setFirst(peerFirstNameField.getText());
-            one.setLast(peerLastNameField.getText());
-            one.setEmail(peerEmailField.getText());
-            one.setPhoneNumber(peerPhoneNumberField.getText());
-            one.setSubject((String) peerSubjectDropList.getSelectedItem());
-            one.setAvailability(0, peerPeriod1CheckBox.isSelected());
-            one.setAvailability(1, peerPeriod2CheckBox.isSelected());
-            one.setAvailability(2, peerPeriod3CheckBox.isSelected());
-            one.setAvailability(3, peerPeriod4CheckBox.isSelected());
-            one.setAvailability(4, peerPeriod5CheckBox.isSelected());
-            one.setAvailability(5, peerAfterSchoolCheckBox.isSelected());
-            Utility benri = new Utility();
-            benri.printPeerToFile(one);
-            CardLayout card = (CardLayout) basePanel.getLayout();
-            card.show(basePanel, "peerHome");//shows login screen panel
-        } else {
+        } else if (peerPeriod1CheckBox.isSelected() == false && peerPeriod2CheckBox.isSelected() == false && peerPeriod3CheckBox.isSelected() == false && peerPeriod4CheckBox.isSelected() == false && peerPeriod5CheckBox.isSelected() == false && peerAfterSchoolCheckBox.isSelected() == false) {
             return;
         }
+        Peer one = new Peer();
+        one.setFirst(peerFirstNameField.getText());
+        one.setLast(peerLastNameField.getText());
+        one.setEmail(peerEmailField.getText());
+        one.setPhoneNumber(peerPhoneNumberField.getText());
+        one.setSubject((String) peerSubjectDropList.getSelectedItem());
+        one.setAvailability(0, peerPeriod1CheckBox.isSelected());
+        one.setAvailability(1, peerPeriod2CheckBox.isSelected());
+        one.setAvailability(2, peerPeriod3CheckBox.isSelected());
+        one.setAvailability(3, peerPeriod4CheckBox.isSelected());
+        one.setAvailability(4, peerPeriod5CheckBox.isSelected());
+        one.setAvailability(5, peerAfterSchoolCheckBox.isSelected());
+        Utility benri = new Utility();
+        benri.printPeerToFile(one);
+        CardLayout card = (CardLayout) basePanel.getLayout();
+        card.show(basePanel, "peerHome");//shows login screen panel
+
     }//GEN-LAST:event_peerSignupButtonMouseClicked
 
     private void teacherSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teacherSignupButtonMouseClicked
