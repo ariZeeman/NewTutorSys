@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-/**
+/** Ari/Haydn
  *
- * @author 341167849
+ * 
  */
 public class Peer {
 
@@ -122,7 +122,7 @@ public class Peer {
         return availability[index];
     }
 
-    /**
+    /** by Ari
      * This getter method returns the value of a single index in the
      * availability array.
      *
@@ -158,7 +158,7 @@ public class Peer {
         return password;
     }
 
-    /**
+    /** Made/edited by Haydn/Ari
      * Prints peer as a String in the following fashion:
      * Subject,FirstName,LastName,PhoneNumber,Password,Email,Availability.
      *

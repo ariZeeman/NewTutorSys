@@ -8,7 +8,7 @@ import java.util.ArrayList;
  */
 /**
  *
- * @author 341167849
+ * entirely done by Haydn
  */
 public class Assignments {
     
