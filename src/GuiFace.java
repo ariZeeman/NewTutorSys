@@ -2,6 +2,7 @@
 import java.awt.CardLayout;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -143,7 +144,9 @@ public class GuiFace extends javax.swing.JFrame {
         teacherHome = new javax.swing.JPanel();
         teacherLogOut = new javax.swing.JButton();
         teacherHomeLabel = new javax.swing.JLabel();
-        verifiedTutorsLabel = new javax.swing.JLabel();
+        verifyTutorsLabel = new javax.swing.JLabel();
+        tutorVerifyList = new javax.swing.JComboBox<>();
+        verifyConfirmButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -743,8 +746,17 @@ public class GuiFace extends javax.swing.JFrame {
         teacherHomeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         teacherHomeLabel.setText("Teacher Home");
 
-        verifiedTutorsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        verifiedTutorsLabel.setText("My Verified Tutors:");
+        verifyTutorsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        verifyTutorsLabel.setText("Tutors to Verify:");
+
+        tutorVerifyList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
+        verifyConfirmButton.setText("Confirm");
+        verifyConfirmButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                verifyConfirmButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout teacherHomeLayout = new javax.swing.GroupLayout(teacherHome);
         teacherHome.setLayout(teacherHomeLayout);
@@ -758,7 +770,12 @@ public class GuiFace extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 553, Short.MAX_VALUE)
                         .addComponent(teacherLogOut))
                     .addGroup(teacherHomeLayout.createSequentialGroup()
-                        .addComponent(verifiedTutorsLabel)
+                        .addGroup(teacherHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(verifyTutorsLabel)
+                            .addGroup(teacherHomeLayout.createSequentialGroup()
+                                .addComponent(tutorVerifyList, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(verifyConfirmButton)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -770,8 +787,12 @@ public class GuiFace extends javax.swing.JFrame {
                     .addComponent(teacherHomeLabel)
                     .addComponent(teacherLogOut))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(verifiedTutorsLabel)
-                .addContainerGap(532, Short.MAX_VALUE))
+                .addComponent(verifyTutorsLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(teacherHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tutorVerifyList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(verifyConfirmButton))
+                .addContainerGap(503, Short.MAX_VALUE))
         );
 
         basePanel.add(teacherHome, "teacherHome");
@@ -928,11 +949,15 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
+        Scanner one = new Scanner("Teachers.txt");
         Utility benri = new Utility();
         CardLayout card = (CardLayout) basePanel.getLayout();
         if (((String)clientTypeList.getSelectedItem()).equals("Teacher")) {
             if (benri.teacherLoginCheck(firstNameField.getText(), passwordField.getText()).length>=1) {
                 card.show(basePanel, "teacherHome");//shows login screen panel
+                for (int i = 0;i < benri.needVerification(benri.createTeacherFromFile(one,firstNameField.getText(),passwordField.getText())).length;i++ ){
+                tutorVerifyList.addItem(benri.needVerification(benri.createTeacherFromFile(one,firstNameField.getText(),passwordField.getText()))[i].getFirstName());
+                }
             }
 
         } else if (((String)clientTypeList.getSelectedItem()).equals("Tutor")) {
@@ -947,6 +972,11 @@ public class GuiFace extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_loginButtonMouseClicked
+
+    private void verifyConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_verifyConfirmButtonActionPerformed
+        // TODO add your handling code here:
+        tutorVerifyList.removeItem(tutorVerifyList.getSelectedItem());
+    }//GEN-LAST:event_verifyConfirmButtonActionPerformed
 
     /**
      *
@@ -1087,6 +1117,8 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JComboBox tutorSubjectDropList;
     private javax.swing.JLabel tutorSubjectLabel;
     private javax.swing.JLabel tutorTitle;
-    private javax.swing.JLabel verifiedTutorsLabel;
+    private javax.swing.JComboBox<String> tutorVerifyList;
+    private javax.swing.JButton verifyConfirmButton;
+    private javax.swing.JLabel verifyTutorsLabel;
     // End of variables declaration//GEN-END:variables
 }
