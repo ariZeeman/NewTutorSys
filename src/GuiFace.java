@@ -139,9 +139,11 @@ public class GuiFace extends javax.swing.JFrame {
         peerHome = new javax.swing.JPanel();
         peerLogOut = new javax.swing.JButton();
         peerHomeLabel = new javax.swing.JLabel();
+        myTutorsLabel = new javax.swing.JLabel();
         teacherHome = new javax.swing.JPanel();
         teacherLogOut = new javax.swing.JButton();
         teacherHomeLabel = new javax.swing.JLabel();
+        verifiedTutorsLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -698,15 +700,23 @@ public class GuiFace extends javax.swing.JFrame {
         peerHomeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         peerHomeLabel.setText("Peer Home");
 
+        myTutorsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        myTutorsLabel.setText("My Tutors:");
+
         javax.swing.GroupLayout peerHomeLayout = new javax.swing.GroupLayout(peerHome);
         peerHome.setLayout(peerHomeLayout);
         peerHomeLayout.setHorizontalGroup(
             peerHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, peerHomeLayout.createSequentialGroup()
+            .addGroup(peerHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(peerHomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 591, Short.MAX_VALUE)
-                .addComponent(peerLogOut)
+                .addGroup(peerHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, peerHomeLayout.createSequentialGroup()
+                        .addComponent(peerHomeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 591, Short.MAX_VALUE)
+                        .addComponent(peerLogOut))
+                    .addGroup(peerHomeLayout.createSequentialGroup()
+                        .addComponent(myTutorsLabel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         peerHomeLayout.setVerticalGroup(
@@ -716,7 +726,9 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGroup(peerHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(peerHomeLabel)
                     .addComponent(peerLogOut))
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(myTutorsLabel)
+                .addContainerGap(532, Short.MAX_VALUE))
         );
 
         basePanel.add(peerHome, "peerHome");
@@ -731,15 +743,23 @@ public class GuiFace extends javax.swing.JFrame {
         teacherHomeLabel.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         teacherHomeLabel.setText("Teacher Home");
 
+        verifiedTutorsLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        verifiedTutorsLabel.setText("My Verified Tutors:");
+
         javax.swing.GroupLayout teacherHomeLayout = new javax.swing.GroupLayout(teacherHome);
         teacherHome.setLayout(teacherHomeLayout);
         teacherHomeLayout.setHorizontalGroup(
             teacherHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherHomeLayout.createSequentialGroup()
+            .addGroup(teacherHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(teacherHomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 553, Short.MAX_VALUE)
-                .addComponent(teacherLogOut)
+                .addGroup(teacherHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, teacherHomeLayout.createSequentialGroup()
+                        .addComponent(teacherHomeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 553, Short.MAX_VALUE)
+                        .addComponent(teacherLogOut))
+                    .addGroup(teacherHomeLayout.createSequentialGroup()
+                        .addComponent(verifiedTutorsLabel)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         teacherHomeLayout.setVerticalGroup(
@@ -749,7 +769,9 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGroup(teacherHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(teacherHomeLabel)
                     .addComponent(teacherLogOut))
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(verifiedTutorsLabel)
+                .addContainerGap(532, Short.MAX_VALUE))
         );
 
         basePanel.add(teacherHome, "teacherHome");
@@ -973,6 +995,7 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginText1;
     private javax.swing.JLabel myPeersLabel;
+    private javax.swing.JLabel myTutorsLabel;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JCheckBox peerAfterSchoolCheckBox;
@@ -1053,5 +1076,6 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JComboBox tutorSubjectDropList;
     private javax.swing.JLabel tutorSubjectLabel;
     private javax.swing.JLabel tutorTitle;
+    private javax.swing.JLabel verifiedTutorsLabel;
     // End of variables declaration//GEN-END:variables
 }
