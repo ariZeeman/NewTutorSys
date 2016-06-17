@@ -109,7 +109,7 @@ public class Utility {
      */
     public void createAssignment(Peer peer, Scanner s) throws IOException {
         ArrayList ar = new ArrayList(); //arraylist of tutors
-        File assignments = new File("Assignemnts.txt"); //file of assignments
+        File assignments = new File("Assignemnt.txt"); //file of assignments
         PrintWriter pw = new PrintWriter(new FileWriter(assignments, false)); //writes assignments to file
         Tutor temp = new Tutor(); //temporary stores tutor for comparison to peer's subject
         while (s.hasNext()) {
@@ -194,7 +194,7 @@ public class Utility {
     public Tutor[] generateTutors() {
         try {
             //open the tutor file and put a scanner on it
-            File f = new File("Tutors.txt");
+            File f = new File("Tutor.txt");
             Scanner s = new Scanner(f);
             ArrayList<Tutor> list = new ArrayList();
             Tutor[] me;
@@ -207,6 +207,7 @@ public class Utility {
             }
             me = new Tutor[counter];
             me = list.toArray(me);
+            s.close();
             return me;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -224,7 +225,7 @@ public class Utility {
     public Teacher[] generateTeachers() {
         try {
             //teacher file
-            File f = new File("Teachers.txt");
+            File f = new File("Teacher.txt");
             Scanner s = new Scanner(f);
             ArrayList<Teacher> list = new ArrayList();
             int counter = 0;
@@ -235,6 +236,7 @@ public class Utility {
             }
             teachers = new Teacher[counter];
             teachers = list.toArray(teachers);
+            s.close();
             return teachers;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -251,7 +253,7 @@ public class Utility {
      */
     public Peer[] generatePeer() {
         try {
-            File f = new File("Peers.txt");
+            File f = new File("Peer.txt");
             Scanner s = new Scanner(f);
             ArrayList<Peer> list = new ArrayList();
             int counter = 0;
@@ -262,6 +264,7 @@ public class Utility {
             }
             peers = new Peer[counter];
             peers = list.toArray(peers);
+            s.close();
             return peers;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -275,16 +278,16 @@ public class Utility {
      * @param t the tutor being committed to a file
      */
     public void printTutorToFile(Tutor t) {
-        PrintWriter pw = null;
         try {
-            File f = new File("Tutors.txt");
+            PrintWriter pw;
+            File f = new File("Tutor.txt");
             pw = new PrintWriter(new FileWriter(f));
             addObjectToFile(t, pw);
+            pw.close();
         } catch (IOException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-        } finally {
-            pw.close();
+
         }
     }
 
@@ -293,16 +296,15 @@ public class Utility {
      * @param t the teacher being committed to a file
      */
     public void printTeacherToFile(Teacher t) {
-        PrintWriter pw = null;
         try {
-            File f = new File("Teachers.txt");
+            PrintWriter pw;
+            File f = new File("Teacher.txt");
             pw = new PrintWriter(new FileWriter(f));
             addObjectToFile(t, pw);
+            pw.close();
         } catch (IOException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-        } finally {
-            pw.close();
         }
     }
 
@@ -311,16 +313,16 @@ public class Utility {
      * @param p the peer being committed to a file
      */
     public void printPeerToFile(Peer p) {
-        PrintWriter pw = null;
+
         try {
-            File f = new File("Peers.txt");
+            PrintWriter pw;
+            File f = new File("Peer.txt");
             pw = new PrintWriter(new FileWriter(f));
             addObjectToFile(p, pw);
+            pw.close();
         } catch (IOException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());
-        } finally {
-            pw.close();
         }
     }
 }

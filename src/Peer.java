@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author 341167849
@@ -14,16 +15,15 @@ public class Peer {
     private String email;
     private String password;
     //private String oneOnOne;
-    private Boolean[][] availability = new Boolean[5][6];
+    private Boolean[] availability = new Boolean[6];
     private String firstName;
     private String lastName;
     private Boolean taken; //represents whether the student has a tutor
 
-    
-    public Peer(){
+    public Peer() {
     }
-    
-    public Peer(String subject, String firstName, String lastName, String phoneNumber, String password, String email){
+
+    public Peer(String subject, String firstName, String lastName, String phoneNumber, String password, String email) {
         this.subject = subject;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -31,8 +31,7 @@ public class Peer {
         this.password = password;
         this.email = email;
     }
-    
-    
+
     /**
      *
      * @return2
@@ -98,21 +97,28 @@ public class Peer {
     }
 
     /**
-     * @param index1
-     * @param index2
+     * This method returns a value at [index] from the boolean array of
+     * availability.
+     *
+     * @param index
      * @return the availability
      */
-    public Boolean getAvailability(int index1, int index2) {
-        return availability[index1][index2];
+    public Boolean getAvailability(int index) {
+        return availability[index];
     }
 
     /**
-     * @param index1 the period index
-     * @param index2 the day index
-     * @param result what the boolean value is
+     * This getter method returns the value of a single index in the
+     * availability array.
+     *
+     * @param i the index value of the boolean array
+     * @param b the boolean value being assigned
      */
-    public void setAvailability(int index1, int index2, boolean result) {
-        this.availability[index1][index2] = result;
+    public void setAvailability(int i, boolean b) {
+        if (i >= availability.length || i < 0) {
+            throw new ArrayIndexOutOfBoundsException("Array bounds exceeded");
+        }
+        availability[i] = b;
     }
 
     /**
@@ -128,9 +134,9 @@ public class Peer {
     public void setEmail(String email) {
         this.email = email;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         String toReturn = this.subject + "," + this.firstName + "," + this.lastName + "," + this.phoneNumber + "," + this.password + "," + this.email + ",";
 //        for (int x = 0; x < 5; x++){
 //            for (int y = 0; y < 6; y++){

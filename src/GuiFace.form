@@ -547,9 +547,8 @@
                           <Component id="peerSubjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="peerPeriodsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="peerPeriod1CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="peerPeriod2CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="peerPeriod3CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -557,6 +556,7 @@
                               <Component id="peerAfterSchoolCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="peerPeriod5CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="peerPeriodsLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="peerSignupButton" min="-2" max="-2" attributes="0"/>
@@ -716,7 +716,6 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="teacherSubjectLabel" max="32767" attributes="0"/>
                                           <Component id="teacherEmailLabel" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="teacherPhoneNumberLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPasswordLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPassConfirmLabel" alignment="0" pref="100" max="32767" attributes="0"/>
                                           <Component id="teacherLastNameLabel" alignment="0" max="32767" attributes="0"/>
@@ -728,13 +727,12 @@
                                           <Component id="teacherFirstNameField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherLastNameField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherEmailField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="teacherPhoneNumberField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPassConfirmField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPasswordField" pref="240" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="492" max="32767" attributes="0"/>
+                              <EmptySpace pref="423" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -766,11 +764,6 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="teacherPhoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="teacherPhoneNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="teacherPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="teacherPasswordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -784,9 +777,9 @@
                           <Component id="teacherSubjectDropList" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="teacherSubjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Component id="teacherSignupButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="181" max="32767" attributes="0"/>
+                      <EmptySpace pref="242" max="32767" attributes="0"/>
                       <Component id="teacherBackButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -809,11 +802,6 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="teacherBackButtonMouseClicked"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="teacherPhoneNumberLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Phone Number:"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="teacherPasswordLabel">
               <Properties>
@@ -844,8 +832,6 @@
             </Component>
             <Component class="javax.swing.JTextField" name="teacherLastNameField">
             </Component>
-            <Component class="javax.swing.JTextField" name="teacherPhoneNumberField">
-            </Component>
             <Component class="javax.swing.JTextField" name="teacherPassConfirmField">
             </Component>
             <Component class="javax.swing.JTextField" name="teacherPasswordField">
@@ -856,6 +842,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sign Up"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="teacherSignupButtonMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="teacherSubjectLabel">
               <Properties>
