@@ -73,7 +73,7 @@ public class Utility {
         if (Boolean.parseBoolean(array[13]) == true) {
             return temp;
         } else {
-            return temp; //if the tutor hasnt been approved, do not return them.
+            return null; //if the tutor hasnt been approved, do not return them.
         }
 
     }
@@ -413,6 +413,51 @@ public class Utility {
      */
     public void verify(Tutor tutor) {
         tutor.setVisibility(true);
+    }
+
+    /**
+     * Method which finds every last tutor with the purpose of updating a tutor
+     * to verify it.
+     *
+     * @param tutor
+     */
+    public Tutor[] findAllTutors(Tutor tutor) {
+        try {
+            File f = new File("Tutor.txt");
+            Scanner s = new Scanner(f);
+            ArrayList<Tutor> list = new ArrayList();
+            Tutor[] me;
+            int counter = 0;
+            //as long as there is a new line in the file, it will cycle through it
+            while (s.hasNext()) {
+                //add the createTutorFromFile result
+                list.add(getEveryTutor(s));
+                counter++;
+            }
+            me = new Tutor[counter];
+            me = list.toArray(me);
+            s.close();
+            return me;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * Re-hashed version of create from file which just gets all tutors
+     *
+     * @param s
+     * @return
+     */
+    public Tutor getEveryTutor(Scanner s) {
+        String[] array = null; //array of info for peer
+        array = s.nextLine().split(",");
+        Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
+        for (int i = 7; i < 13; i++) { //prints in the availabilities from the file line
+            temp.setAvailability(i - 7, Boolean.parseBoolean(array[i]));
+        }
+        return temp;
     }
 
 }
