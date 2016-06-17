@@ -99,13 +99,20 @@ public class Utility {
     /**
      *
      * @param s
+     * @param firstName
+     * @param pass
      * @return
      */
-    public Teacher createTeacherFromFile(Scanner s) {
+    public Teacher createTeacherFromFile(Scanner s,String firstName,String pass) {
         String[] array = null; //array of info for peer
+        while (s.hasNextLine()){
         array = s.nextLine().split(",");
         Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
-        return temp;
+        if((temp.getFirstName().equals(firstName))&&(temp.getPassword().equals(pass))){
+         return temp;   
+        }
+        }
+        return null;
     }
 
     /**
