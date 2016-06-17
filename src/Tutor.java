@@ -70,6 +70,16 @@ public class Tutor implements Comparable {
     }
 
     /**
+     * Method which checks if two tutors are the same.
+     *
+     * @param tutor
+     * @return if names, email, password and subject are the same
+     */
+    public boolean equals(Tutor tutor) {
+        return subject.equals(tutor.getSubject()) && firstName.equals(tutor.getFirstName()) && lastName.equals(tutor.getLastName()) && email.equals(tutor.getEmail()) && password.equals(tutor.getPassword());
+    }
+
+    /**
      * Method which allows visibility (meaning they can be found by the search
      * program, this is set to true when a teacher signs off on a student).
      *
