@@ -847,7 +847,7 @@ public class GuiFace extends javax.swing.JFrame {
         one.setEmail(tutorEmailField.getText());
         one.setPhoneNumber(tutorPhoneNumberField.getText());
         one.setSubject((String) tutorSubjectDropList.getSelectedItem());
-        one.setPassword(peerPasswordField.getText());
+        one.setPassword(tutorPasswordField.getText());
         one.setAvailability(0, tutorPeriod1CheckBox.isSelected());
         one.setAvailability(1, tutorPeriod2CheckBox.isSelected());
         one.setAvailability(2, tutorPeriod3CheckBox.isSelected());
