@@ -362,12 +362,14 @@ public class Utility {
     public Tutor[] tutorLoginCheck(String firstName, String password) {
         ArrayList<Tutor> temp = new ArrayList();
         Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
+        int counter = 0;
         for (int i = 0; i < tutors.length; i++) {
             if (tutors[i].getFirstName().equals(firstName) && tutors[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(tutors[i]);
+                counter++;
             }
         }
-        Tutor[] checked = null;
+        Tutor[] checked = new Tutor[counter];
         checked = temp.toArray(checked);
         return checked; //all the occurances of the person
     }
