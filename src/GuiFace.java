@@ -135,6 +135,7 @@ public class GuiFace extends javax.swing.JFrame {
         tutorHome = new javax.swing.JPanel();
         tutorHomeLabel = new javax.swing.JLabel();
         tutorLogOut = new javax.swing.JButton();
+        myPeersLabel = new javax.swing.JLabel();
         peerHome = new javax.swing.JPanel();
         peerLogOut = new javax.swing.JButton();
         peerHomeLabel = new javax.swing.JLabel();
@@ -654,16 +655,24 @@ public class GuiFace extends javax.swing.JFrame {
             }
         });
 
+        myPeersLabel.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        myPeersLabel.setText("My Peers:");
+
         javax.swing.GroupLayout tutorHomeLayout = new javax.swing.GroupLayout(tutorHome);
         tutorHome.setLayout(tutorHomeLayout);
         tutorHomeLayout.setHorizontalGroup(
             tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(tutorHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tutorHomeLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
-                .addComponent(tutorLogOut)
-                .addGap(18, 18, 18))
+                .addGroup(tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tutorHomeLayout.createSequentialGroup()
+                        .addComponent(tutorHomeLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 574, Short.MAX_VALUE)
+                        .addComponent(tutorLogOut)
+                        .addGap(18, 18, 18))
+                    .addGroup(tutorHomeLayout.createSequentialGroup()
+                        .addComponent(myPeersLabel)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         tutorHomeLayout.setVerticalGroup(
             tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -672,7 +681,9 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGroup(tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tutorLogOut)
                     .addComponent(tutorHomeLabel))
-                .addContainerGap(560, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(myPeersLabel)
+                .addContainerGap(525, Short.MAX_VALUE))
         );
 
         basePanel.add(tutorHome, "tutorHome");
@@ -814,6 +825,7 @@ public class GuiFace extends javax.swing.JFrame {
         one.setEmail(tutorEmailField.getText());
         one.setPhoneNumber(tutorPhoneNumberField.getText());
         one.setSubject((String) tutorSubjectDropList.getSelectedItem());
+        one.setPassword(peerPasswordField.getText());
         one.setAvailability(0, tutorPeriod1CheckBox.isSelected());
         one.setAvailability(1, tutorPeriod2CheckBox.isSelected());
         one.setAvailability(2, tutorPeriod3CheckBox.isSelected());
@@ -841,6 +853,7 @@ public class GuiFace extends javax.swing.JFrame {
         one.setLast(peerLastNameField.getText());
         one.setEmail(peerEmailField.getText());
         one.setPhoneNumber(peerPhoneNumberField.getText());
+        one.setPassword(peerPasswordField.getText());
         one.setSubject((String) peerSubjectDropList.getSelectedItem());
         one.setAvailability(0, peerPeriod1CheckBox.isSelected());
         one.setAvailability(1, peerPeriod2CheckBox.isSelected());
@@ -893,23 +906,23 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
-        if (clientTypeList.getSelectedItem().equals("Teacher")){
-           
-        }else if (clientTypeList.getSelectedItem().equals("Tutor")){
-            
-        }else{
-            
+        if (clientTypeList.getSelectedItem().equals("Teacher")) {
+
+        } else if (clientTypeList.getSelectedItem().equals("Tutor")) {
+
+        } else {
+
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 
-        /**
+    /**
      *
      * @param text text to be displayed
      */
-    public void errorMessage(String text){ 
-        JOptionPane.showMessageDialog(basePanel,text,"Inane error",JOptionPane.ERROR_MESSAGE);
+    public void errorMessage(String text) {
+        JOptionPane.showMessageDialog(basePanel, text, "Inane error", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     /**
      * @param args the command line arguments
      */
@@ -959,6 +972,7 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginText1;
+    private javax.swing.JLabel myPeersLabel;
     private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JCheckBox peerAfterSchoolCheckBox;
