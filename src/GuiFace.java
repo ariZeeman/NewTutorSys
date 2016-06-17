@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -56,9 +57,9 @@ public class GuiFace extends javax.swing.JFrame {
         loginPanel = new javax.swing.JPanel();
         loginText1 = new javax.swing.JLabel();
         loginButton = new javax.swing.JButton();
-        usernameLine = new javax.swing.JTextField();
-        passwordLine = new javax.swing.JTextField();
-        userameLabel = new javax.swing.JLabel();
+        firstNameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JTextField();
+        firstNameLabel = new javax.swing.JLabel();
         passwordLabel = new javax.swing.JLabel();
         teacherRegistryButton = new javax.swing.JButton();
         tutorRegistryButton = new javax.swing.JButton();
@@ -149,8 +150,13 @@ public class GuiFace extends javax.swing.JFrame {
         loginText1.setText("Welcome to Peer Tutor Coordinator!");
 
         loginButton.setText("Login");
+        loginButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                loginButtonMouseClicked(evt);
+            }
+        });
 
-        userameLabel.setText("Username:");
+        firstNameLabel.setText("First Name:");
 
         passwordLabel.setText("Password:");
 
@@ -197,11 +203,11 @@ public class GuiFace extends javax.swing.JFrame {
                             .addGroup(loginPanelLayout.createSequentialGroup()
                                 .addGap(188, 188, 188)
                                 .addComponent(loginText1))
-                            .addComponent(passwordLine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(loginButton)
-                            .addComponent(usernameLine, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passwordLabel)
-                            .addComponent(userameLabel)
+                            .addComponent(firstNameLabel)
                             .addComponent(clientTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(clientTypeLabel))
                         .addGap(0, 206, Short.MAX_VALUE)))
@@ -217,13 +223,13 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(clientTypeList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(userameLabel)
+                .addComponent(firstNameLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(usernameLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(firstNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(33, 33, 33)
                 .addComponent(passwordLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(passwordLine, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(42, 42, 42)
                 .addComponent(loginButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 196, Short.MAX_VALUE)
@@ -885,6 +891,25 @@ public class GuiFace extends javax.swing.JFrame {
         card.show(basePanel, "loginPanel");//shows login screen panel
     }//GEN-LAST:event_tutorLogOutMouseClicked
 
+    private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
+        // TODO add your handling code here:
+        if (clientTypeList.getSelectedItem().equals("Teacher")){
+           
+        }else if (clientTypeList.getSelectedItem().equals("Tutor")){
+            
+        }else{
+            
+        }
+    }//GEN-LAST:event_loginButtonMouseClicked
+
+        /**
+     *
+     * @param text text to be displayed
+     */
+    public void errorMessage(String text){ 
+        JOptionPane.showMessageDialog(basePanel,text,"Inane error",JOptionPane.ERROR_MESSAGE);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -929,11 +954,13 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JPanel basePanel;
     private javax.swing.JLabel clientTypeLabel;
     private javax.swing.JComboBox<String> clientTypeList;
+    private javax.swing.JTextField firstNameField;
+    private javax.swing.JLabel firstNameLabel;
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginText1;
+    private javax.swing.JTextField passwordField;
     private javax.swing.JLabel passwordLabel;
-    private javax.swing.JTextField passwordLine;
     private javax.swing.JCheckBox peerAfterSchoolCheckBox;
     private javax.swing.JButton peerBackButton;
     private javax.swing.JTextField peerEmailField;
@@ -1012,7 +1039,5 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JComboBox tutorSubjectDropList;
     private javax.swing.JLabel tutorSubjectLabel;
     private javax.swing.JLabel tutorTitle;
-    private javax.swing.JLabel userameLabel;
-    private javax.swing.JTextField usernameLine;
     // End of variables declaration//GEN-END:variables
 }

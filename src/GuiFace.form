@@ -71,11 +71,11 @@
                                       <EmptySpace min="-2" pref="188" max="-2" attributes="0"/>
                                       <Component id="loginText1" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="passwordLine" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="passwordField" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                   <Component id="loginButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="usernameLine" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="firstNameField" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                                   <Component id="passwordLabel" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="userameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="firstNameLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="clientTypeList" alignment="0" min="-2" pref="141" max="-2" attributes="0"/>
                                   <Component id="clientTypeLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
@@ -96,13 +96,13 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="clientTypeList" min="-2" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="userameLabel" min="-2" max="-2" attributes="0"/>
+                      <Component id="firstNameLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="usernameLine" min="-2" max="-2" attributes="0"/>
+                      <Component id="firstNameField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Component id="passwordLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="passwordLine" min="-2" max="-2" attributes="0"/>
+                      <Component id="passwordField" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
                       <Component id="loginButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="196" max="32767" attributes="0"/>
@@ -129,14 +129,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Login"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="loginButtonMouseClicked"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="usernameLine">
+            <Component class="javax.swing.JTextField" name="firstNameField">
             </Component>
-            <Component class="javax.swing.JTextField" name="passwordLine">
+            <Component class="javax.swing.JTextField" name="passwordField">
             </Component>
-            <Component class="javax.swing.JLabel" name="userameLabel">
+            <Component class="javax.swing.JLabel" name="firstNameLabel">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Username:"/>
+                <Property name="text" type="java.lang.String" value="First Name:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="passwordLabel">
