@@ -109,12 +109,12 @@ public class GuiFace extends javax.swing.JFrame {
         peerPasswordField = new javax.swing.JTextField();
         peerFirstNameField = new javax.swing.JTextField();
         peerPassConfirmLabel = new javax.swing.JLabel();
-        peerPeriod3CheckBox1 = new javax.swing.JCheckBox();
-        peerAfterSchoolCheckBox1 = new javax.swing.JCheckBox();
-        peerPeriod5CheckBox1 = new javax.swing.JCheckBox();
+        peerPeriod3CheckBox = new javax.swing.JCheckBox();
+        peerAfterSchoolCheckBox = new javax.swing.JCheckBox();
+        peerPeriod5CheckBox = new javax.swing.JCheckBox();
         peerPeriod1CheckBox = new javax.swing.JCheckBox();
-        peerPeriod4CheckBox1 = new javax.swing.JCheckBox();
-        peerPeriod2CheckBox1 = new javax.swing.JCheckBox();
+        peerPeriod4CheckBox = new javax.swing.JCheckBox();
+        peerPeriod2CheckBox = new javax.swing.JCheckBox();
         teacherRegistryPanel = new javax.swing.JPanel();
         teacherTitle = new javax.swing.JLabel();
         teacherBackButton = new javax.swing.JButton();
@@ -406,20 +406,25 @@ public class GuiFace extends javax.swing.JFrame {
         peerPasswordLabel.setText("Password:");
 
         peerSignupButton.setText("Sign Up");
+        peerSignupButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                peerSignupButtonMouseClicked(evt);
+            }
+        });
 
         peerPassConfirmLabel.setText("Confirm Password:");
 
-        peerPeriod3CheckBox1.setText("Period 3");
+        peerPeriod3CheckBox.setText("Period 3");
 
-        peerAfterSchoolCheckBox1.setText("After School");
+        peerAfterSchoolCheckBox.setText("After School");
 
-        peerPeriod5CheckBox1.setText("Period 5");
+        peerPeriod5CheckBox.setText("Period 5");
 
         peerPeriod1CheckBox.setText("Period 1");
 
-        peerPeriod4CheckBox1.setText("Period 4");
+        peerPeriod4CheckBox.setText("Period 4");
 
-        peerPeriod2CheckBox1.setText("Period 2");
+        peerPeriod2CheckBox.setText("Period 2");
 
         javax.swing.GroupLayout peerRegistryPanelLayout = new javax.swing.GroupLayout(peerRegistryPanel);
         peerRegistryPanel.setLayout(peerRegistryPanelLayout);
@@ -450,15 +455,15 @@ public class GuiFace extends javax.swing.JFrame {
                             .addGroup(peerRegistryPanelLayout.createSequentialGroup()
                                 .addComponent(peerPeriod1CheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(peerPeriod2CheckBox1)
+                                .addComponent(peerPeriod2CheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(peerPeriod3CheckBox1)
+                                .addComponent(peerPeriod3CheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(peerPeriod4CheckBox1)
+                                .addComponent(peerPeriod4CheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(peerPeriod5CheckBox1)
+                                .addComponent(peerPeriod5CheckBox)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(peerAfterSchoolCheckBox1))
+                                .addComponent(peerAfterSchoolCheckBox))
                             .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(peerFirstNameField, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(peerLastNameField, javax.swing.GroupLayout.Alignment.LEADING)
@@ -507,11 +512,11 @@ public class GuiFace extends javax.swing.JFrame {
                     .addComponent(peerPeriodsLabel)
                     .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(peerPeriod1CheckBox)
-                        .addComponent(peerPeriod2CheckBox1)
-                        .addComponent(peerPeriod3CheckBox1)
-                        .addComponent(peerPeriod4CheckBox1)
-                        .addComponent(peerAfterSchoolCheckBox1)
-                        .addComponent(peerPeriod5CheckBox1)))
+                        .addComponent(peerPeriod2CheckBox)
+                        .addComponent(peerPeriod3CheckBox)
+                        .addComponent(peerPeriod4CheckBox)
+                        .addComponent(peerAfterSchoolCheckBox)
+                        .addComponent(peerPeriod5CheckBox)))
                 .addGap(18, 18, 18)
                 .addComponent(peerSignupButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
@@ -703,6 +708,24 @@ public class GuiFace extends javax.swing.JFrame {
         benri.printTutorToFile(one);
     }//GEN-LAST:event_tutorSignupButtonMouseClicked
 
+    private void peerSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peerSignupButtonMouseClicked
+        // TODO add your handling code here:
+        Peer one = new Peer();
+        one.setFirst(peerFirstNameField.getText());
+        one.setLast(peerLastNameField.getText());
+        one.setEmail(peerEmailField.getText());
+        one.setPhoneNumber(peerPhoneNumberField.getText());
+        one.setSubject((String) peerSubjectDropList.getSelectedItem());
+        one.setAvailability(0,peerPeriod1CheckBox.isSelected());
+        one.setAvailability(1,peerPeriod2CheckBox.isSelected());
+        one.setAvailability(2,peerPeriod3CheckBox.isSelected());
+        one.setAvailability(3,peerPeriod4CheckBox.isSelected());
+        one.setAvailability(4,peerPeriod5CheckBox.isSelected());
+        one.setAvailability(5,peerAfterSchoolCheckBox.isSelected());
+        Utility benri = new Utility();
+        benri.printPeerToFile(one);
+    }//GEN-LAST:event_peerSignupButtonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -752,7 +775,7 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JLabel loginText1;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordLine;
-    private javax.swing.JCheckBox peerAfterSchoolCheckBox1;
+    private javax.swing.JCheckBox peerAfterSchoolCheckBox;
     private javax.swing.JButton peerBackButton;
     private javax.swing.JTextField peerEmailField;
     private javax.swing.JLabel peerEmailLabel;
@@ -765,10 +788,10 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JTextField peerPasswordField;
     private javax.swing.JLabel peerPasswordLabel;
     private javax.swing.JCheckBox peerPeriod1CheckBox;
-    private javax.swing.JCheckBox peerPeriod2CheckBox1;
-    private javax.swing.JCheckBox peerPeriod3CheckBox1;
-    private javax.swing.JCheckBox peerPeriod4CheckBox1;
-    private javax.swing.JCheckBox peerPeriod5CheckBox1;
+    private javax.swing.JCheckBox peerPeriod2CheckBox;
+    private javax.swing.JCheckBox peerPeriod3CheckBox;
+    private javax.swing.JCheckBox peerPeriod4CheckBox;
+    private javax.swing.JCheckBox peerPeriod5CheckBox;
     private javax.swing.JLabel peerPeriodsLabel;
     private javax.swing.JTextField peerPhoneNumberField;
     private javax.swing.JLabel peerPhoneNumberLabel;

@@ -480,15 +480,15 @@
                                   <Group type="102" attributes="0">
                                       <Component id="peerPeriod1CheckBox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="peerPeriod2CheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod2CheckBox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="peerPeriod3CheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod3CheckBox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="peerPeriod4CheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod4CheckBox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="peerPeriod5CheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod5CheckBox" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="peerAfterSchoolCheckBox1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="peerAfterSchoolCheckBox" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="peerFirstNameField" alignment="0" max="32767" attributes="0"/>
@@ -551,11 +551,11 @@
                           <Component id="peerPeriodsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="3" groupAlignment="3" attributes="0">
                               <Component id="peerPeriod1CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="peerPeriod2CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="peerPeriod3CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="peerPeriod4CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="peerAfterSchoolCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="peerPeriod5CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod2CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod3CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod4CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerAfterSchoolCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod5CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -643,6 +643,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sign Up"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="peerSignupButtonMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="peerPasswordField">
             </Component>
@@ -653,17 +656,17 @@
                 <Property name="text" type="java.lang.String" value="Confirm Password:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="peerPeriod3CheckBox1">
+            <Component class="javax.swing.JCheckBox" name="peerPeriod3CheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Period 3"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="peerAfterSchoolCheckBox1">
+            <Component class="javax.swing.JCheckBox" name="peerAfterSchoolCheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="After School"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="peerPeriod5CheckBox1">
+            <Component class="javax.swing.JCheckBox" name="peerPeriod5CheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Period 5"/>
               </Properties>
@@ -673,12 +676,12 @@
                 <Property name="text" type="java.lang.String" value="Period 1"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="peerPeriod4CheckBox1">
+            <Component class="javax.swing.JCheckBox" name="peerPeriod4CheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Period 4"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JCheckBox" name="peerPeriod2CheckBox1">
+            <Component class="javax.swing.JCheckBox" name="peerPeriod2CheckBox">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Period 2"/>
               </Properties>
