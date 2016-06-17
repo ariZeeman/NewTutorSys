@@ -69,7 +69,8 @@ public class Assignments {
      */
     @Override
     public String toString(){
-        String string = this.peer.toString() + "," + this.tutor.toString(); //change to be only names, phones, emails, availability?
+        String string = this.peer.getFirst() + "," + this.peer.getLast() + "," + this.peer.getPhoneNumber() + "," + this.peer.getEmail()+ ","; //prints peer values
+        string += this.tutor.getFirstName() + "," + this.tutor.getLastName() + "," + this.tutor.getPhoneNumber() + "," + this.tutor.getEmail(); //prints tutor values
         for (int j = 0; j < 6; j++) {
             string += "," + availability[j];
         }
