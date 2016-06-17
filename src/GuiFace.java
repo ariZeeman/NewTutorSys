@@ -687,6 +687,11 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void tutorSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tutorSignupButtonMouseClicked
         // TODO add your handling code here:
+        if (tutorFirstNameField.getText().equals("")||tutorLastNameField.getText().equals("")||tutorEmailField.getText().equals("")||tutorPhoneNumberField.getText().equals("")||tutorPasswordField.getText().equals("")||tutorPassConfirmField.getText().equals("")||tutorPeriod1CheckBox.isSelected()== false||tutorPeriod2CheckBox.isSelected()== false||tutorPeriod3CheckBox.isSelected()== false||tutorPeriod4CheckBox.isSelected()== false||tutorPeriod5CheckBox.isSelected()== false||tutorAfterSchoolCheckBox.isSelected()== false){
+        return;    
+        } else if (!tutorPasswordField.getText().equals(tutorPassConfirmField.getText())){
+        return;    
+        }
         Tutor one = new Tutor();
         one.setFirstName(tutorFirstNameField.getText());
         one.setLastName(tutorLastNameField.getText());
@@ -705,6 +710,11 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void peerSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peerSignupButtonMouseClicked
         // TODO add your handling code here:
+        if (peerFirstNameField.getText().equals("")||peerLastNameField.getText().equals("")||peerEmailField.getText().equals("")||peerPhoneNumberField.getText().equals("")||peerPasswordField.getText().equals("")||peerPassConfirmField.getText().equals("")||peerPeriod1CheckBox.isSelected()== false||peerPeriod2CheckBox.isSelected()== false||peerPeriod3CheckBox.isSelected()== false||peerPeriod4CheckBox.isSelected()== false||peerPeriod5CheckBox.isSelected()== false||peerAfterSchoolCheckBox.isSelected()== false){
+        return;    
+        } else if (!peerPasswordField.getText().equals(peerPassConfirmField.getText())){
+        return;    
+        }
         Peer one = new Peer();
         one.setFirst(peerFirstNameField.getText());
         one.setLast(peerLastNameField.getText());
@@ -723,11 +733,18 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void teacherSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teacherSignupButtonMouseClicked
         // TODO add your handling code here:
+        if (teacherFirstNameField.getText().equals("")||teacherLastNameField.getText().equals("")||teacherEmailField.getText().equals("")||tutorPasswordField.getText().equals("")){
+        return;    
+        } else if (!teacherPasswordField.getText().equals(teacherPassConfirmField.getText())){
+        return;    
+        }
         Teacher one = new Teacher();
         one.setFirstName(peerFirstNameField.getText());
         one.setLastName(peerLastNameField.getText());
         one.setEmail(peerEmailField.getText());
         one.setSubject((String) peerSubjectDropList.getSelectedItem());
+        Utility benri = new Utility();
+        benri.printTeacherToFile(one);
     }//GEN-LAST:event_teacherSignupButtonMouseClicked
 
     /**
