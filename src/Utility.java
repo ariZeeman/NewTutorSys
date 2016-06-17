@@ -65,10 +65,14 @@ public class Utility {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
         Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
+        
+        for (int i = 7; i < 13; i++) { //prints in the availabilities from the file line
+            temp.setAvailability(i-7, Boolean.parseBoolean(array[i]));
+        }
+        
         if (Boolean.parseBoolean(array[13]) == true) {
             return temp;
-        }
-        else {
+        } else {
             return null; //if the tutor hasnt been approved, do not return them.
         }
 
@@ -83,6 +87,11 @@ public class Utility {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
         Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
+        
+        for (int i = 6; i < 13; i++) { //prints in the availabilities from the file line
+            temp.setAvailability(i-6, Boolean.parseBoolean(array[i]));
+        }
+        
         return temp;
     }
 
