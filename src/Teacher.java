@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author 349173815
@@ -35,8 +36,20 @@ public class Teacher {
         this.subject = subject;
     }
 
+    /**
+     *
+     * @return subject
+     */
     public String getSubject() {
         return subject;
+    }
+
+    /**
+     *
+     * @param subject
+     */
+    public void setSubject(String subject) {
+        this.subject = subject;
     }
 
     /**
@@ -116,8 +129,9 @@ public class Teacher {
      * This method prints out a teacher's name as a string (for use in a
      * drop-down menu)
      *
-     * @return the first name, last name, email, password and subject (comma delimited)
-     * ex. : Mike, R-D, mikeR-D@example.ca, computerScienceIsCool123, Computer Science.
+     * @return the first name, last name, email, password and subject (comma
+     * delimited) ex. : Mike, R-D, mikeR-D@example.ca, computerScienceIsCool123,
+     * Computer Science.
      */
     @Override
     public String toString() {
