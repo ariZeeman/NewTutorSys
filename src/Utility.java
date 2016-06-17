@@ -103,9 +103,11 @@ public class Utility {
      * @return
      */
     public Teacher createTeacherFromFile(Scanner s, String firstName, String pass) {
-        String[] array = null; //array of info for peer
-        while (s.hasNextLine()) {
-            array = s.nextLine().split(",");
+        //array of info for peer
+        while (s.hasNext()) {
+            String temo = s.nextLine();
+            System.out.println(temo);
+            String[] array = temo.split(",");
             Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
             if ((temp.getFirstName().equals(firstName)) && (temp.getPassword().equals(pass))) {
                 return temp;
@@ -236,7 +238,7 @@ public class Utility {
      */
     public Tutor[] needVerification(Teacher teacher) { //param = teacher who tutors have asked for verification from
         //create a new array of tutors that contains every tutor
-        Tutor[] tutors = generateTutors();
+        Tutor[] tutors = findAllTutors();
         //new arraylist since we aren't sure how many tutors we are going to need
         ArrayList<Tutor> list = new ArrayList();
         for (Tutor tutor : tutors) {
@@ -347,7 +349,7 @@ public class Utility {
         try {
             PrintWriter pw;
             File f = new File("Tutor.txt");
-            pw = new PrintWriter(new FileWriter(f, false));
+            pw = new PrintWriter(new FileWriter(f, true));
             addObjectToFile(t, pw);
             pw.close();
         } catch (IOException ex) {
@@ -365,7 +367,7 @@ public class Utility {
         try {
             PrintWriter pw;
             File f = new File("Teacher.txt");
-            pw = new PrintWriter(new FileWriter(f));
+            pw = new PrintWriter(new FileWriter(f, true));
             addObjectToFile(t, pw);
             pw.close();
         } catch (IOException ex) {
@@ -383,7 +385,7 @@ public class Utility {
         try {
             PrintWriter pw;
             File f = new File("Peer.txt");
-            pw = new PrintWriter(new FileWriter(f));
+            pw = new PrintWriter(new FileWriter(f, true));
             addObjectToFile(p, pw);
             pw.close();
         } catch (IOException ex) {
@@ -534,7 +536,22 @@ public class Utility {
         for (int i = 7; i < 13; i++) { //prints in the availabilities from the file line
             temp.setAvailability(i - 7, Boolean.parseBoolean(array[i]));
         }
+        temp.setVisibility(Boolean.parseBoolean(array[13]));
         return temp;
+    }
+
+    /**
+     * Matches tutors to peers if any of their availability is the same and they
+     * have the same subject.
+     *
+     * @param p
+     */
+    public void matchTutors(Peer p) {
+        Tutor[] firstArray = generateTutors();
+        ArrayList<Tutor> list = new ArrayList();
+        for (Tutor firstArray1 : firstArray) {
+
+        }
     }
 
 }

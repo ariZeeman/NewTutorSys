@@ -18,9 +18,20 @@ public class Peer {
     private Boolean[] availability = new Boolean[6];
     private String firstName;
     private String lastName;
-    private Boolean taken; //represents whether the student has a tutor
+    private Boolean taken = false; //represents whether the student has a tutor
 
     public Peer() {
+    }
+
+    /**
+     * Method which sets taken to true
+     */
+    public void setTaken() {
+        taken = true;
+    }
+
+    public boolean getTaken() {
+        return taken;
     }
 
     public Peer(String subject, String firstName, String lastName, String phoneNumber, String password, String email) {
@@ -155,6 +166,7 @@ public class Peer {
         for (int y = 0; y < availability.length; y++) {
             toReturn += "," + availability[y];
         }
+        toReturn += "," + taken;
         return toReturn;
     }
 

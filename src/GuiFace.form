@@ -883,13 +883,17 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="tutorHomeLabel" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="574" max="32767" attributes="0"/>
+                              <EmptySpace pref="555" max="32767" attributes="0"/>
                               <Component id="tutorLogOut" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="myPeersLabel" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="match_btn" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -905,7 +909,9 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="myPeersLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="525" max="32767" attributes="0"/>
+                      <EmptySpace pref="495" max="32767" attributes="0"/>
+                      <Component id="match_btn" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -934,6 +940,14 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="My Peers:"/>
               </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="match_btn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Match me!"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="match_btnActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
