@@ -550,9 +550,8 @@
                           <Component id="peerSubjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="peerPeriodsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Group type="103" alignment="3" groupAlignment="3" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                               <Component id="peerPeriod1CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="peerPeriod2CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="peerPeriod3CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -560,6 +559,7 @@
                               <Component id="peerAfterSchoolCheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="peerPeriod5CheckBox1" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
+                          <Component id="peerPeriodsLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="peerSignupButton" min="-2" max="-2" attributes="0"/>

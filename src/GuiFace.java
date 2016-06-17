@@ -71,7 +71,7 @@ public class GuiFace extends javax.swing.JFrame {
         tutorRegistryButton = new javax.swing.JButton();
         peerRegistryButton = new javax.swing.JButton();
         clientTypeLabel = new javax.swing.JLabel();
-        clientTypeList = new javax.swing.JComboBox<>();
+        clientTypeList = new javax.swing.JComboBox<String>();
         tutorRegistryPanel = new javax.swing.JPanel();
         tutorTitle = new javax.swing.JLabel();
         tutorBackButton = new javax.swing.JButton();
@@ -177,7 +177,7 @@ public class GuiFace extends javax.swing.JFrame {
 
         clientTypeLabel.setText("Please select your login type:");
 
-        clientTypeList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        clientTypeList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout loginPanelLayout = new javax.swing.GroupLayout(loginPanel);
         loginPanel.setLayout(loginPanelLayout);
@@ -522,15 +522,15 @@ public class GuiFace extends javax.swing.JFrame {
                     .addComponent(peerSubjectDropList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(peerSubjectLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(peerPeriodsLabel)
+                .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(peerPeriod1CheckBox)
                         .addComponent(peerPeriod2CheckBox1)
                         .addComponent(peerPeriod3CheckBox1)
                         .addComponent(peerPeriod4CheckBox1)
                         .addComponent(peerAfterSchoolCheckBox1)
-                        .addComponent(peerPeriod5CheckBox1)))
+                        .addComponent(peerPeriod5CheckBox1))
+                    .addComponent(peerPeriodsLabel))
                 .addGap(18, 18, 18)
                 .addComponent(peerSignupButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
