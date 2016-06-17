@@ -131,7 +131,9 @@ public class Utility {
         while (s.hasNext()) {
             temp = createTutorFromFile(s);
             if (peer.getSubject().equals(temp.getSubject())) { //if the peer is looking for the subject the tutor teaches
-                ar.add(temp); //the tutor gets added
+                if ((peer.getAvailability(0) && temp.getAvailability(0)) == true) {
+                    ar.add(temp); //the tutor gets added
+                }
             }
         }
         Tutor[] tutorArray = (Tutor[]) ar.toArray();
