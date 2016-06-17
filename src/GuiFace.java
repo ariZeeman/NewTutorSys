@@ -931,17 +931,17 @@ public class GuiFace extends javax.swing.JFrame {
         Utility benri = new Utility();
         CardLayout card = (CardLayout) basePanel.getLayout();
         if (((String)clientTypeList.getSelectedItem()).equals("Teacher")) {
-            if (benri.teacherLoginCheck(teacherFirstNameField.getText(), teacherPasswordField.getText()) != null) {
+            if (!benri.teacherLoginCheck(teacherFirstNameField.getText(), teacherPasswordField.getText()).equals(null)) {
                 card.show(basePanel, "teacherHome");//shows login screen panel
             }
 
         } else if (((String)clientTypeList.getSelectedItem()).equals("Tutor")) {
-            if (benri.tutorLoginCheck(tutorFirstNameField.getText(), tutorPasswordField.getText()) != null) {
+            if (!benri.tutorLoginCheck(tutorFirstNameField.getText(), tutorPasswordField.getText()).equals(null)) {
                 card.show(basePanel, "tutorHome");//shows login screen panel
             }
 
         } else if (((String)clientTypeList.getSelectedItem()).equals("peer")) {
-            if (benri.peerLoginCheck(peerFirstNameField.getText(), peerPasswordField.getText()) != null) {
+            if (!benri.peerLoginCheck(peerFirstNameField.getText(), peerPasswordField.getText()).equals(null)) {
                 card.show(basePanel, "peerHome");//shows login screen panel
             }
         }
