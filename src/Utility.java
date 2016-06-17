@@ -109,7 +109,7 @@ public class Utility {
      */
     public void createAssignment(Peer peer, Scanner s) throws IOException {
         ArrayList ar = new ArrayList(); //arraylist of tutors
-        File assignments = new File("Assignemnts.txt"); //file of assignments
+        File assignments = new File("Assignemnt.txt"); //file of assignments
         PrintWriter pw = new PrintWriter(new FileWriter(assignments, false)); //writes assignments to file
         Tutor temp = new Tutor(); //temporary stores tutor for comparison to peer's subject
         while (s.hasNext()) {
@@ -194,7 +194,7 @@ public class Utility {
     public Tutor[] generateTutors() {
         try {
             //open the tutor file and put a scanner on it
-            File f = new File("Tutors.txt");
+            File f = new File("Tutor.txt");
             Scanner s = new Scanner(f);
             ArrayList<Tutor> list = new ArrayList();
             Tutor[] me;
@@ -225,7 +225,7 @@ public class Utility {
     public Teacher[] generateTeachers() {
         try {
             //teacher file
-            File f = new File("Teachers.txt");
+            File f = new File("Teacher.txt");
             Scanner s = new Scanner(f);
             ArrayList<Teacher> list = new ArrayList();
             int counter = 0;
@@ -253,7 +253,7 @@ public class Utility {
      */
     public Peer[] generatePeer() {
         try {
-            File f = new File("Peers.txt");
+            File f = new File("Peer.txt");
             Scanner s = new Scanner(f);
             ArrayList<Peer> list = new ArrayList();
             int counter = 0;
@@ -280,7 +280,7 @@ public class Utility {
     public void printTutorToFile(Tutor t) {
         try {
             PrintWriter pw;
-            File f = new File("Tutors.txt");
+            File f = new File("Tutor.txt");
             pw = new PrintWriter(new FileWriter(f));
             addObjectToFile(t, pw);
             pw.close();
@@ -298,7 +298,7 @@ public class Utility {
     public void printTeacherToFile(Teacher t) {
         try {
             PrintWriter pw;
-            File f = new File("Teachers.txt");
+            File f = new File("Teacher.txt");
             pw = new PrintWriter(new FileWriter(f));
             addObjectToFile(t, pw);
             pw.close();
@@ -316,7 +316,7 @@ public class Utility {
 
         try {
             PrintWriter pw;
-            File f = new File("Peers.txt");
+            File f = new File("Peer.txt");
             pw = new PrintWriter(new FileWriter(f));
             addObjectToFile(p, pw);
             pw.close();
