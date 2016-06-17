@@ -124,22 +124,35 @@ public class Utility {
      * @throws IOException
      */
     public void createAssignment(Peer peer, Scanner s) throws IOException {
+        Assignments assignment = null; //new assignment
         ArrayList ar = new ArrayList(); //arraylist of tutors
+        ArrayList bools = new ArrayList(); //arraylist of the availabilities for each assignment
         File assignments = new File("Assignment.txt"); //file of assignments
         PrintWriter pw = new PrintWriter(new FileWriter(assignments, false)); //writes assignments to file
         Tutor temp = new Tutor(); //temporary stores tutor for comparison to peer's subject
         while (s.hasNext()) {
+            Assignments temporary = null; //
             temp = createTutorFromFile(s);
             if (peer.getSubject().equals(temp.getSubject())) { //if the peer is looking for the subject the tutor teaches
-                if ((peer.getAvailability(0) && temp.getAvailability(0)) == true) {
-                    ar.add(temp); //the tutor gets added
+                for (int i = 0; i < temporary.getAvailability().length; i++) { //goes through each index, checking for common true
+                    if ((peer.getAvailability(i) && temp.getAvailability(i)) == true) { //if they both have true availability
+                        if (temporary.isMatched() == false) { //confirms the match, if not already done
+                            temporary.setMatched(true);
+                        }
+                        temporary.setAvailability(i, true); //shows when they're both free
+                    }
+                }
+                if (temporary.isMatched() == true) {
+                    ar.add(temp); //adds temp Tutor to ar to be sorted, b/c it meets peers requirements
+                    bools.add(temporary.getAvailability()); //adds the array of common availabilities, indices correspond between AR's
                 }
             }
+
         }
         Tutor[] tutorArray = (Tutor[]) ar.toArray();
-        Tutor tutor = fewestPeers(tutorArray); //creates the tutor who has the fewest # of peers
+        Tutor tutor = fewestPeers(tutorArray); //creates the tutor who has the fewest # of peers GET INDEX # INSTEAD
 
-        Assignments assignment = new Assignments(peer, tutor); //creates new assignment
+        assignment = new Assignments(peer, tutor); //creates new assignment
         addObjectToFile(assignment, pw); //prints the assignment to the file
     }
 
@@ -149,16 +162,29 @@ public class Utility {
      * @param s scanners of assignments
      * @return
      */
-    public Tutor returnMatch(Peer peer, Scanner s) {
+    public Assignments returnPeerMatch(Peer peer, Scanner s) {
+        ArrayList list = new ArrayList();
+        Assignments assignment;
         while (s.hasNext()) {
             String[] array = s.nextLine().split(",");
             //this returns peers: subject, fname, lname, phone#, password, email,
             Peer tempPeer = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
+            for (int i = 6; i < 12; i++) {
+                tempPeer.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
+            }
             //gets ????????
-            Tutor tempTutor = new Tutor(array[6], array[7], array[8], array[9], array[10], Integer.parseInt(array[11]), array[12]);
-            Assignments assignment = new Assignments(tempPeer, tempTutor);
+            Tutor tempTutor = new Tutor(array[12], array[13], array[14], array[15], array[16], Integer.parseInt(array[17]), array[18]); //skips past the availability portion of peer
+            for (int i = 19; i < 25; i++) {
+                tempTutor.setAvailability(i - 19, Boolean.parseBoolean(array[i]));
+            }
+            assignment = new Assignments(tempPeer, tempTutor);
             if (assignment.getPeer().equals(peer)) {
-                return assignment.getTutor();
+//                for (int i = 0; i < assignment.getAvailability().length; i++){
+//                    if (){
+//                        
+//                    }
+//                }
+                list.add(assignment);
             }
         }
         return null;
