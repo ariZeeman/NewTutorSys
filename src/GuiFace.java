@@ -26,14 +26,11 @@ public class GuiFace extends javax.swing.JFrame {
         "Grade 12 Calculus & Vectors", "Grade 9 Science", "Grade 10 Science",
         "Grade 11 Biology", "Grade 11 Physics", "Grade 11 Chemistry", "Grade 12 Biology",
         "Grade 12 Physics", "Grade 12 Chemistry"};
-    private final String[] periodArray = {"period 1", "period 2", "period 3", "period 4", "period 5", "after school"};
 
     public GuiFace() {
         initComponents();
         tutorSubjectDropList.removeAllItems();
-        tutorPeriodDropList.removeAllItems();
         peerSubjectDropList.removeAllItems();
-        peerPeriodDropList.removeAllItems();
         teacherSubjectDropList.removeAllItems();
         clientTypeList.removeAllItems();
         clientTypeList.addItem("Teacher");
@@ -43,10 +40,6 @@ public class GuiFace extends javax.swing.JFrame {
             tutorSubjectDropList.addItem(subjectArray[i]);
             peerSubjectDropList.addItem(subjectArray[i]);
             teacherSubjectDropList.addItem(subjectArray[i]);
-        }
-        for (int i = 0; i < periodArray.length; i++) {
-            tutorPeriodDropList.addItem(periodArray[i]);
-            peerPeriodDropList.addItem(periodArray[i]);
         }
     }
 
@@ -253,12 +246,6 @@ public class GuiFace extends javax.swing.JFrame {
             }
         });
 
-        tutorFirstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tutorFirstNameFieldActionPerformed(evt);
-            }
-        });
-
         tutorFirstNameLabel.setText("First Name:");
 
         tutorLastNameLabel.setText("Last Name:");
@@ -420,12 +407,6 @@ public class GuiFace extends javax.swing.JFrame {
 
         peerSignupButton.setText("Sign Up");
 
-        peerFirstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                peerFirstNameFieldActionPerformed(evt);
-            }
-        });
-
         peerPassConfirmLabel.setText("Confirm Password:");
 
         peerPeriod3CheckBox1.setText("Period 3");
@@ -561,12 +542,6 @@ public class GuiFace extends javax.swing.JFrame {
         teacherLastNameLabel.setText("Last Name:");
 
         teacherEmailLabel.setText("Email:");
-
-        teacherFirstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teacherFirstNameFieldActionPerformed(evt);
-            }
-        });
 
         teacherSignupButton.setText("Sign Up");
 
@@ -710,18 +685,6 @@ public class GuiFace extends javax.swing.JFrame {
         card.show(basePanel, "peerPanel");
     }//GEN-LAST:event_peerRegistryButtonMouseClicked
 
-    private void tutorFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorFirstNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tutorFirstNameFieldActionPerformed
-
-    private void peerFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peerFirstNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_peerFirstNameFieldActionPerformed
-
-    private void teacherFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherFirstNameFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_teacherFirstNameFieldActionPerformed
-
     private void tutorSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tutorSignupButtonMouseClicked
         // TODO add your handling code here:
         Tutor one = new Tutor();
@@ -736,7 +699,8 @@ public class GuiFace extends javax.swing.JFrame {
         one.setAvailability(3,tutorPeriod4CheckBox.isSelected());
         one.setAvailability(4,tutorPeriod5CheckBox.isSelected());
         one.setAvailability(5,tutorAfterSchoolCheckBox.isSelected());
-        Utility.printTutorToFile(one);
+        Utility benri = new Utility();
+        benri.printTutorToFile(one);
     }//GEN-LAST:event_tutorSignupButtonMouseClicked
 
     /**

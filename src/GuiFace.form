@@ -346,9 +346,6 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tutorFirstNameField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tutorFirstNameFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tutorLastNameField">
             </Component>
@@ -650,9 +647,6 @@
             <Component class="javax.swing.JTextField" name="peerPasswordField">
             </Component>
             <Component class="javax.swing.JTextField" name="peerFirstNameField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="peerFirstNameFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="peerPassConfirmLabel">
               <Properties>
@@ -854,9 +848,6 @@
             <Component class="javax.swing.JTextField" name="teacherPasswordField">
             </Component>
             <Component class="javax.swing.JTextField" name="teacherFirstNameField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="teacherFirstNameFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="teacherSignupButton">
               <Properties>
