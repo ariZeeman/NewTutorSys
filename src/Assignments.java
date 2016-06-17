@@ -15,14 +15,24 @@ public class Assignments {
     private Tutor tutor = new Tutor();
     private Peer peer = new Peer();
     private Teacher teacher = new Teacher();
+    private boolean[] availability = new boolean[6];
+    private boolean matched = false;
     
+    /**
+     *
+     */
     public Assignments(){
         
     }
     
-    public Assignments(Tutor newTutor, Peer newPeer){
-        this.setTutor(newTutor);
-        this.setPeer(newPeer);
+    /**
+     *
+     * @param newPeer
+     * @param newTutor
+     */
+    public Assignments(Peer newPeer, Tutor newTutor){
+        this.peer = newPeer;
+        this.tutor = newTutor;
     }
 
     /**
@@ -51,6 +61,48 @@ public class Assignments {
      */
     public void setPeer(Peer peer) {
         this.peer = peer;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    @Override
+    public String toString(){
+        String string = this.peer.toString() + "," + this.tutor.toString(); //change to be only names, phones, emails, availability?
+        for (int j = 0; j < 6; j++) {
+            string += "," + availability[j];
+        }
+        return string;
+    }
+
+    /**
+     * @return the availability
+     */
+    public boolean[] getAvailability() {
+        return availability;
+    }
+
+    /**
+     * @param index index of array to set
+     * @param b boolean value
+     */
+    public void setAvailability(int index, boolean b) {
+        availability[index] = b;
+    }
+
+    /**
+     * @return the matched
+     */
+    public boolean isMatched() {
+        return matched;
+    }
+
+    /**
+     * @param matched the matched to set
+     */
+    public void setMatched(boolean matched) {
+        this.matched = matched;
     }
     
 }

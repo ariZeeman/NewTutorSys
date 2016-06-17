@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +22,12 @@ import java.util.logging.Logger;
  * @author Ari Zeeman, Haydn Brown, Len Wu
  */
 public class Utility {
+
+    /**
+     * Construct a Utility object (in case you need one)
+     */
+    public Utility() {
+    }
 
     /**
      * Bubble/Sinking sort that is for the StockInfo objects.
@@ -57,32 +64,54 @@ public class Utility {
     public Tutor createTutorFromFile(Scanner s) {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
-        Tutor temp = new Tutor(array[0], array[1], array[2], array[3], Integer.parseInt(array[4]), array[5]);
-        return temp;
+        Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
+
+        for (int i = 7; i < 13; i++) { //prints in the availabilities from the file line
+            temp.setAvailability(i - 7, Boolean.parseBoolean(array[i]));
+        }
+
+        if (Boolean.parseBoolean(array[13]) == true) {
+            return temp;
+        } else {
+            return null; //if the tutor hasnt been approved, do not return them.
+        }
+
     }
 
     /**
      *
-     * @param s
+     * @param s scanner using file of peers
      * @return
      */
     public Peer createPeerFromFile(Scanner s) {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
-        Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4]);
+        Peer temp = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
+
+        for (int i = 6; i < 13; i++) { //prints in the availabilities from the file line
+            temp.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
+        }
+
         return temp;
     }
 
     /**
      *
      * @param s
+     * @param firstName
+     * @param pass
      * @return
      */
-    public Teacher createTeacherFromFile(Scanner s) {
+    public Teacher createTeacherFromFile(Scanner s,String firstName,String pass) {
         String[] array = null; //array of info for peer
+        while (s.hasNextLine()){
         array = s.nextLine().split(",");
         Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
-        return temp;
+        if((temp.getFirstName().equals(firstName))&&(temp.getPassword().equals(pass))){
+         return temp;   
+        }
+        }
+        return null;
     }
 
     /**
@@ -92,31 +121,80 @@ public class Utility {
      * @param pw PrintWriter which prints the object to a file
      */
     public void addObjectToFile(Object o, PrintWriter pw) {
-        pw.append(o.toString());
+        pw.println(o.toString());
     }
 
     /**
      *
-     * @param peer
-     * @param s
+     * @param peer peer to be matched
+     * @param s scanner of tutors
      * @throws IOException
      */
     public void createAssignment(Peer peer, Scanner s) throws IOException {
+        Assignments assignment = null; //new assignment
         ArrayList ar = new ArrayList(); //arraylist of tutors
-        File assignments = new File("Assignemnts.txt"); //file of assignments
+        ArrayList bools = new ArrayList(); //arraylist of the availabilities for each assignment
+        File assignments = new File("Assignment.txt"); //file of assignments
         PrintWriter pw = new PrintWriter(new FileWriter(assignments, false)); //writes assignments to file
         Tutor temp = new Tutor(); //temporary stores tutor for comparison to peer's subject
         while (s.hasNext()) {
+            Assignments temporary = null; //
             temp = createTutorFromFile(s);
             if (peer.getSubject().equals(temp.getSubject())) { //if the peer is looking for the subject the tutor teaches
-                ar.add(temp); //the tutor gets added
+                for (int i = 0; i < temporary.getAvailability().length; i++) { //goes through each index, checking for common true
+                    if ((peer.getAvailability(i) && temp.getAvailability(i)) == true) { //if they both have true availability
+                        if (temporary.isMatched() == false) { //confirms the match, if not already done
+                            temporary.setMatched(true);
+                        }
+                        temporary.setAvailability(i, true); //shows when they're both free
+                    }
+                }
+                if (temporary.isMatched() == true) {
+                    ar.add(temp); //adds temp Tutor to ar to be sorted, b/c it meets peers requirements
+                    bools.add(temporary.getAvailability()); //adds the array of common availabilities, indices correspond between AR's
+                }
             }
+
         }
         Tutor[] tutorArray = (Tutor[]) ar.toArray();
-        Tutor tutor = fewestPeers(tutorArray); //creates the tutor who has the fewest # of peers
+        Tutor tutor = fewestPeers(tutorArray); //creates the tutor who has the fewest # of peers GET INDEX # INSTEAD
 
-        Assignments assignment = new Assignments(tutor, peer); //creates new assignment
+        assignment = new Assignments(peer, tutor); //creates new assignment
         addObjectToFile(assignment, pw); //prints the assignment to the file
+    }
+
+    /**
+     *
+     * @param peer peer in an assignment
+     * @param s scanners of assignments
+     * @return
+     */
+    public Assignments returnPeerMatch(Peer peer, Scanner s) {
+        ArrayList list = new ArrayList();
+        Assignments assignment;
+        while (s.hasNext()) {
+            String[] array = s.nextLine().split(",");
+            //this returns peers: subject, fname, lname, phone#, password, email,
+            Peer tempPeer = new Peer(array[0], array[1], array[2], array[3], array[4], array[5]);
+            for (int i = 6; i < 12; i++) {
+                tempPeer.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
+            }
+            //gets ????????
+            Tutor tempTutor = new Tutor(array[12], array[13], array[14], array[15], array[16], Integer.parseInt(array[17]), array[18]); //skips past the availability portion of peer
+            for (int i = 19; i < 25; i++) {
+                tempTutor.setAvailability(i - 19, Boolean.parseBoolean(array[i]));
+            }
+            assignment = new Assignments(tempPeer, tempTutor);
+            if (assignment.getPeer().equals(peer)) {
+//                for (int i = 0; i < assignment.getAvailability().length; i++){
+//                    if (){
+//                        
+//                    }
+//                }
+                list.add(assignment);
+            }
+        }
+        return null;
     }
 
     /**
@@ -169,7 +247,7 @@ public class Utility {
     public Tutor[] generateTutors() {
         try {
             //open the tutor file and put a scanner on it
-            File f = new File("tutors.txt");
+            File f = new File("Tutor.txt");
             Scanner s = new Scanner(f);
             ArrayList<Tutor> list = new ArrayList();
             Tutor[] me;
@@ -182,6 +260,7 @@ public class Utility {
             }
             me = new Tutor[counter];
             me = list.toArray(me);
+            s.close();
             return me;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -199,7 +278,7 @@ public class Utility {
     public Teacher[] generateTeachers() {
         try {
             //teacher file
-            File f = new File("teachers.txt");
+            File f = new File("Teacher.txt");
             Scanner s = new Scanner(f);
             ArrayList<Teacher> list = new ArrayList();
             int counter = 0;
@@ -210,6 +289,7 @@ public class Utility {
             }
             teachers = new Teacher[counter];
             teachers = list.toArray(teachers);
+            s.close();
             return teachers;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -226,7 +306,7 @@ public class Utility {
      */
     public Peer[] generatePeer() {
         try {
-            File f = new File("peers.txt");
+            File f = new File("Peer.txt");
             Scanner s = new Scanner(f);
             ArrayList<Peer> list = new ArrayList();
             int counter = 0;
@@ -237,6 +317,7 @@ public class Utility {
             }
             peers = new Peer[counter];
             peers = list.toArray(peers);
+            s.close();
             return peers;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
@@ -244,4 +325,195 @@ public class Utility {
         }
         return null;
     }
+
+    /**
+     *
+     * @param t the tutor being committed to a file
+     */
+    public void printTutorToFile(Tutor t) {
+        try {
+            PrintWriter pw;
+            File f = new File("Tutor.txt");
+            pw = new PrintWriter(new FileWriter(f, false));
+            addObjectToFile(t, pw);
+            pw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+
+        }
+    }
+
+    /**
+     *
+     * @param t the teacher being committed to a file
+     */
+    public void printTeacherToFile(Teacher t) {
+        try {
+            PrintWriter pw;
+            File f = new File("Teacher.txt");
+            pw = new PrintWriter(new FileWriter(f));
+            addObjectToFile(t, pw);
+            pw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param p the peer being committed to a file
+     */
+    public void printPeerToFile(Peer p) {
+
+        try {
+            PrintWriter pw;
+            File f = new File("Peer.txt");
+            pw = new PrintWriter(new FileWriter(f));
+            addObjectToFile(p, pw);
+            pw.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    /**
+     *
+     * @param firstName first name used to log in
+     * @param password password used to log in
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
+     */
+    public Peer[] peerLoginCheck(String firstName, String password) {
+        ArrayList temp = new ArrayList();
+        Peer[] peers = generatePeer(); //all the peers in the peer file
+        for (int i = 0; i < peers.length; i++) {
+            if (peers[i].getFirst().equals(firstName) && peers[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
+                temp.add(peers[i]);
+            }
+        }
+        Peer[] checked = (Peer[]) temp.toArray();
+        return checked; //all the occurances of the person
+    }
+
+    /**
+     *
+     * @param firstName first name used to log in
+     * @param password password used to log in
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
+     */
+    public Tutor[] tutorLoginCheck(String firstName, String password) {
+        ArrayList<Tutor> temp = new ArrayList();
+        Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
+        int counter = 0;
+        for (Tutor tutor : tutors) {
+            if (tutor.getFirstName().equals(firstName) && tutor.getPassword().equals(password)) {
+                //if the firstname and password match (if its that person, regardless of subject)
+                temp.add(tutor);
+                counter++;
+            }
+        }
+        Tutor[] checked = new Tutor[counter];
+        checked = temp.toArray(checked);
+        return checked; //all the occurances of the person
+    }
+
+    /**
+     *
+     * @param firstName first name used to log in
+     * @param password password used to log in
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
+     */
+    public Teacher[] teacherLoginCheck(String firstName, String password) {
+        ArrayList temp = new ArrayList();
+        Teacher[] teachers = generateTeachers(); //all the teachers in the teachers file
+        for (int i = 0; i < teachers.length; i++) {
+            if (teachers[i].getFirstName().equals(firstName) && teachers[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
+                temp.add(teachers[i]);
+            }
+        }
+        Teacher[] checked = (Teacher[]) temp.toArray();
+        return checked; //all the occurances of the person
+    }
+
+    /**
+     * Method which finds every last tutor with the purpose of updating a tutor
+     * to verify it.
+     *
+     * @return the array of tutors
+     */
+    public Tutor[] findAllTutors() {
+        try {
+            File f = new File("Tutor.txt");
+            Scanner s = new Scanner(f);
+            ArrayList<Tutor> list = new ArrayList();
+            Tutor[] me;
+            int counter = 0;
+            //as long as there is a new line in the file, it will cycle through it
+            while (s.hasNext()) {
+                //add the createTutorFromFile result
+                list.add(getEveryTutor(s));
+                counter++;
+            }
+            me = new Tutor[counter];
+            me = list.toArray(me);
+            s.close();
+            return me;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    /**
+     * This method sets the visibility of a Tutor to true so they can be seen by
+     * the matches. It generates an array of *every* tutor which it then
+     * searches through to verify the tutor before re-writing the entire list.
+     *
+     * @param tutor being verified
+     */
+    public void verify(Tutor tutor) {
+        PrintWriter pw = null;
+        try {
+            Tutor[] array = findAllTutors();
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].equals(tutor)) {
+                    verify(tutor);
+                }
+            }
+            File f = new File("Tutor.txt");
+            pw = new PrintWriter(f);
+            tutor.setVisibility(true);
+            //re-write the file (hence no new FileWriter as a parameter)
+            for (int i = 0; i < array.length; i++) {
+                addObjectToFile(array[i], pw);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } finally {
+            pw.close();
+        }
+    }
+
+    /**
+     * Re-hashed version of create from file which just gets all tutors
+     *
+     * @param s
+     * @return
+     */
+    public Tutor getEveryTutor(Scanner s) {
+        String[] array = null; //array of info for peer
+        array = s.nextLine().split(",");
+        Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
+        for (int i = 7; i < 13; i++) { //prints in the availabilities from the file line
+            temp.setAvailability(i - 7, Boolean.parseBoolean(array[i]));
+        }
+        return temp;
+    }
+
 }
