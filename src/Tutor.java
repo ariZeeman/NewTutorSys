@@ -16,7 +16,6 @@ public class Tutor implements Comparable {
     private String email;
     private int numPeers = 0;
     private String password;
-    private Teacher teacher = new Teacher();
     private boolean[] availability = new boolean[6];
     private boolean visibility = false;
 
@@ -54,7 +53,7 @@ public class Tutor implements Comparable {
     @Override
     public String toString() {
         String string;
-        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password + "," + teacher + ",";
+        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password + ",";
         for (int j = 0; j < 6; j++) {
             string = string + availability[j] + ",";
         }
