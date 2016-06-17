@@ -72,7 +72,8 @@ public class Utility {
         
         if (Boolean.parseBoolean(array[13]) == true) {
             return temp;
-        } else {
+        }
+        else {
             return temp; //if the tutor hasnt been approved, do not return them.
         }
 
@@ -372,9 +373,10 @@ public class Utility {
         ArrayList<Tutor> temp = new ArrayList();
         Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
         int counter = 0;
-        for (int i = 0; i < tutors.length; i++) {
-            if (tutors[i].getFirstName().equals(firstName) && tutors[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
-                temp.add(tutors[i]);
+        for (Tutor tutor : tutors) {
+            if (tutor.getFirstName().equals(firstName) && tutor.getPassword().equals(password)) {
+                //if the firstname and password match (if its that person, regardless of subject)
+                temp.add(tutor);
                 counter++;
             }
         }
