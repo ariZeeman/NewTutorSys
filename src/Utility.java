@@ -408,22 +408,12 @@ public class Utility {
     }
 
     /**
-     * This method sets the visibility of a Tutor to true so they can be seen by
-     * the matches.
-     *
-     * @param tutor being verified
-     */
-    public void verify(Tutor tutor) {
-        tutor.setVisibility(true);
-    }
-
-    /**
      * Method which finds every last tutor with the purpose of updating a tutor
      * to verify it.
      *
-     * @param tutor
+     * @return the array of tutors
      */
-    public Tutor[] findAllTutors(Tutor tutor) {
+    public Tutor[] findAllTutors() {
         try {
             File f = new File("Tutor.txt");
             Scanner s = new Scanner(f);
@@ -444,6 +434,37 @@ public class Utility {
             Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    /**
+     * This method sets the visibility of a Tutor to true so they can be seen by
+     * the matches. It generates an array of *every* tutor which it then
+     * searches through to verify the tutor before re-writing the entire list.
+     *
+     * @param tutor being verified
+     */
+    public void verify(Tutor tutor) {
+        PrintWriter pw = null;
+        try {
+            Tutor[] array = findAllTutors();
+            for (int i = 0; i < array.length; i++) {
+                if (array[i].equals(tutor)) {
+                    verify(tutor);
+                }
+            }
+            File f = new File("Tutor.txt");
+            pw = new PrintWriter(f);
+            tutor.setVisibility(true);
+            //re-write the file (hence no new FileWriter as a parameter)
+            for (int i = 0; i < array.length; i++) {
+                addObjectToFile(array[i], pw);
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Utility.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        } finally {
+            pw.close();
+        }
     }
 
     /**
