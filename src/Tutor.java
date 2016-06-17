@@ -62,6 +62,14 @@ public class Tutor implements Comparable {
         return string;
     }
 
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
     /**
      * Method which allows visibility (meaning they can be found by the search
      * program, this is set to true when a teacher signs off on a student).
@@ -220,23 +228,10 @@ public class Tutor implements Comparable {
     }
 
     /**
-     * @return the password
-     */
-    public String getPassword() {
-        return password;
-    }
-
-    /**
      * @param numPeers the numPeers to set
      */
     public void setNumPeers(int numPeers) {
         this.numPeers = numPeers;
     }
 
-    /**
-     * @param password the password to set
-     */
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
