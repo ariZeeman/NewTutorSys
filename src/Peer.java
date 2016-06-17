@@ -143,6 +143,12 @@ public class Peer {
         return password;
     }
 
+    /**
+     * Prints peer as a String in the following fashion:
+     * Subject,FirstName,LastName,PhoneNumber,Password,Email,Availability.
+     *
+     * @return String of peer
+     */
     @Override
     public String toString() {
         String toReturn = this.subject + "," + this.firstName + "," + this.lastName + "," + this.phoneNumber + "," + this.password + "," + this.email;
