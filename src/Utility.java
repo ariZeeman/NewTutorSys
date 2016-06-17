@@ -347,6 +347,41 @@ public class Utility {
     }
 
     /**
+     *
+     * @param firstName first name used to log in
+     * @param password password used to log in
+     * @return array of the object of the person signing in, multiple returned if they have multiple objects for various subjects
+     */
+    public Tutor[] tutorLoginCheck(String firstName, String password){
+        ArrayList temp = new ArrayList();
+        Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
+        for (int i = 0; i < tutors.length; i++){
+            if (tutors[i].getFirstName().equals(firstName) && tutors[i].getPassword().equals(password)){ //if the firstname and password match (if its that person, regardless of subject)
+                temp.add(tutors[i]);
+            }
+        }
+        Tutor[] checked = (Tutor[])temp.toArray();
+        return checked; //all the occurances of the person
+    }
+    
+    /**
+     *
+     * @param firstName first name used to log in
+     * @param password password used to log in
+     * @return array of the object of the person signing in, multiple returned if they have multiple objects for various subjects
+     */
+    public Teacher[] teacherLoginCheck(String firstName, String password){
+        ArrayList temp = new ArrayList();
+        Teacher[] teachers = generateTeachers(); //all the teachers in the teachers file
+        for (int i = 0; i < teachers.length; i++){
+            if (teachers[i].getFirstName().equals(firstName) && teachers[i].getPassword().equals(password)){ //if the firstname and password match (if its that person, regardless of subject)
+                temp.add(teachers[i]);
+            }
+        }
+        Teacher[] checked = (Teacher[])temp.toArray();
+        return checked; //all the occurances of the person
+    }
+    
      * This method sets the visibility of a Tutor to true so they can be seen by
      * the matches.
      *
