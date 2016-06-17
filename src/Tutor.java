@@ -54,9 +54,9 @@ public class Tutor implements Comparable {
     @Override
     public String toString() {
         String string;
-        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password + "," + teacher + ",";
+        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password;
         for (int j = 0; j < 6; j++) {
-            string = string + availability[j] + ",";
+            string += "," + availability[j];
         }
         string = string + visibility;
         return string;

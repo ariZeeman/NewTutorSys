@@ -135,7 +135,7 @@ public class Teacher {
      */
     @Override
     public String toString() {
-        return firstName + "," + lastName + "," + email + "," + getPassword() + "," + subject;
+        return firstName + "," + lastName + "," + email + "," + password + "," + subject;
     }
 
     /**

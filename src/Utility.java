@@ -65,7 +65,13 @@ public class Utility {
         String[] array = null; //array of info for peer
         array = s.nextLine().split(",");
         Tutor temp = new Tutor(array[0], array[1], array[2], array[3], array[4], Integer.parseInt(array[5]), array[6]);
-        return temp;
+        if (Boolean.parseBoolean(array[13]) == true) {
+            return temp;
+        }
+        else {
+            return null; //if the tutor hasnt been approved, do not return them.
+        }
+
     }
 
     /**
@@ -326,22 +332,23 @@ public class Utility {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     /**
      *
      * @param firstName first name used to log in
      * @param password password used to log in
-     * @return array of the object of the person signing in, multiple returned if they have multiple objects for various subjects
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
      */
-    public Peer[] peerLoginCheck(String firstName, String password){
+    public Peer[] peerLoginCheck(String firstName, String password) {
         ArrayList temp = new ArrayList();
         Peer[] peers = generatePeer(); //all the peers in the peer file
-        for (int i = 0; i < peers.length; i++){
-            if (peers[i].getFirst().equals(firstName) && peers[i].getPassword().equals(password)){ //if the firstname and password match (if its that person, regardless of subject)
+        for (int i = 0; i < peers.length; i++) {
+            if (peers[i].getFirst().equals(firstName) && peers[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(peers[i]);
             }
         }
-        Peer[] checked = (Peer[])temp.toArray();
+        Peer[] checked = (Peer[]) temp.toArray();
         return checked; //all the occurances of the person
     }
 
@@ -349,36 +356,48 @@ public class Utility {
      *
      * @param firstName first name used to log in
      * @param password password used to log in
-     * @return array of the object of the person signing in, multiple returned if they have multiple objects for various subjects
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
      */
-    public Tutor[] tutorLoginCheck(String firstName, String password){
+    public Tutor[] tutorLoginCheck(String firstName, String password) {
         ArrayList temp = new ArrayList();
         Tutor[] tutors = generateTutors(); //all the tutors in the tutor file
-        for (int i = 0; i < tutors.length; i++){
-            if (tutors[i].getFirstName().equals(firstName) && tutors[i].getPassword().equals(password)){ //if the firstname and password match (if its that person, regardless of subject)
+        for (int i = 0; i < tutors.length; i++) {
+            if (tutors[i].getFirstName().equals(firstName) && tutors[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(tutors[i]);
             }
         }
-        Tutor[] checked = (Tutor[])temp.toArray();
+        Tutor[] checked = (Tutor[]) temp.toArray();
         return checked; //all the occurances of the person
     }
-    
+
     /**
      *
      * @param firstName first name used to log in
      * @param password password used to log in
-     * @return array of the object of the person signing in, multiple returned if they have multiple objects for various subjects
+     * @return array of the object of the person signing in, multiple returned
+     * if they have multiple objects for various subjects
      */
-    public Teacher[] teacherLoginCheck(String firstName, String password){
+    public Teacher[] teacherLoginCheck(String firstName, String password) {
         ArrayList temp = new ArrayList();
         Teacher[] teachers = generateTeachers(); //all the teachers in the teachers file
-        for (int i = 0; i < teachers.length; i++){
-            if (teachers[i].getFirstName().equals(firstName) && teachers[i].getPassword().equals(password)){ //if the firstname and password match (if its that person, regardless of subject)
+        for (int i = 0; i < teachers.length; i++) {
+            if (teachers[i].getFirstName().equals(firstName) && teachers[i].getPassword().equals(password)) { //if the firstname and password match (if its that person, regardless of subject)
                 temp.add(teachers[i]);
             }
         }
-        Teacher[] checked = (Teacher[])temp.toArray();
+        Teacher[] checked = (Teacher[]) temp.toArray();
         return checked; //all the occurances of the person
     }
-    
+
+    /**
+     * This method sets the visibility of a Tutor to true so they can be seen by
+     * the matches.
+     *
+     * @param tutor being verified
+     */
+    public void verify(Tutor tutor) {
+        tutor.setVisibility(true);
+    }
+
 }
