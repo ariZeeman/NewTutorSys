@@ -110,7 +110,7 @@ public class Utility {
      */
     public void createAssignment(Peer peer, Scanner s) throws IOException {
         ArrayList ar = new ArrayList(); //arraylist of tutors
-        File assignments = new File("Assignemnt.txt"); //file of assignments
+        File assignments = new File("Assignment.txt"); //file of assignments
         PrintWriter pw = new PrintWriter(new FileWriter(assignments, false)); //writes assignments to file
         Tutor temp = new Tutor(); //temporary stores tutor for comparison to peer's subject
         while (s.hasNext()) {
