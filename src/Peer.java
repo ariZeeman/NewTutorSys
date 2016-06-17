@@ -30,6 +30,10 @@ public class Peer {
         taken = true;
     }
 
+    public Boolean[] getAvailability() {
+        return availability;
+    }
+
     public boolean getTaken() {
         return taken;
     }

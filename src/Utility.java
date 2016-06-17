@@ -542,16 +542,34 @@ public class Utility {
 
     /**
      * Matches tutors to peers if any of their availability is the same and they
-     * have the same subject.
+     * have the same subject. Returns an array of tutors who match.
      *
      * @param p
      */
-    public void matchTutors(Peer p) {
+    public Tutor[] matchTutors(Peer p) {
         Tutor[] firstArray = generateTutors();
+        //arraylist of tutors with the same availablity as the peer and same
         ArrayList<Tutor> list = new ArrayList();
-        for (Tutor firstArray1 : firstArray) {
-
+        ArrayList<Tutor> finalList = new ArrayList();
+        for (int i = 0; i < firstArray.length; i++) {
+            if (firstArray[i].getSubject().equals(p.getSubject())) {
+                boolean sMatch = false;
+                for (int j = 0; j < p.getAvailability().length; j++) {
+                    if (firstArray[i].getAvailability(j) == p.getAvailability(j)) {
+                        sMatch = true;
+                    }
+                }
+                if (sMatch) {
+                    finalList.add(firstArray[i]);
+                }
+            }
         }
+        Tutor[] finalArray = new Tutor[0];
+        finalList.toArray(finalArray);
+        return finalArray;
     }
 
+    public Peer generatePeerFromLogin(String firstname, String password) {
+        return null;
+    }
 }

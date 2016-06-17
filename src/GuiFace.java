@@ -140,6 +140,7 @@ public class GuiFace extends javax.swing.JFrame {
         tutorLogOut = new javax.swing.JButton();
         myPeersLabel = new javax.swing.JLabel();
         match_btn = new javax.swing.JButton();
+        matchList_cbox = new javax.swing.JComboBox();
         peerHome = new javax.swing.JPanel();
         peerLogOut = new javax.swing.JButton();
         peerHomeLabel = new javax.swing.JLabel();
@@ -673,6 +674,8 @@ public class GuiFace extends javax.swing.JFrame {
             }
         });
 
+        matchList_cbox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout tutorHomeLayout = new javax.swing.GroupLayout(tutorHome);
         tutorHome.setLayout(tutorHomeLayout);
         tutorHomeLayout.setHorizontalGroup(
@@ -690,6 +693,8 @@ public class GuiFace extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(tutorHomeLayout.createSequentialGroup()
                         .addComponent(match_btn)
+                        .addGap(18, 18, 18)
+                        .addComponent(matchList_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         tutorHomeLayout.setVerticalGroup(
@@ -702,7 +707,9 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(myPeersLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 495, Short.MAX_VALUE)
-                .addComponent(match_btn)
+                .addGroup(tutorHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(match_btn)
+                    .addComponent(matchList_cbox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -976,20 +983,23 @@ public class GuiFace extends javax.swing.JFrame {
                         card.show(basePanel, "teacherHome");//shows login screen panel
                         tutorVerifyList.removeAllItems();
                         Tutor[] verify = new Tutor[0];
-                        verify=benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText()));
+                        verify = benri.needVerification(benri.createTeacherFromFile(one, firstNameField.getText(), passwordField.getText()));
                         for (int i = 0; i < verify.length; i++) {
                             tutorVerifyList.addItem(verify[i].getFirstName());
                         }
-                    }   break;
+                    }
+                    break;
                 case "Tutor":
                     if (benri.tutorLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
                         card.show(basePanel, "tutorHome");//shows login screen panel
-                        
-                    }   break;
+
+                    }
+                    break;
                 case "Peer":
                     if (benri.peerLoginCheck(firstNameField.getText(), passwordField.getText()).length >= 1) {
                         card.show(basePanel, "peerHome");//shows login screen panel
-                    }   break;
+                    }
+                    break;
             }
         } catch (FileNotFoundException ex) {
             Logger.getLogger(GuiFace.class.getName()).log(Level.SEVERE, null, ex);
@@ -1004,7 +1014,11 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void match_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_match_btnActionPerformed
         // match a list of peers with tutors
-        
+        Utility u = new Utility();
+        matchList_cbox.removeAllItems();
+        Tutor[] matchlist = u.matchTutors(u.generatePeerFromLogin());
+        for (int i = 0; i < matchlist.length; i++) {
+        }
     }//GEN-LAST:event_match_btnActionPerformed
 
     /**
@@ -1064,6 +1078,7 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JButton loginButton;
     private javax.swing.JPanel loginPanel;
     private javax.swing.JLabel loginText1;
+    private javax.swing.JComboBox matchList_cbox;
     private javax.swing.JButton match_btn;
     private javax.swing.JLabel myPeersLabel;
     private javax.swing.JLabel myTutorsLabel;
