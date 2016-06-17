@@ -1,1 +1,1 @@
-Grade 9 Science,haydn,brown,420420,rogers.com,0,null,null,null,null,null,null,true,true,true,false,true,true,false
+Grade 12 English,Ari,Zeeman,6475258045,arizeeman@gmail.com,0,,null,null,null,null,null,true,true,false,false,false,false,false

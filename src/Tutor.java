@@ -14,7 +14,7 @@ public class Tutor implements Comparable {
     private String firstName, lastName;
     private String phoneNumber;
     private String email;
-    private int numPeers;
+    private int numPeers = 0;
     private String password;
     private Teacher teacher = new Teacher();
     private boolean[] availability = new boolean[6];
