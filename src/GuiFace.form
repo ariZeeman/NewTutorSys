@@ -224,15 +224,29 @@
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="tutorSubjectDropList" alignment="0" pref="240" max="32767" attributes="0"/>
-                                  <Component id="tutorFirstNameField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tutorLastNameField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tutorEmailField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tutorPhoneNumberField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tutorPeriodDropList" max="32767" attributes="0"/>
-                                  <Component id="tutorPassConfirmField" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="tutorPasswordField" alignment="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="tutorSubjectDropList" alignment="0" pref="240" max="32767" attributes="0"/>
+                                      <Component id="tutorFirstNameField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tutorLastNameField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tutorEmailField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tutorPhoneNumberField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tutorPassConfirmField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="tutorPasswordField" alignment="0" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="tutorPeriod1CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="tutorPeriod2CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="tutorPeriod3CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="tutorPeriod4CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="tutorPeriod5CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="tutorAfterSchoolCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
@@ -287,14 +301,19 @@
                           <Component id="tutorSubjectDropList" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tutorSubjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="tutorPeriodDropList" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tutorPeriodsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tutorPeriod1CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tutorPeriod2CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tutorPeriod3CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tutorPeriod4CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tutorAfterSchoolCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tutorPeriod5CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="tutorSignupButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="223" max="32767" attributes="0"/>
+                      <EmptySpace pref="219" max="32767" attributes="0"/>
                       <Component id="tutorBackButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -322,11 +341,11 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sign Up"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tutorSignupButtonMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tutorFirstNameField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tutorFirstNameFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="tutorLastNameField">
             </Component>
@@ -380,18 +399,6 @@
                 </Property>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="tutorPeriodDropList">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="tutorPeriodsLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Periods Available:"/>
@@ -400,6 +407,36 @@
             <Component class="javax.swing.JLabel" name="tutorSubjectLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Subject to tutor:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tutorPeriod1CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tutorPeriod4CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tutorPeriod2CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 2"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tutorPeriod3CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tutorAfterSchoolCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="After School"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="tutorPeriod5CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 5"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -418,42 +455,51 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="725" max="32767" attributes="0"/>
                               <Component id="peerBackButton" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
+                          <Component id="peerTitle" min="-2" max="-2" attributes="0"/>
+                          <Component id="peerSignupButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="peerTitle" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="peerPasswordLabel" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="peerPhoneNumberLabel" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="peerEmailLabel" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="peerLastNameLabel" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="peerFirstNameLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="peerPassConfirmLabel" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="peerPeriodsLabel" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="peerSubjectLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="peerSubjectDropList" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerFirstNameField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerLastNameField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerEmailField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerPhoneNumberField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerPeriodDropList" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerPassConfirmField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="peerPasswordField" alignment="0" min="-2" pref="240" max="-2" attributes="0"/>
-                                      </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="peerPasswordLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerPhoneNumberLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerEmailLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerLastNameLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerFirstNameLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="peerSignupButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="peerPassConfirmLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerPeriodsLabel" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerSubjectLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace min="0" pref="402" max="32767" attributes="0"/>
+                              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="peerPeriod1CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod2CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod3CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod4CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="peerPeriod5CheckBox" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="peerAfterSchoolCheckBox" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="peerFirstNameField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerLastNameField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerEmailField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerPhoneNumberField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerSubjectDropList" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerPassConfirmField" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="peerPasswordField" alignment="0" pref="240" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
@@ -501,13 +547,20 @@
                           <Component id="peerSubjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="peerPeriodDropList" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="peerPeriodsLabel" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                              <Component id="peerPeriod1CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod2CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod3CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod4CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerAfterSchoolCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="peerPeriod5CheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="peerPeriodsLabel" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="peerSignupButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="230" max="32767" attributes="0"/>
+                      <EmptySpace pref="231" max="32767" attributes="0"/>
                       <Component id="peerBackButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -557,18 +610,6 @@
                 <Property name="text" type="java.lang.String" value="Last Name:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="peerPeriodDropList">
-              <Properties>
-                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
-                    <StringItem index="0" value="Item 1"/>
-                    <StringItem index="1" value="Item 2"/>
-                    <StringItem index="2" value="Item 3"/>
-                    <StringItem index="3" value="Item 4"/>
-                  </StringArray>
-                </Property>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JLabel" name="peerEmailLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Email:"/>
@@ -602,17 +643,47 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sign Up"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="peerSignupButtonMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="peerPasswordField">
             </Component>
             <Component class="javax.swing.JTextField" name="peerFirstNameField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="peerFirstNameFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="peerPassConfirmLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Confirm Password:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="peerPeriod3CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 3"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="peerAfterSchoolCheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="After School"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="peerPeriod5CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 5"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="peerPeriod1CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 1"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="peerPeriod4CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 4"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JCheckBox" name="peerPeriod2CheckBox">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Period 2"/>
               </Properties>
             </Component>
           </SubComponents>
@@ -645,7 +716,6 @@
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                           <Component id="teacherSubjectLabel" max="32767" attributes="0"/>
                                           <Component id="teacherEmailLabel" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="teacherPhoneNumberLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPasswordLabel" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPassConfirmLabel" alignment="0" pref="100" max="32767" attributes="0"/>
                                           <Component id="teacherLastNameLabel" alignment="0" max="32767" attributes="0"/>
@@ -657,13 +727,12 @@
                                           <Component id="teacherFirstNameField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherLastNameField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherEmailField" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="teacherPhoneNumberField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPassConfirmField" alignment="0" max="32767" attributes="0"/>
                                           <Component id="teacherPasswordField" pref="240" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="492" max="32767" attributes="0"/>
+                              <EmptySpace pref="423" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -695,11 +764,6 @@
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="teacherPhoneNumberField" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="teacherPhoneNumberLabel" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="teacherPasswordField" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="teacherPasswordLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -713,9 +777,9 @@
                           <Component id="teacherSubjectDropList" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="teacherSubjectLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="88" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="58" max="-2" attributes="0"/>
                       <Component id="teacherSignupButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="181" max="32767" attributes="0"/>
+                      <EmptySpace pref="242" max="32767" attributes="0"/>
                       <Component id="teacherBackButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -738,11 +802,6 @@
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="teacherBackButtonMouseClicked"/>
               </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="teacherPhoneNumberLabel">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Phone Number:"/>
-              </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="teacherPasswordLabel">
               <Properties>
@@ -773,21 +832,19 @@
             </Component>
             <Component class="javax.swing.JTextField" name="teacherLastNameField">
             </Component>
-            <Component class="javax.swing.JTextField" name="teacherPhoneNumberField">
-            </Component>
             <Component class="javax.swing.JTextField" name="teacherPassConfirmField">
             </Component>
             <Component class="javax.swing.JTextField" name="teacherPasswordField">
             </Component>
             <Component class="javax.swing.JTextField" name="teacherFirstNameField">
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="teacherFirstNameFieldActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="teacherSignupButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Sign Up"/>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="teacherSignupButtonMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="teacherSubjectLabel">
               <Properties>

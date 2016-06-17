@@ -1,5 +1,9 @@
 
 import java.awt.CardLayout;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,14 +26,11 @@ public class GuiFace extends javax.swing.JFrame {
         "Grade 12 Calculus & Vectors", "Grade 9 Science", "Grade 10 Science",
         "Grade 11 Biology", "Grade 11 Physics", "Grade 11 Chemistry", "Grade 12 Biology",
         "Grade 12 Physics", "Grade 12 Chemistry"};
-    private final String[] periodArray = {"period 1", "period 2", "period 3", "period 4", "period 5", "after school"};
 
     public GuiFace() {
         initComponents();
         tutorSubjectDropList.removeAllItems();
-        tutorPeriodDropList.removeAllItems();
         peerSubjectDropList.removeAllItems();
-        peerPeriodDropList.removeAllItems();
         teacherSubjectDropList.removeAllItems();
         clientTypeList.removeAllItems();
         clientTypeList.addItem("Teacher");
@@ -39,10 +40,6 @@ public class GuiFace extends javax.swing.JFrame {
             tutorSubjectDropList.addItem(subjectArray[i]);
             peerSubjectDropList.addItem(subjectArray[i]);
             teacherSubjectDropList.addItem(subjectArray[i]);
-        }
-        for (int i = 0; i < periodArray.length; i++) {
-            tutorPeriodDropList.addItem(periodArray[i]);
-            peerPeriodDropList.addItem(periodArray[i]);
         }
     }
 
@@ -85,9 +82,14 @@ public class GuiFace extends javax.swing.JFrame {
         tutorPassConfirmLabel = new javax.swing.JLabel();
         tutorPassConfirmField = new javax.swing.JTextField();
         tutorSubjectDropList = new javax.swing.JComboBox();
-        tutorPeriodDropList = new javax.swing.JComboBox();
         tutorPeriodsLabel = new javax.swing.JLabel();
         tutorSubjectLabel = new javax.swing.JLabel();
+        tutorPeriod1CheckBox = new javax.swing.JCheckBox();
+        tutorPeriod4CheckBox = new javax.swing.JCheckBox();
+        tutorPeriod2CheckBox = new javax.swing.JCheckBox();
+        tutorPeriod3CheckBox = new javax.swing.JCheckBox();
+        tutorAfterSchoolCheckBox = new javax.swing.JCheckBox();
+        tutorPeriod5CheckBox = new javax.swing.JCheckBox();
         peerRegistryPanel = new javax.swing.JPanel();
         peerTitle = new javax.swing.JLabel();
         peerBackButton = new javax.swing.JButton();
@@ -96,7 +98,6 @@ public class GuiFace extends javax.swing.JFrame {
         peerFirstNameLabel = new javax.swing.JLabel();
         peerSubjectDropList = new javax.swing.JComboBox();
         peerLastNameLabel = new javax.swing.JLabel();
-        peerPeriodDropList = new javax.swing.JComboBox();
         peerEmailLabel = new javax.swing.JLabel();
         peerPeriodsLabel = new javax.swing.JLabel();
         peerEmailField = new javax.swing.JTextField();
@@ -108,10 +109,15 @@ public class GuiFace extends javax.swing.JFrame {
         peerPasswordField = new javax.swing.JTextField();
         peerFirstNameField = new javax.swing.JTextField();
         peerPassConfirmLabel = new javax.swing.JLabel();
+        peerPeriod3CheckBox = new javax.swing.JCheckBox();
+        peerAfterSchoolCheckBox = new javax.swing.JCheckBox();
+        peerPeriod5CheckBox = new javax.swing.JCheckBox();
+        peerPeriod1CheckBox = new javax.swing.JCheckBox();
+        peerPeriod4CheckBox = new javax.swing.JCheckBox();
+        peerPeriod2CheckBox = new javax.swing.JCheckBox();
         teacherRegistryPanel = new javax.swing.JPanel();
         teacherTitle = new javax.swing.JLabel();
         teacherBackButton = new javax.swing.JButton();
-        teacherPhoneNumberLabel = new javax.swing.JLabel();
         teacherPasswordLabel = new javax.swing.JLabel();
         teacherPassConfirmLabel = new javax.swing.JLabel();
         teacherFirstNameLabel = new javax.swing.JLabel();
@@ -119,7 +125,6 @@ public class GuiFace extends javax.swing.JFrame {
         teacherEmailLabel = new javax.swing.JLabel();
         teacherEmailField = new javax.swing.JTextField();
         teacherLastNameField = new javax.swing.JTextField();
-        teacherPhoneNumberField = new javax.swing.JTextField();
         teacherPassConfirmField = new javax.swing.JTextField();
         teacherPasswordField = new javax.swing.JTextField();
         teacherFirstNameField = new javax.swing.JTextField();
@@ -233,10 +238,9 @@ public class GuiFace extends javax.swing.JFrame {
         });
 
         tutorSignupButton.setText("Sign Up");
-
-        tutorFirstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tutorFirstNameFieldActionPerformed(evt);
+        tutorSignupButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tutorSignupButtonMouseClicked(evt);
             }
         });
 
@@ -254,11 +258,21 @@ public class GuiFace extends javax.swing.JFrame {
 
         tutorSubjectDropList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        tutorPeriodDropList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         tutorPeriodsLabel.setText("Periods Available:");
 
         tutorSubjectLabel.setText("Subject to tutor:");
+
+        tutorPeriod1CheckBox.setText("Period 1");
+
+        tutorPeriod4CheckBox.setText("Period 4");
+
+        tutorPeriod2CheckBox.setText("Period 2");
+
+        tutorPeriod3CheckBox.setText("Period 3");
+
+        tutorAfterSchoolCheckBox.setText("After School");
+
+        tutorPeriod5CheckBox.setText("Period 5");
 
         javax.swing.GroupLayout tutorRegistryPanelLayout = new javax.swing.GroupLayout(tutorRegistryPanel);
         tutorRegistryPanel.setLayout(tutorRegistryPanelLayout);
@@ -284,15 +298,27 @@ public class GuiFace extends javax.swing.JFrame {
                                 .addComponent(tutorPeriodsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(tutorSubjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(38, 38, 38)
-                        .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tutorSubjectDropList, 0, 240, Short.MAX_VALUE)
-                            .addComponent(tutorFirstNameField)
-                            .addComponent(tutorLastNameField)
-                            .addComponent(tutorEmailField)
-                            .addComponent(tutorPhoneNumberField)
-                            .addComponent(tutorPeriodDropList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(tutorPassConfirmField)
-                            .addComponent(tutorPasswordField))
+                        .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(tutorSubjectDropList, 0, 240, Short.MAX_VALUE)
+                                .addComponent(tutorFirstNameField)
+                                .addComponent(tutorLastNameField)
+                                .addComponent(tutorEmailField)
+                                .addComponent(tutorPhoneNumberField)
+                                .addComponent(tutorPassConfirmField)
+                                .addComponent(tutorPasswordField))
+                            .addGroup(tutorRegistryPanelLayout.createSequentialGroup()
+                                .addComponent(tutorPeriod1CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tutorPeriod2CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tutorPeriod3CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tutorPeriod4CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tutorPeriod5CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(tutorAfterSchoolCheckBox)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(tutorRegistryPanelLayout.createSequentialGroup()
                         .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -333,13 +359,18 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tutorSubjectDropList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tutorSubjectLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(12, 12, 12)
                 .addGroup(tutorRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tutorPeriodDropList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tutorPeriodsLabel))
+                    .addComponent(tutorPeriodsLabel)
+                    .addComponent(tutorPeriod1CheckBox)
+                    .addComponent(tutorPeriod2CheckBox)
+                    .addComponent(tutorPeriod3CheckBox)
+                    .addComponent(tutorPeriod4CheckBox)
+                    .addComponent(tutorAfterSchoolCheckBox)
+                    .addComponent(tutorPeriod5CheckBox))
                 .addGap(18, 18, 18)
                 .addComponent(tutorSignupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 223, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 219, Short.MAX_VALUE)
                 .addComponent(tutorBackButton)
                 .addContainerGap())
         );
@@ -362,8 +393,6 @@ public class GuiFace extends javax.swing.JFrame {
 
         peerLastNameLabel.setText("Last Name:");
 
-        peerPeriodDropList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         peerEmailLabel.setText("Email:");
 
         peerPeriodsLabel.setText("Periods Available:");
@@ -375,14 +404,25 @@ public class GuiFace extends javax.swing.JFrame {
         peerPasswordLabel.setText("Password:");
 
         peerSignupButton.setText("Sign Up");
-
-        peerFirstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                peerFirstNameFieldActionPerformed(evt);
+        peerSignupButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                peerSignupButtonMouseClicked(evt);
             }
         });
 
         peerPassConfirmLabel.setText("Confirm Password:");
+
+        peerPeriod3CheckBox.setText("Period 3");
+
+        peerAfterSchoolCheckBox.setText("After School");
+
+        peerPeriod5CheckBox.setText("Period 5");
+
+        peerPeriod1CheckBox.setText("Period 1");
+
+        peerPeriod4CheckBox.setText("Period 4");
+
+        peerPeriod2CheckBox.setText("Period 2");
 
         javax.swing.GroupLayout peerRegistryPanelLayout = new javax.swing.GroupLayout(peerRegistryPanel);
         peerRegistryPanel.setLayout(peerRegistryPanelLayout);
@@ -392,35 +432,44 @@ public class GuiFace extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, peerRegistryPanelLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 725, Short.MAX_VALUE)
                         .addComponent(peerBackButton))
+                    .addComponent(peerTitle)
+                    .addComponent(peerSignupButton)
                     .addGroup(peerRegistryPanelLayout.createSequentialGroup()
                         .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(peerTitle)
+                            .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(peerPasswordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerPhoneNumberLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerEmailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerLastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerFirstNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(peerPassConfirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerPeriodsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerSubjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(38, 38, 38)
+                        .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(peerRegistryPanelLayout.createSequentialGroup()
-                                .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(peerPasswordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peerPhoneNumberLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peerEmailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peerLastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peerFirstNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(peerPassConfirmLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peerPeriodsLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(peerSubjectLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(38, 38, 38)
-                                .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(peerSubjectDropList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(peerFirstNameField)
-                                    .addComponent(peerLastNameField)
-                                    .addComponent(peerEmailField)
-                                    .addComponent(peerPhoneNumberField)
-                                    .addComponent(peerPeriodDropList, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(peerPassConfirmField)
-                                    .addComponent(peerPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(peerSignupButton))
-                        .addGap(0, 402, Short.MAX_VALUE)))
+                                .addComponent(peerPeriod1CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(peerPeriod2CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(peerPeriod3CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(peerPeriod4CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(peerPeriod5CheckBox)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(peerAfterSchoolCheckBox))
+                            .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(peerFirstNameField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(peerLastNameField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(peerEmailField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(peerPhoneNumberField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(peerSubjectDropList, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(peerPassConfirmField, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(peerPasswordField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         peerRegistryPanelLayout.setVerticalGroup(
@@ -457,12 +506,18 @@ public class GuiFace extends javax.swing.JFrame {
                     .addComponent(peerSubjectDropList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(peerSubjectLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(peerPeriodDropList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(peerRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(peerPeriod1CheckBox)
+                        .addComponent(peerPeriod2CheckBox)
+                        .addComponent(peerPeriod3CheckBox)
+                        .addComponent(peerPeriod4CheckBox)
+                        .addComponent(peerAfterSchoolCheckBox)
+                        .addComponent(peerPeriod5CheckBox))
                     .addComponent(peerPeriodsLabel))
                 .addGap(18, 18, 18)
                 .addComponent(peerSignupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 230, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 231, Short.MAX_VALUE)
                 .addComponent(peerBackButton)
                 .addContainerGap())
         );
@@ -479,8 +534,6 @@ public class GuiFace extends javax.swing.JFrame {
             }
         });
 
-        teacherPhoneNumberLabel.setText("Phone Number:");
-
         teacherPasswordLabel.setText("Password:");
 
         teacherPassConfirmLabel.setText("Confirm Password:");
@@ -491,13 +544,12 @@ public class GuiFace extends javax.swing.JFrame {
 
         teacherEmailLabel.setText("Email:");
 
-        teacherFirstNameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                teacherFirstNameFieldActionPerformed(evt);
+        teacherSignupButton.setText("Sign Up");
+        teacherSignupButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                teacherSignupButtonMouseClicked(evt);
             }
         });
-
-        teacherSignupButton.setText("Sign Up");
 
         teacherSubjectLabel.setText("Subject Taught:");
 
@@ -523,7 +575,6 @@ public class GuiFace extends javax.swing.JFrame {
                                 .addGroup(teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(teacherSubjectLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(teacherEmailLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(teacherPhoneNumberLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(teacherPasswordLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(teacherPassConfirmLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
                                     .addComponent(teacherLastNameLabel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -534,10 +585,9 @@ public class GuiFace extends javax.swing.JFrame {
                                     .addComponent(teacherFirstNameField)
                                     .addComponent(teacherLastNameField)
                                     .addComponent(teacherEmailField)
-                                    .addComponent(teacherPhoneNumberField)
                                     .addComponent(teacherPassConfirmField)
                                     .addComponent(teacherPasswordField, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE))))
-                        .addContainerGap(492, Short.MAX_VALUE))))
+                        .addContainerGap(423, Short.MAX_VALUE))))
         );
         teacherRegistryPanelLayout.setVerticalGroup(
             teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -560,10 +610,6 @@ public class GuiFace extends javax.swing.JFrame {
                         .addComponent(teacherFirstNameLabel)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(teacherPhoneNumberField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(teacherPhoneNumberLabel))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teacherPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(teacherPasswordLabel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -574,9 +620,9 @@ public class GuiFace extends javax.swing.JFrame {
                 .addGroup(teacherRegistryPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(teacherSubjectDropList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(teacherSubjectLabel))
-                .addGap(88, 88, 88)
+                .addGap(58, 58, 58)
                 .addComponent(teacherSignupButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
                 .addComponent(teacherBackButton)
                 .addContainerGap())
         );
@@ -639,17 +685,67 @@ public class GuiFace extends javax.swing.JFrame {
         card.show(basePanel, "peerPanel");
     }//GEN-LAST:event_peerRegistryButtonMouseClicked
 
-    private void tutorFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tutorFirstNameFieldActionPerformed
+    private void tutorSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tutorSignupButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_tutorFirstNameFieldActionPerformed
+        if (tutorFirstNameField.getText().equals("")||tutorLastNameField.getText().equals("")||tutorEmailField.getText().equals("")||tutorPhoneNumberField.getText().equals("")||tutorPasswordField.getText().equals("")||tutorPassConfirmField.getText().equals("")||tutorPeriod1CheckBox.isSelected()== false||tutorPeriod2CheckBox.isSelected()== false||tutorPeriod3CheckBox.isSelected()== false||tutorPeriod4CheckBox.isSelected()== false||tutorPeriod5CheckBox.isSelected()== false||tutorAfterSchoolCheckBox.isSelected()== false){
+        return;    
+        } else if (!tutorPasswordField.getText().equals(tutorPassConfirmField.getText())){
+        return;    
+        }
+        Tutor one = new Tutor();
+        one.setFirstName(tutorFirstNameField.getText());
+        one.setLastName(tutorLastNameField.getText());
+        one.setEmail(tutorEmailField.getText());
+        one.setPhoneNumber(tutorPhoneNumberField.getText());
+        one.setSubject((String) tutorSubjectDropList.getSelectedItem());
+        one.setAvailability(0,tutorPeriod1CheckBox.isSelected());
+        one.setAvailability(1,tutorPeriod2CheckBox.isSelected());
+        one.setAvailability(2,tutorPeriod3CheckBox.isSelected());
+        one.setAvailability(3,tutorPeriod4CheckBox.isSelected());
+        one.setAvailability(4,tutorPeriod5CheckBox.isSelected());
+        one.setAvailability(5,tutorAfterSchoolCheckBox.isSelected());
+        Utility benri = new Utility();
+        benri.printTutorToFile(one);
+    }//GEN-LAST:event_tutorSignupButtonMouseClicked
 
-    private void peerFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peerFirstNameFieldActionPerformed
+    private void peerSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_peerSignupButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_peerFirstNameFieldActionPerformed
+        if (peerFirstNameField.getText().equals("")||peerLastNameField.getText().equals("")||peerEmailField.getText().equals("")||peerPhoneNumberField.getText().equals("")||peerPasswordField.getText().equals("")||peerPassConfirmField.getText().equals("")||peerPeriod1CheckBox.isSelected()== false||peerPeriod2CheckBox.isSelected()== false||peerPeriod3CheckBox.isSelected()== false||peerPeriod4CheckBox.isSelected()== false||peerPeriod5CheckBox.isSelected()== false||peerAfterSchoolCheckBox.isSelected()== false){
+        return;    
+        } else if (!peerPasswordField.getText().equals(peerPassConfirmField.getText())){
+        return;    
+        }
+        Peer one = new Peer();
+        one.setFirst(peerFirstNameField.getText());
+        one.setLast(peerLastNameField.getText());
+        one.setEmail(peerEmailField.getText());
+        one.setPhoneNumber(peerPhoneNumberField.getText());
+        one.setSubject((String) peerSubjectDropList.getSelectedItem());
+        one.setAvailability(0,peerPeriod1CheckBox.isSelected());
+        one.setAvailability(1,peerPeriod2CheckBox.isSelected());
+        one.setAvailability(2,peerPeriod3CheckBox.isSelected());
+        one.setAvailability(3,peerPeriod4CheckBox.isSelected());
+        one.setAvailability(4,peerPeriod5CheckBox.isSelected());
+        one.setAvailability(5,peerAfterSchoolCheckBox.isSelected());
+        Utility benri = new Utility();
+        benri.printPeerToFile(one);
+    }//GEN-LAST:event_peerSignupButtonMouseClicked
 
-    private void teacherFirstNameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_teacherFirstNameFieldActionPerformed
+    private void teacherSignupButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_teacherSignupButtonMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_teacherFirstNameFieldActionPerformed
+        if (teacherFirstNameField.getText().equals("")||teacherLastNameField.getText().equals("")||teacherEmailField.getText().equals("")||tutorPasswordField.getText().equals("")){
+        return;    
+        } else if (!teacherPasswordField.getText().equals(teacherPassConfirmField.getText())){
+        return;    
+        }
+        Teacher one = new Teacher();
+        one.setFirstName(peerFirstNameField.getText());
+        one.setLastName(peerLastNameField.getText());
+        one.setEmail(peerEmailField.getText());
+        one.setSubject((String) peerSubjectDropList.getSelectedItem());
+        Utility benri = new Utility();
+        benri.printTeacherToFile(one);
+    }//GEN-LAST:event_teacherSignupButtonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -700,6 +796,7 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JLabel loginText1;
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JTextField passwordLine;
+    private javax.swing.JCheckBox peerAfterSchoolCheckBox;
     private javax.swing.JButton peerBackButton;
     private javax.swing.JTextField peerEmailField;
     private javax.swing.JLabel peerEmailLabel;
@@ -711,7 +808,11 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JLabel peerPassConfirmLabel;
     private javax.swing.JTextField peerPasswordField;
     private javax.swing.JLabel peerPasswordLabel;
-    private javax.swing.JComboBox peerPeriodDropList;
+    private javax.swing.JCheckBox peerPeriod1CheckBox;
+    private javax.swing.JCheckBox peerPeriod2CheckBox;
+    private javax.swing.JCheckBox peerPeriod3CheckBox;
+    private javax.swing.JCheckBox peerPeriod4CheckBox;
+    private javax.swing.JCheckBox peerPeriod5CheckBox;
     private javax.swing.JLabel peerPeriodsLabel;
     private javax.swing.JTextField peerPhoneNumberField;
     private javax.swing.JLabel peerPhoneNumberLabel;
@@ -732,14 +833,13 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JLabel teacherPassConfirmLabel;
     private javax.swing.JTextField teacherPasswordField;
     private javax.swing.JLabel teacherPasswordLabel;
-    private javax.swing.JTextField teacherPhoneNumberField;
-    private javax.swing.JLabel teacherPhoneNumberLabel;
     private javax.swing.JButton teacherRegistryButton;
     private javax.swing.JPanel teacherRegistryPanel;
     private javax.swing.JButton teacherSignupButton;
     private javax.swing.JComboBox teacherSubjectDropList;
     private javax.swing.JLabel teacherSubjectLabel;
     private javax.swing.JLabel teacherTitle;
+    private javax.swing.JCheckBox tutorAfterSchoolCheckBox;
     private javax.swing.JButton tutorBackButton;
     private javax.swing.JTextField tutorEmailField;
     private javax.swing.JLabel tutorEmailLabel;
@@ -751,7 +851,11 @@ public class GuiFace extends javax.swing.JFrame {
     private javax.swing.JLabel tutorPassConfirmLabel;
     private javax.swing.JTextField tutorPasswordField;
     private javax.swing.JLabel tutorPasswordLabel;
-    private javax.swing.JComboBox tutorPeriodDropList;
+    private javax.swing.JCheckBox tutorPeriod1CheckBox;
+    private javax.swing.JCheckBox tutorPeriod2CheckBox;
+    private javax.swing.JCheckBox tutorPeriod3CheckBox;
+    private javax.swing.JCheckBox tutorPeriod4CheckBox;
+    private javax.swing.JCheckBox tutorPeriod5CheckBox;
     private javax.swing.JLabel tutorPeriodsLabel;
     private javax.swing.JTextField tutorPhoneNumberField;
     private javax.swing.JLabel tutorPhoneNumberLabel;

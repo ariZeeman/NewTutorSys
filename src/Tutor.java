@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 /**
  *
  * @author 349173815
@@ -46,20 +47,18 @@ public class Tutor implements Comparable {
 
     /**
      * The order this is written in!!!!!!!!v important!!!!!!
-     * Subject,FirstName,LastName,PhoneNumber,Email,numPeers,password,Availability[5][6],Visibility
+     * Subject,FirstName,LastName,PhoneNumber,Email,numPeers,password,Availability[6],Visibility
      *
      * @return String value to write to files
      */
     @Override
     public String toString() {
         String string;
-        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password + ",";
-//        for (int i = 0; i < 5; i++) {
-//            for (int j = 0; j < 6; j++) {
-//                string = string + availability[i][j] + ",";
-//            }
-//        }
-        string = string + visibility + ",";
+        string = subject + "," + firstName + "," + lastName + "," + phoneNumber + "," + email + "," + numPeers + "," + password + "," + teacher + ",";
+        for (int j = 0; j < 6; j++) {
+            string = string + availability[j] + ",";
+        }
+        string = string + visibility;
         return string;
     }
 
@@ -112,6 +111,20 @@ public class Tutor implements Comparable {
             throw new ArrayIndexOutOfBoundsException("Array bounds exceeded");
         }
         return availability[i];
+    }
+
+    /**
+     * This getter method returns the value of a single index in the
+     * availability array.
+     *
+     * @param i the index value of the boolean array
+     * @param b the boolean value being assigned
+     */
+    public void setAvailability(int i, boolean b) {
+        if (i >= availability.length || i < 0) {
+            throw new ArrayIndexOutOfBoundsException("Array bounds exceeded");
+        }
+        availability[i] = b;
     }
 
     /**
