@@ -928,12 +928,13 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
+        Utility benri = new Utility();
         if (clientTypeList.getSelectedItem().equals("Teacher")) {
 
         } else if (clientTypeList.getSelectedItem().equals("Tutor")) {
 
         } else {
-
+            benri.peerLoginCheck(peerFirstNameField.getText(), peerPasswordField.getText());
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 

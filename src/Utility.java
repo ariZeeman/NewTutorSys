@@ -343,7 +343,5 @@ public class Utility {
         }
         Peer[] checked = (Peer[])temp.toArray();
         return checked; //all the occurances of the person
-    }
-
-    
+    }   
 }
