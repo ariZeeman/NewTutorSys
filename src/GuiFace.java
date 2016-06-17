@@ -825,6 +825,7 @@ public class GuiFace extends javax.swing.JFrame {
         one.setEmail(tutorEmailField.getText());
         one.setPhoneNumber(tutorPhoneNumberField.getText());
         one.setSubject((String) tutorSubjectDropList.getSelectedItem());
+        one.setPassword(peerPasswordField.getText());
         one.setAvailability(0, tutorPeriod1CheckBox.isSelected());
         one.setAvailability(1, tutorPeriod2CheckBox.isSelected());
         one.setAvailability(2, tutorPeriod3CheckBox.isSelected());
@@ -905,23 +906,23 @@ public class GuiFace extends javax.swing.JFrame {
 
     private void loginButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginButtonMouseClicked
         // TODO add your handling code here:
-        if (clientTypeList.getSelectedItem().equals("Teacher")){
-           
-        }else if (clientTypeList.getSelectedItem().equals("Tutor")){
-            
-        }else{
-            
+        if (clientTypeList.getSelectedItem().equals("Teacher")) {
+
+        } else if (clientTypeList.getSelectedItem().equals("Tutor")) {
+
+        } else {
+
         }
     }//GEN-LAST:event_loginButtonMouseClicked
 
-        /**
+    /**
      *
      * @param text text to be displayed
      */
-    public void errorMessage(String text){ 
-        JOptionPane.showMessageDialog(basePanel,text,"Inane error",JOptionPane.ERROR_MESSAGE);
+    public void errorMessage(String text) {
+        JOptionPane.showMessageDialog(basePanel, text, "Inane error", JOptionPane.ERROR_MESSAGE);
     }
-    
+
     /**
      * @param args the command line arguments
      */
