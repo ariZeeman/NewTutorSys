@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -325,4 +326,13 @@ public class Utility {
             System.out.println(ex.getMessage());
         }
     }
+    
+    /**
+     *
+     * @param text text to be displayed
+     */
+//    public void errorMessage(String text){ 
+//        JOptionPane.showMessageDialog(GuiFace,text,"Inane error",JOptionPane.ERROR_MESSAGE);
+//    }
+    
 }
