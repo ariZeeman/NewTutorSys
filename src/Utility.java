@@ -327,8 +327,8 @@ public class Utility {
         }
     }
     
-//    public void errorMessage(String text){
-//        JOptionPane.showMessageDialog(GuiFace,"Eggs are not supposed to be green.","Inane error",JOptionPane.ERROR_MESSAGE);
+//    public void errorMessage(String text){ 
+//        JOptionPane.showMessageDialog(GuiFace,text,"Inane error",JOptionPane.ERROR_MESSAGE);
 //    }
     
 }
