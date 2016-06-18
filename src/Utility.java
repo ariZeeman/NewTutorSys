@@ -100,9 +100,9 @@ public class Utility {
     /**
      * Made by Haydn/Len edited by Ari
      *
-     * @param s
-     * @param firstName
-     * @param pass
+     * @param s scanner for file of teachers
+     * @param firstName teacher firstname
+     * @param pass teacher password
      * @return
      */
     public Teacher createTeacherFromFile(Scanner s, String firstName, String pass) {
@@ -111,7 +111,7 @@ public class Utility {
             String temo = s.nextLine();
             System.out.println(temo);
             String[] array = temo.split(",");
-            Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
+            Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]); //constructs teacher
             if ((temp.getFirstName().equals(firstName)) && (temp.getPassword().equals(pass))) {
                 return temp;
             }
@@ -122,8 +122,8 @@ public class Utility {
     /**
      * Made by Haydn
      *
-     * @param s
-     * @return
+     * @param s scanner of teachers
+     * @return returns the created teacher
      */
     public Teacher createTeacherFromFile(Scanner s) {
         String[] array = null; //array of info for teacher
@@ -164,7 +164,8 @@ public class Utility {
      *
      * @param peer peer to be matched
      * @param s scanner of tutors
-     * @return the assignment with the peer, tutor, and the time they're both available
+     * @return the assignment with the peer, tutor, and the time they're both
+     * available
      * @throws IOException
      */
     public Assignments createAssignment(Peer peer, Scanner s) throws IOException {
@@ -196,7 +197,7 @@ public class Utility {
 
         }
         Tutor[] tutorArray = (Tutor[]) ar.toArray();
-        Boolean[][] availables = (Boolean[][]) bools.toArray();
+        Boolean[][] availables = (Boolean[][]) bools.toArray(); //converts arraylist of availabilities to a 2d array, each first dimension index has the array of availability stored in it
         int index = fewestPeers(tutorArray);
         //Tutor tutor = fewestPeers(tutorArray); //can get rid o, probably
 
@@ -217,15 +218,15 @@ public class Utility {
      */
     public Assignments[] returnPeerAssignments(Peer peer, Scanner s) throws FileNotFoundException {
         ArrayList assignments = new ArrayList(); //stores all the assignments
-        Assignments assignment;
+        Assignments assignment; //assignment to be changed
         while (s.hasNext()) {
             assignment = createAssignmentFromFile(s); //creates assignment
-            if (assignment.getPeer().compareNames(peer) == 1) {
+            if (assignment.getPeer().compareNames(peer) == 1) { //if the peer parameter is the same as in file
                 assignments.add(assignment);
             }
         }
         Assignments[] toReturn = (Assignments[]) assignments.toArray();
-        return toReturn;
+        return toReturn; //returns all assignments including the peer
     }
 
     /**
@@ -238,23 +239,25 @@ public class Utility {
      */
     public Assignments[] returnTutorAssignments(Tutor tutor, Scanner s) throws FileNotFoundException {
         ArrayList assignments = new ArrayList(); //stores all the assignments
-        Assignments assignment;
+        Assignments assignment; //assignment to be changed
         while (s.hasNext()) {
             assignment = createAssignmentFromFile(s); //creates assignment
-            if (assignment.getTutor().compareNames(tutor) == 1) {
+            if (assignment.getTutor().compareNames(tutor) == 1) { //if the tutor parameter is the same as in file
                 assignments.add(assignment);
             }
         }
         Assignments[] toReturn = (Assignments[]) assignments.toArray();
-        return toReturn;
+        return toReturn; //returns all assignments including the tutor
     }
 
     /**
-     * Made by Haydn Method which returns the tutor with the lowest amount of
-     * people registered with them.
+     * Made by Haydn
+     *
+     * Method which returns the index of the array of the tutor with the lowest
+     * amount of people registered with them.
      *
      * @param tutors
-     * @return
+     * @return index of array with tutor with lowest peers
      */
     public int fewestPeers(Tutor[] tutors) {
         Tutor lowest = tutors[0];
