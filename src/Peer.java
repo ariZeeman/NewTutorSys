@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
-/** Ari/Haydn
+/**
+ * Ari/Haydn
  *
- * 
+ *
  */
 public class Peer {
 
@@ -20,6 +21,9 @@ public class Peer {
     private String lastName;
     private Boolean taken = false; //represents whether the student has a tutor
 
+    /**
+     *
+     */
     public Peer() {
     }
 
@@ -30,14 +34,31 @@ public class Peer {
         taken = true;
     }
 
+    /**
+     *
+     * @return
+     */
     public Boolean[] getAvailability() {
         return availability;
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean getTaken() {
         return taken;
     }
 
+    /**
+     *
+     * @param subject
+     * @param firstName
+     * @param lastName
+     * @param phoneNumber
+     * @param password
+     * @param email
+     */
     public Peer(String subject, String firstName, String lastName, String phoneNumber, String password, String email) {
         this.subject = subject;
         this.firstName = firstName;
@@ -49,6 +70,7 @@ public class Peer {
 
     /**
      *
+     * @return 
      * @return2
      */
     public String getSubject() {
@@ -122,8 +144,8 @@ public class Peer {
         return availability[index];
     }
 
-    /** by Ari
-     * This getter method returns the value of a single index in the
+    /**
+     * by Ari This getter method returns the value of a single index in the
      * availability array.
      *
      * @param i the index value of the boolean array
@@ -150,16 +172,25 @@ public class Peer {
         this.email = email;
     }
 
+    /**
+     *
+     * @param password
+     */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getPassword() {
         return password;
     }
 
-    /** Made/edited by Haydn/Ari
-     * Prints peer as a String in the following fashion:
+    /**
+     * Made/edited by Haydn/Ari Prints peer as a String in the following
+     * fashion:
      * Subject,FirstName,LastName,PhoneNumber,Password,Email,Availability.
      *
      * @return String of peer
@@ -172,6 +203,19 @@ public class Peer {
         }
         toReturn += "," + taken;
         return toReturn;
+    }
+
+    /** compares this peers names with the parameter's. 
+     *
+     * @param temp peer to be compared
+     * @return 1 if names are equal, 0 if not
+     */
+    public int compareNames(Peer temp) {
+        if (firstName.equals(temp.getFirst()) && lastName.equals(temp.getLast())) {
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
 }

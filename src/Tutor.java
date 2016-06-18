@@ -60,6 +60,19 @@ public class Tutor implements Comparable {
         string += "," + visibility;
         return string;
     }
+    
+    /** compares this tutors names with the parameter's. 
+     * Made by Haydn
+     * @param temp tutor to be compared
+     * @return 1 if names are equal, 0 if not
+     */
+    public int compareNames(Tutor temp) {
+        if (firstName.equals(temp.getFirstName()) && lastName.equals(temp.getLastName())) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     public void setPassword(String password) {
         this.password = password;

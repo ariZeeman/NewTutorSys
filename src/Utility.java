@@ -205,35 +205,42 @@ public class Utility {
      * @return all the assignments for that peer
      * @throws java.io.FileNotFoundException
      */
-    public Assignments[] returnPeerMatch(Peer peer, Scanner s) throws FileNotFoundException {
-        ArrayList list = new ArrayList();
+    public Assignments[] returnPeerAssignments(Peer peer, Scanner s) throws FileNotFoundException {
         ArrayList assignments = new ArrayList(); //stores all the assignments
         Assignments assignment;
         File f = new File("Peer.txt");
         Scanner scan = new Scanner(f);
         while (s.hasNext()) {
             String[] array = s.nextLine().split(",");
-            Peer tempPeer = null;
-            for (int i = 6; i < 12; i++) {
-                tempPeer.setAvailability(i - 6, Boolean.parseBoolean(array[i]));
-            }
-            
-            Tutor tempTutor = new Tutor(array[12], array[13], array[14], array[15], array[16], Integer.parseInt(array[17]), array[18]); //skips past the availability portion of peer
-            for (int i = 19; i < 25; i++) {
-                tempTutor.setAvailability(i - 19, Boolean.parseBoolean(array[i]));
-            }
-            assignment = new Assignments(tempPeer, tempTutor);
-            if (assignment.getPeer().equals(peer)) {
-//                for (int i = 0; i < assignment.getAvailability().length; i++){
-//                    if (){
-//                        
-//                    }
-//                }
-                list.add(assignment);
+            assignment = createAssignmentFromFile(s); //creates assignment
+            if (assignment.getPeer().compareNames(peer) == 1) {      
+                assignments.add(assignment);
             }
         }
-        //array of peers to return
-        return null;
+        Assignments[] toReturn = (Assignments[])assignments.toArray();
+        return toReturn;
+    }
+    /** Made by Haydn
+     *
+     * @param tutor tutor to be compared (all their assignments)
+     * @param s scanners of assignments
+     * @return all the assignments for that peer
+     * @throws java.io.FileNotFoundException
+     */
+    public Assignments[] returnTutorAssignments(Tutor tutor, Scanner s) throws FileNotFoundException {
+        ArrayList assignments = new ArrayList(); //stores all the assignments
+        Assignments assignment;
+        File f = new File("Peer.txt");
+        Scanner scan = new Scanner(f);
+        while (s.hasNext()) {
+            String[] array = s.nextLine().split(",");
+            assignment = createAssignmentFromFile(s); //creates assignment
+            if (assignment.getPeer().compareNames(peer) == 1) {      
+                assignments.add(assignment);
+            }
+        }
+        Assignments[] toReturn = (Assignments[])assignments.toArray();
+        return toReturn;
     }
 
     /** Made by Haydn
