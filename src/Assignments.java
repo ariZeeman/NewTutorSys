@@ -11,28 +11,57 @@ import java.util.ArrayList;
  * entirely done by Haydn
  */
 public class Assignments {
-    
+
     private Tutor tutor = new Tutor();
     private Peer peer = new Peer();
     private Teacher teacher = new Teacher();
     private boolean[] availability = new boolean[6];
     private boolean matched = false;
-    
+
     /**
      *
      */
-    public Assignments(){
-        
+    public Assignments() {
+
     }
-    
+
     /**
      *
      * @param newPeer
      * @param newTutor
      */
-    public Assignments(Peer newPeer, Tutor newTutor){
+    public Assignments(Peer newPeer, Tutor newTutor) {
         this.peer = newPeer;
         this.tutor = newTutor;
+    }
+
+    /**
+     *
+     * @param pFirst first name of peer
+     * @param pPhone phone number of peer
+     * @param pLast last name of peer
+     * @param tFirst of tutor
+     * @param pEmail email of peer
+     * @param tEmail email of tutor
+     * @param tPhone phone number of tutor
+     * @param tLast last name of tutor
+     * @param available array of availability
+     */
+    public Assignments(String pFirst, String pLast, String pPhone, String pEmail, String tFirst, String tLast, String tPhone, String tEmail) {
+        this.peer.setFirst(pFirst);
+        this.peer.setLast(pLast);
+        this.peer.setPhoneNumber(pPhone);
+        this.peer.setEmail(pEmail);
+        this.tutor.setFirstName(tFirst);
+        this.tutor.setLastName(tLast);
+        this.tutor.setPhoneNumber(tPhone);
+        this.tutor.setEmail(tEmail);
+    }
+
+    public void setAvailabilityArray(boolean[] available) {
+        for (int i = 0; i < available.length; i++) {
+            availability[i] = available[i];
+        }
     }
 
     /**
@@ -62,14 +91,14 @@ public class Assignments {
     public void setPeer(Peer peer) {
         this.peer = peer;
     }
-    
+
     /**
      *
      * @return
      */
     @Override
-    public String toString(){
-        String string = this.peer.getFirst() + "," + this.peer.getLast() + "," + this.peer.getPhoneNumber() + "," + this.peer.getEmail()+ ","; //prints peer values
+    public String toString() {
+        String string = this.peer.getFirst() + "," + this.peer.getLast() + "," + this.peer.getPhoneNumber() + "," + this.peer.getEmail() + ","; //prints peer values
         string += this.tutor.getFirstName() + "," + this.tutor.getLastName() + "," + this.tutor.getPhoneNumber() + "," + this.tutor.getEmail(); //prints tutor values
         for (int j = 0; j < 6; j++) {
             string += "," + availability[j];
@@ -105,5 +134,5 @@ public class Assignments {
     public void setMatched(boolean matched) {
         this.matched = matched;
     }
-    
+
 }

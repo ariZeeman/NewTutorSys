@@ -126,7 +126,20 @@ public class Utility {
         array = s.nextLine().split(",");
         Teacher temp = new Teacher(array[0], array[1], array[2], array[3], array[4]);
         return temp;
-
+    }
+    
+    /**
+     *
+     * @param s scanner of assignments
+     * @return
+     */
+    public Assignments createAssignmentFromFile(Scanner s) {
+        String[] array = null; //array of info for assignment
+        array = s.nextLine().split(",");
+        Assignments temp = new Assignments(array[0],array[1],array[2],array[3],array[4],array[5],array[6],array[7]);
+        boolean[] available = {Boolean.parseBoolean(array[8]),Boolean.parseBoolean(array[9]),Boolean.parseBoolean(array[10]),Boolean.parseBoolean(array[11]),Boolean.parseBoolean(array[12]),Boolean.parseBoolean(array[13]),};
+        temp.setAvailabilityArray(available); //sets the availability of the temp assignment to the valuse from file
+        return temp;
     }
 
     /** Made by Haydn
@@ -189,10 +202,12 @@ public class Utility {
      *
      * @param peer peer in an assignment
      * @param s scanners of assignments
-     * @return
+     * @return all the assignments for that peer
+     * @throws java.io.FileNotFoundException
      */
-    public Assignments returnPeerMatch(Peer peer, Scanner s) throws FileNotFoundException {
+    public Assignments[] returnPeerMatch(Peer peer, Scanner s) throws FileNotFoundException {
         ArrayList list = new ArrayList();
+        ArrayList assignments = new ArrayList(); //stores all the assignments
         Assignments assignment;
         File f = new File("Peer.txt");
         Scanner scan = new Scanner(f);
