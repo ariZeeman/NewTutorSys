@@ -48,14 +48,14 @@ public class Assignments {
      * @param available array of availability
      */
     public Assignments(String pFirst, String pLast, String pPhone, String pEmail, String tFirst, String tLast, String tPhone, String tEmail) {
-        this.peer.setFirst(pFirst);
-        this.peer.setLast(pLast);
-        this.peer.setPhoneNumber(pPhone);
-        this.peer.setEmail(pEmail);
-        this.tutor.setFirstName(tFirst);
-        this.tutor.setLastName(tLast);
-        this.tutor.setPhoneNumber(tPhone);
-        this.tutor.setEmail(tEmail);
+        peer.setFirst(pFirst);
+        peer.setLast(pLast);
+        peer.setPhoneNumber(pPhone);
+        peer.setEmail(pEmail);
+        tutor.setFirstName(tFirst);
+        tutor.setLastName(tLast);
+        tutor.setPhoneNumber(tPhone);
+        tutor.setEmail(tEmail);
     }
 
     public void setAvailabilityArray(boolean[] available) {
